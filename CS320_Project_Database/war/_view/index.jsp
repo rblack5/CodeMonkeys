@@ -45,7 +45,7 @@
 		  }
 		  
 		  .content-section {
-		    background: #ffffff;
+		    background: #65d68c;
 		    padding: 10px 20px;
 		    border: 1px solid #dddddd;
 		    border-radius: 3px;
