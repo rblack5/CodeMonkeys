@@ -16,6 +16,6 @@ public class IndexServlet extends HttpServlet {
 		
 		System.out.println("Index Servlet: doGet");
 		
-		req.getRequestDispatcher("/_view/about.jsp").forward(req, resp);
+		req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
 	}
 }

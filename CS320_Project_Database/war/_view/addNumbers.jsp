@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid" %>  
 
+<rapid:override name="content">  
 <html>
 	<head>
 		<title>Add Numbers</title>
@@ -44,3 +46,6 @@
 		</form>
 	</body>
 </html>
+</rapid:override>  
+
+<%@ include file="base.jsp" %> 
