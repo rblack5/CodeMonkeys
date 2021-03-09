@@ -62,6 +62,7 @@
   </servlet>
 
   <!-- AJAX servlets. -->
+  <!--
   <servlet>
     <servlet-name>AddNumbersAjaxServlet</servlet-name>
     <servlet-class>project_database.servlet.ajax.AddNumbersAjaxServlet</servlet-class>
@@ -71,6 +72,7 @@
     <servlet-name>NextGuessAjaxServlet</servlet-name>
     <servlet-class>project_database.servlet.ajax.NextGuessAjaxServlet</servlet-class>
   </servlet>
+  -->
 
   <!-- Servlet mappings -->
   <servlet-mapping>
@@ -80,7 +82,7 @@
   
   <servlet-mapping>
     <servlet-name>HomeServlet</servlet-name>
-    <url-pattern>/home</url-pattern>
+    <url-pattern>/</url-pattern>
   </servlet-mapping>
   
   <servlet-mapping>
@@ -129,6 +131,7 @@
   </servlet-mapping>
 
   <!--  AJAX servlet mappings. -->
+   <!--
   <servlet-mapping>
     <servlet-name>AddNumbersAjaxServlet</servlet-name>
     <url-pattern>/ajax/addNumbers</url-pattern>
@@ -142,5 +145,6 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
+   -->
   
 </web-app>
