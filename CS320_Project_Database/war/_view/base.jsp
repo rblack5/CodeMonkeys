@@ -14,7 +14,8 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
         <!-- Styles for Page Link -->
-  		<link rel="stylesheet" href="${pageContext.request.contextPath}/_view/styles/main.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/_view/styles/main.css" type="text/css">
+
     </head>
 
     <body>
