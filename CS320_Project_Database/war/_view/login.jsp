@@ -7,6 +7,7 @@
     <h1>Login Page</h1>
     <body>	
 		<form action = "${pageContext.servletContext.contextPath}/login" method="post">
+			<br>
 			<table>
 				<tr>
 					<td class="label">Email: </td>
@@ -17,7 +18,18 @@
 					<td><input type="password" name="password" size="12" value="${loginModel.password}" placeholder="Password" /></td>
 				</tr>
 			</table>
+			
+			<br>
 			<input type="Submit" name="submit" value="Login">
+			
+			<br><br>
+			
+			
+			Don't have an account? <a href=http://localhost:8081/project_database/register><span class="link">Click here</span></a> to register. 			
+			
+    				
+
+
 		</form>
 	</body>
 </rapid:override>  
