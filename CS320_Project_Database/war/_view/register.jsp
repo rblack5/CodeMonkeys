@@ -30,7 +30,7 @@
 
 
 			<br><br>
-			Already have an account? <a href=http://localhost:8081/project_database/login><span class="link">Click here</span></a> to sign in. 			
+			<p>Already have an account? <a href=http://localhost:8081/project_database/login><span class="link">Click here</span></a> to sign in.</p>
 			
 		</form>
 	</body>
