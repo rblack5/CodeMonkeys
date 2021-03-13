@@ -15,6 +15,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
         <!-- Styles for Page Link -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/_view/styles/main.css" type="text/css">
+		<!-- Icon Library -->
+	<script src="https://kit.fontawesome.com/15a68e8958.js" crossorigin="anonymous"></script>
 
     </head>
 
@@ -29,18 +31,24 @@
 	                </button>
 	                <div class="collapse navbar-collapse" id="navbarToggle">
 	                	<div class="navbar-nav mr-auto">
-		                    <a class="nav-item nav-link" href="/project_database/home">Home</a>
-		                    <a class="nav-item nav-link" href="/project_database/about">About</a>
+		                    <a class="nav-item nav-link" href="/project_database/home"><i class="fas fa-home"></i> Home</a>
+		                    <a class="nav-item nav-link" href="/project_database/about"><i class="fas fa-info"></i> About</a>
 	                    </div>
 	                  <!-- navbar Right Side -->
 	                    <div class="navbar-nav">
 	                        <!-- {% if user.is_authenticated %} -->
-	                        <a class="nav-item nav-link" href="/project_database/create">Create A Post</a>
-	                        <a class="nav-item nav-link" href="/project_database/profile">Profile</a>
-	                        <a class="nav-item nav-link" href="/project_database/logout">Logout</a>
+							<!-- create a post -->
+	                        <a class="nav-item nav-link" href="/project_database/create"><i class="fas fa-plus-square"></i> Create a Post</a>
+							<!-- profile -->
+	                        <a class="nav-item nav-link" href="/project_database/profile"><i class="fas fa-user-circle"></i> Profile</a>
+							<!-- logout-->
+	                        <a class="nav-item nav-link" href="/project_database/logout"><i class="fas fa-door-open"></i> Logout</a>
 	                    	<!-- {% else %} -->
+							<!-- login-->
 	                        <a class="nav-item nav-link" href="/project_database/login">Login</a>
+							<!-- register
 	                        <a class="nav-item nav-link" href="/project_database/register">Register</a>
+							-->
 	                   		<!-- {% endif %} -->
 	               		</div>
 	            	</div>
