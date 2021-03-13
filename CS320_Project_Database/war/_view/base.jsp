@@ -45,7 +45,7 @@
 	                        <a class="nav-item nav-link" href="/project_database/logout"><i class="fas fa-door-open"></i> Logout</a>
 	                    	<!-- {% else %} -->
 							<!-- login-->
-	                        <a class="nav-item nav-link" href="/project_database/login">Login</a>
+	                        <a class="nav-item nav-link" href="/project_database/login"><i class="fas fa-sign-in-alt"></i> Login</a>
 							<!-- register
 	                        <a class="nav-item nav-link" href="/project_database/register">Register</a>
 							-->
