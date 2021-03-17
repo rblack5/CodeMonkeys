@@ -7,15 +7,9 @@
 	</head>
     <h1>Login Page</h1>
     <body>	
-<<<<<<< HEAD
 		<c:if test="${! empty errorMessage}">
-			<div class="error">${errorMessage}</div>
-		</c:if>
-=======
-		<f:if test="${! empty errorMessage}">
 			<div class="error" style="color:red">${errorMessage}</div>
-		</f:if>
->>>>>>> d01ab2445d5c9377ae1f20befeba9ab6f4cb26ae
+		</c:if>
 		
 		<form action = "${pageContext.servletContext.contextPath}/login" method="post">
 			<br>
