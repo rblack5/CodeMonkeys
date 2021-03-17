@@ -58,6 +58,8 @@ public class LoginServlet extends HttpServlet {
 				LoginController controller = new LoginController();
 				controller.setModel(model);
 				
+				model.setLoggedIn(controller.checkLogIn(model));
+				
 				// Output the email and password to the console to verify that the program has reached this point.
 				System.out.println("Email: " + email);
 				System.out.println("Password: " + password);

@@ -1,9 +1,20 @@
 package project_database.model;
 
+import java.util.ArrayList;
+
 public class LoginModel {
 	private String email, password;
+	private Boolean isLoggedIn;
+	
+	public ArrayList<String> passwords = new ArrayList<String>(); 
 	
 	public LoginModel() {
+		isLoggedIn = false;
+		
+		passwords.add("admin");
+		passwords.add("hunter2");
+		passwords.add("password");
+		passwords.add("codemonkeys");
 	}
 	
 	public void setEmail(String email) {
@@ -20,5 +31,13 @@ public class LoginModel {
 	
 	public String getPassword() {
 		return this.password;
+	}
+	
+	public void setLoggedIn(Boolean isLoggedIn ) {
+		this.isLoggedIn = isLoggedIn;
+	}
+	
+	public boolean getLoggedIn() {
+		return this.isLoggedIn;
 	}
 }

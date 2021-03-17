@@ -8,4 +8,13 @@ public class LoginController {
 	public void setModel(LoginModel model) {
 		this.model = model;
 	}
+	
+	public boolean checkLogIn(LoginModel model) {
+		for(int i = 0; i < model.passwords.size(); i++) {
+			if(model.getPassword() == model.passwords.get(i)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
