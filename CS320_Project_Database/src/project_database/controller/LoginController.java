@@ -11,8 +11,10 @@ public class LoginController {
 	
 	public boolean checkLogIn(LoginModel model) {
 		for(int i = 0; i < model.passwords.size(); i++) {
-			if(model.getPassword() == model.passwords.get(i)) {
-				System.out.println(i);
+			// System.out.println(model.getPassword() + "===");
+			// System.out.println(model.passwords.get(i));
+			if(model.getPassword().equals(model.passwords.get(i))) {
+				// System.out.println(i);
 				return true;
 			}
 		}

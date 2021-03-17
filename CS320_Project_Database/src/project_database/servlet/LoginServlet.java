@@ -52,6 +52,8 @@ public class LoginServlet extends HttpServlet {
 			else {
 				
 				// send the values to the model
+				// System.out.println(password);
+				
 				model.setPassword(password);
 				model.setEmail(email);
 				
@@ -60,7 +62,7 @@ public class LoginServlet extends HttpServlet {
 				
 				model.setLoggedIn(controller.checkLogIn(model));
 				
-				System.out.println("IsLoggedIn: " + controller.checkLogIn(model) );
+				System.out.println("IsLoggedIn: " + model.getLoggedIn() );
 				
 				if(model.getLoggedIn() == false) {
 					errorMessage = "Incorrect account information, please try again.";
