@@ -7,7 +7,7 @@
     <h1>Login Page</h1>
     <body>	
 		<f:if test="${! empty errorMessage}">
-			<div class="error">${errorMessage}</div>
+			<div class="error" style="color:red">${errorMessage}</div>
 		</f:if>
 		
 		<form action = "${pageContext.servletContext.contextPath}/login" method="post">
