@@ -9,8 +9,6 @@ public class LoginModel {
 	public ArrayList<String> passwords = new ArrayList<String>(); 
 	
 	public LoginModel() {
-		isLoggedIn = false;
-		
 		passwords.add("admin");
 		passwords.add("hunter2");
 		passwords.add("password");

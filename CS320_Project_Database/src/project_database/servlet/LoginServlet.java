@@ -60,8 +60,13 @@ public class LoginServlet extends HttpServlet {
 				
 				model.setLoggedIn(controller.checkLogIn(model));
 				
+				System.out.println("IsLoggedIn: " + controller.checkLogIn(model) );
+				
 				if(model.getLoggedIn() == false) {
 					errorMessage = "Incorrect account information, please try again.";
+				}
+				else {
+					errorMessage = "Correct account information";
 				}
 				
 				// Output the email and password to the console to verify that the program has reached this point.
