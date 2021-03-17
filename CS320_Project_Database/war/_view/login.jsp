@@ -1,4 +1,5 @@
-<%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid" %>  
+<%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid" %> 
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
 <rapid:override name="content">
 	<head>
@@ -6,9 +7,9 @@
 	</head>
     <h1>Login Page</h1>
     <body>	
-		<f:if test="${! empty errorMessage}">
+		<c:if test="${! empty errorMessage}">
 			<div class="error">${errorMessage}</div>
-		</f:if>
+		</c:if>
 		
 		<form action = "${pageContext.servletContext.contextPath}/login" method="post">
 			<br>
