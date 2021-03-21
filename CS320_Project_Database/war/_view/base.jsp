@@ -42,13 +42,9 @@
 							<!-- profile -->
 	                        <a class="nav-item nav-link" href="/project_database/profile"><i class="fas fa-user-circle"></i> Profile</a>
 							<!-- logout-->
-							
-							
-							<c:if test="${loginModel.getLoggedIn()}">
-	                        <a class="nav-item nav-link" href="/project_database/logout"><i class="fas fa-door-open"></i> Logout</a>
+							<c:if test="${loginModel.getLoggedIn}">
+								<a class="nav-item nav-link" href="/project_database/logout"><i class="fas fa-door-open"></i> Logout</a>
 							</c:if>
-							
-							
 	                    	<!-- {% else %} -->
 							<!-- login-->
 	                        <a class="nav-item nav-link" href="/project_database/login"><i class="fas fa-sign-in-alt"></i> Login</a>
