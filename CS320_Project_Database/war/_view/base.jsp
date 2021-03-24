@@ -21,7 +21,6 @@
     </head>
 
     <body>
-	
     	<header class="site-header">
         	<nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
             	<div class="container">
@@ -48,7 +47,7 @@
 	                    	<!-- {% else %} -->
 							<!-- login-->
 	                        <a class="nav-item nav-link" href="/project_database/login"><i class="fas fa-sign-in-alt"></i> Login</a>
-							<!-- register
+							<!-- register -->
 	                        <a class="nav-item nav-link" href="/project_database/register">Register</a>
 							
 	                   	
