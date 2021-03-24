@@ -2,6 +2,7 @@ package project_database.model;
 
 public class RegisterModel {
 	private String email, password, password2;
+	private boolean samePassword;
 	
 	public RegisterModel() {
 	}
@@ -29,4 +30,5 @@ public class RegisterModel {
 	public String getPassword2() {
 		return this.password2;
 	}
+	
 }

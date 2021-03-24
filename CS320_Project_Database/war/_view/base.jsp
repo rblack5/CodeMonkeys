@@ -50,8 +50,8 @@
 	                        <a class="nav-item nav-link" href="/project_database/login"><i class="fas fa-sign-in-alt"></i> Login</a>
 							<!-- register
 	                        <a class="nav-item nav-link" href="/project_database/register">Register</a>
-							-->
-	                   		<!-- {% endif %} -->
+							
+	                   	
 	               		</div>
 	            	</div>
 	        	</div>
