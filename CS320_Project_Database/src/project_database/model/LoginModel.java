@@ -3,7 +3,7 @@ package project_database.model;
 import java.util.ArrayList;
 
 public class LoginModel {
-	private String email, password;
+	private String username, password;
 	private Boolean isLoggedIn;
 	
 	public ArrayList<String> passwords = new ArrayList<String>(); 
@@ -15,12 +15,12 @@ public class LoginModel {
 		passwords.add("codemonkeys");
 	}
 	
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUsername(String email) {
+		this.username = email;
 	}
 	
-	public String getEmail() {
-		return this.email;
+	public String getUsername() {
+		return this.username;
 	}
 	
 	public void setPassword(String password) {

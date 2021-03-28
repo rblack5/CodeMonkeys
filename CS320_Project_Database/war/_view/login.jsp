@@ -16,8 +16,8 @@
 			<br>
 			<table>
 				<tr>
-					<td class="label">Email: </td>
-					<td><input type="text" name="email" size="12" value="${loginModel.email}" placeholder="Email" /></td>
+					<td class="label">Username: </td>
+					<td><input type="text" name="email" size="12" value="${loginModel.username}" placeholder="Email" /></td>
 				</tr>
 				<tr>
 					<td class="label">Password: </td>

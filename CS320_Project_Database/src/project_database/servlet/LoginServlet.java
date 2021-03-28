@@ -31,6 +31,7 @@ public class LoginServlet extends HttpServlet {
 
 		// holds the error message text, if there is any
 		String errorMessage = null;
+		String successMessage = null;
 		
 		// Create the model
 		LoginModel model = new LoginModel();
@@ -55,7 +56,7 @@ public class LoginServlet extends HttpServlet {
 				// System.out.println(password);
 				
 				model.setPassword(password);
-				model.setEmail(email);
+				model.setUsername(email);
 				
 				LoginController controller = new LoginController();
 				controller.setModel(model);
@@ -68,7 +69,10 @@ public class LoginServlet extends HttpServlet {
 					errorMessage = "Incorrect account information, please try again.";
 				}
 				else {
-					errorMessage = "Correct account information";
+					successMessage = "Welcome, " + model.getUsername();
+					req.setAttribute("errorMessage", successMessage);
+					resp.sendRedirect("/project_database/home");
+					
 				}
 				
 				// Output the email and password to the console to verify that the program has reached this point.

@@ -15,21 +15,21 @@ public class LoginModelTest {
 	}
 	
 	@Test
-	public void testSetEmail1() {
-		model.setEmail("test@ycp.edu");
-		assert(model.getEmail().equals("test@ycp.edu"));
+	public void testSetUsername1() {
+		model.setUsername("test@ycp.edu");
+		assert(model.getUsername().equals("test@ycp.edu"));
 	}
 	
 	@Test
-	public void testSetEmail2() {
-		model.setEmail("cs320@gmail.com");
-		assert(model.getEmail().equals("cs320@gmail.com"));
+	public void testSetUsername2() {
+		model.setUsername("cs320@gmail.com");
+		assert(model.getUsername().equals("cs320@gmail.com"));
 	}
 	
 	@Test
-	public void testSetEmail3() {
-		model.setEmail("blueMonday80@wasdpa.org");
-		assert(model.getEmail().equals("blueMonday80@wasdpa.org"));
+	public void testSetUsername3() {
+		model.setUsername("blueMonday80@wasdpa.org");
+		assert(model.getUsername().equals("blueMonday80@wasdpa.org"));
 	}
 	
 	@Test

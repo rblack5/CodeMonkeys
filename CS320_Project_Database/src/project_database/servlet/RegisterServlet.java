@@ -62,7 +62,7 @@ public class RegisterServlet extends HttpServlet {
 					// send the values to the model
 					model.setPassword(password);
 					model.setPassword2(password2);
-					model.setEmail(email);
+					model.setUsername(email);
 					
 					RegisterController controller = new RegisterController();
 					controller.setModel(model);
