@@ -2,7 +2,7 @@
 
 <rapid:override name="content">
 	<%
-		if (session.getAttribute(("username")) == null) {
+		if (session.getAttribute("username") == null) {
 			String message = "Login before you create a post!";
 			request.setAttribute("message", message);
 			request.getRequestDispatcher("/_view/login.jsp").forward(request, response);
