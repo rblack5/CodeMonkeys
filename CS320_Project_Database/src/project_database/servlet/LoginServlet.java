@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import project_database.controller.LoginController;
 import project_database.model.LoginModel;
@@ -69,6 +70,11 @@ public class LoginServlet extends HttpServlet {
 					errorMessage = "Incorrect account information, please try again.";
 				}
 				else {
+					// Login was successful, now we should create a session so that the rest
+					// of the website knows that the person is logged in
+					HttpSession session = req.getSession();
+					session.setAttribute("username", model.getUsername());
+					
 					loggedInMessage = "Welcome, " + model.getUsername();
 				}
 				

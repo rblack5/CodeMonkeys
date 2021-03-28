@@ -1,6 +1,14 @@
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid" %>  
 
-<rapid:override name="content">  
+<rapid:override name="content">
+	<%
+		if (session.getAttribute(("username")) == null) {
+			String message = "Login before you create a post!";
+			request.setAttribute("message", message);
+			request.getRequestDispatcher("/_view/login.jsp").forward(request, response);
+		}
+	%> 
+	 
 	<head>
 	<title> Create </title>
 	</head>

@@ -1,6 +1,7 @@
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid" %>  
 
-<rapid:override name="content">  
+<rapid:override name="content">
+
     <head>
 	<title> Account Registration </title>
 	</head>
