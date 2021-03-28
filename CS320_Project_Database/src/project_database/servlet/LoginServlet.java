@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
 
 		// holds the error message text, if there is any
 		String errorMessage = null;
-		String successMessage = null;
+		String loggedInMessage = null;
 		
 		// Create the model
 		LoginModel model = new LoginModel();
@@ -69,10 +69,7 @@ public class LoginServlet extends HttpServlet {
 					errorMessage = "Incorrect account information, please try again.";
 				}
 				else {
-					successMessage = "Welcome, " + model.getUsername();
-					req.setAttribute("errorMessage", successMessage);
-					resp.sendRedirect("/project_database/home");
-					
+					loggedInMessage = "Welcome, " + model.getUsername();
 				}
 				
 				// Output the email and password to the console to verify that the program has reached this point.
@@ -85,15 +82,21 @@ public class LoginServlet extends HttpServlet {
 			errorMessage = "Invalid double";
 		}
 		
-		
-		// set the attribute named "login" to return the model
-		req.setAttribute("login", model);
-		
-		// this adds the errorMessage text and the result to the response
-		req.setAttribute("errorMessage", errorMessage);
-		
-		// Forward to view to render the result HTML document
-		req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
+		if (model.getLoggedIn() == false) {
+			// set the attribute named "login" to return the model
+			req.setAttribute("login", model);
+			
+			// this adds the errorMessage text and the result to the response
+			req.setAttribute("errorMessage", errorMessage);
+			
+			// Forward to view to render the result HTML document
+			req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
+		}
+		else {
+			req.setAttribute("login", model);
+			req.setAttribute("loggedInMessage", loggedInMessage);
+			req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
+		}
 	}
 	
 }
