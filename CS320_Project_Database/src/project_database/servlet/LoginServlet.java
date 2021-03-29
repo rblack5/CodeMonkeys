@@ -100,6 +100,7 @@ public class LoginServlet extends HttpServlet {
 		}
 		else {
 			req.setAttribute("login", model);
+			
 			req.setAttribute("loggedInMessage", loggedInMessage);
 			req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
 		}
