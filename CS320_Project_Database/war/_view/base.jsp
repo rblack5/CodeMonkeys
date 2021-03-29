@@ -7,7 +7,7 @@
 <html>
   	<%
   		// if the user is logged in, we want to set the the attribute loggedIn to true
-		if (session.getAttribute("username") == null) {
+		if (session.getAttribute("username") != null) {
 			Boolean loggedIn = true;
 			request.setAttribute("loggedIn", loggedIn);
 		}
@@ -43,24 +43,24 @@
 	                    <div class="navbar-nav">
 	                        <!-- {% if user.is_authenticated %} -->
 							<!-- create a post -->
-							<c:if test="${empty loggedIn }">
+							<c:if test="${!empty loggedIn }">
 	                        	<a class="nav-item nav-link" href="/project_database/create"><i class="fas fa-plus-square"></i> Create a Post</a>
 	                        </c:if>
 							<!-- profile -->
-							<c:if test="${empty loggedIn }">
+							<c:if test="${!empty loggedIn }">
 	                        	<a class="nav-item nav-link" href="/project_database/profile"><i class="fas fa-user-circle"></i> Profile</a>
 	                        </c:if>
 							<!-- logout-->
-							<c:if test="${empty loggedIn}">
+							<c:if test="${!empty loggedIn}">
 								<a class="nav-item nav-link" href="/project_database/logout"><i class="fas fa-door-open"></i> Logout</a>
 							</c:if>
 	                    	<!-- {% else %} -->
 							<!-- login-->
-							<c:if test="${!empty loggedIn}">
+							<c:if test="${empty loggedIn}">
 	                        	<a class="nav-item nav-link" href="/project_database/login"><i class="fas fa-sign-in-alt"></i> Login</a>
 	                        </c:if>
 							<!-- register -->
-							<c:if test="${!empty loggedIn}">
+							<c:if test="${empty loggedIn}">
 	                        	<a class="nav-item nav-link" href="/project_database/register">Register</a>
 							</c:if>
 	                   	
