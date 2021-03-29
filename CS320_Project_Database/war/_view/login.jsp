@@ -11,13 +11,17 @@
 		<c:if test="${! empty errorMessage}">
 			<div class="error">${errorMessage}</div>
 		</c:if>
+		
+		<c:if test="${! empty message}">
+			<div class="error">${message}</div>
+		</c:if>
 
 		<form action = "${pageContext.servletContext.contextPath}/login" method="post">
 			<br>
 			<table>
 				<tr>
-					<td class="label">Email: </td>
-					<td><input type="text" name="email" size="12" value="${loginModel.email}" placeholder="Email" /></td>
+					<td class="label">Username: </td>
+					<td><input type="text" name="email" size="12" value="${loginModel.username}" placeholder="Email" /></td>
 				</tr>
 				<tr>
 					<td class="label">Password: </td>

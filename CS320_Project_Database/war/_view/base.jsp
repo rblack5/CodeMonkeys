@@ -5,7 +5,13 @@
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"  %>
 
 <html>
-  
+  	<%
+  		// if the user is logged in, we want to set the the attribute loggedIn to true
+		if (session.getAttribute("username") == null) {
+			Boolean loggedIn = true;
+			request.setAttribute("loggedIn", loggedIn);
+		}
+	%> 
     <head>
         <!-- Bootstrap Stuff -->
         <!-- Required meta tags -->
@@ -21,7 +27,6 @@
     </head>
 
     <body>
-	
     	<header class="site-header">
         	<nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
             	<div class="container">
@@ -38,20 +43,27 @@
 	                    <div class="navbar-nav">
 	                        <!-- {% if user.is_authenticated %} -->
 							<!-- create a post -->
-	                        <a class="nav-item nav-link" href="/project_database/create"><i class="fas fa-plus-square"></i> Create a Post</a>
+							<c:if test="${empty loggedIn }">
+	                        	<a class="nav-item nav-link" href="/project_database/create"><i class="fas fa-plus-square"></i> Create a Post</a>
+	                        </c:if>
 							<!-- profile -->
-	                        <a class="nav-item nav-link" href="/project_database/profile"><i class="fas fa-user-circle"></i> Profile</a>
+							<c:if test="${empty loggedIn }">
+	                        	<a class="nav-item nav-link" href="/project_database/profile"><i class="fas fa-user-circle"></i> Profile</a>
+	                        </c:if>
 							<!-- logout-->
-							<c:if test="${loginModel.getLoggedIn}">
+							<c:if test="${empty loggedIn}">
 								<a class="nav-item nav-link" href="/project_database/logout"><i class="fas fa-door-open"></i> Logout</a>
 							</c:if>
 	                    	<!-- {% else %} -->
 							<!-- login-->
-	                        <a class="nav-item nav-link" href="/project_database/login"><i class="fas fa-sign-in-alt"></i> Login</a>
-							<!-- register
-	                        <a class="nav-item nav-link" href="/project_database/register">Register</a>
-							-->
-	                   		<!-- {% endif %} -->
+							<c:if test="${!empty loggedIn}">
+	                        	<a class="nav-item nav-link" href="/project_database/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+	                        </c:if>
+							<!-- register -->
+							<c:if test="${!empty loggedIn}">
+	                        	<a class="nav-item nav-link" href="/project_database/register">Register</a>
+							</c:if>
+	                   	
 	               		</div>
 	            	</div>
 	        	</div>

@@ -1,6 +1,7 @@
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid" %>  
 
-<rapid:override name="content">  
+<rapid:override name="content">
+
     <head>
 	<title> Account Registration </title>
 	</head>
@@ -8,9 +9,9 @@
     <body>	
 		<form action = "${pageContext.servletContext.contextPath}/register" method="post">
 			
-			<td class="label">Enter you Email address: </td>
+			<td class="label">Enter a Username: </td>
 			<br>
-			<td><input type="email" name="email" placeholder="Email" size="24" value="${loginModel.email}" /></td>
+			<td><input type="username" name="username" placeholder="Username" size="24" value="${loginModel.username}" /></td>
 			<br><br>
 			
 			<td class="label">Create your password:</td>

@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import project_database.controller.LoginController;
 import project_database.model.LoginModel;
@@ -31,6 +32,7 @@ public class LoginServlet extends HttpServlet {
 
 		// holds the error message text, if there is any
 		String errorMessage = null;
+		String loggedInMessage = null;
 		
 		// Create the model
 		LoginModel model = new LoginModel();
@@ -55,7 +57,7 @@ public class LoginServlet extends HttpServlet {
 				// System.out.println(password);
 				
 				model.setPassword(password);
-				model.setEmail(email);
+				model.setUsername(email);
 				
 				LoginController controller = new LoginController();
 				controller.setModel(model);
@@ -68,7 +70,12 @@ public class LoginServlet extends HttpServlet {
 					errorMessage = "Incorrect account information, please try again.";
 				}
 				else {
-					errorMessage = "Correct account information";
+					// Login was successful, now we should create a session so that the rest
+					// of the website knows that the person is logged in
+					HttpSession session = req.getSession();
+					session.setAttribute("username", model.getUsername());
+					
+					loggedInMessage = "Welcome, " + model.getUsername();
 				}
 				
 				// Output the email and password to the console to verify that the program has reached this point.
@@ -81,15 +88,21 @@ public class LoginServlet extends HttpServlet {
 			errorMessage = "Invalid double";
 		}
 		
-		
-		// set the attribute named "login" to return the model
-		req.setAttribute("login", model);
-		
-		// this adds the errorMessage text and the result to the response
-		req.setAttribute("errorMessage", errorMessage);
-		
-		// Forward to view to render the result HTML document
-		req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
+		if (model.getLoggedIn() == false) {
+			// set the attribute named "login" to return the model
+			req.setAttribute("login", model);
+			
+			// this adds the errorMessage text and the result to the response
+			req.setAttribute("errorMessage", errorMessage);
+			
+			// Forward to view to render the result HTML document
+			req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
+		}
+		else {
+			req.setAttribute("login", model);
+			req.setAttribute("loggedInMessage", loggedInMessage);
+			req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
+		}
 	}
 	
 }

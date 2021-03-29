@@ -1,17 +1,18 @@
 package project_database.model;
 
 public class RegisterModel {
-	private String email, password, password2;
+	private String Username, password, password2;
+	private boolean samePassword;
 	
 	public RegisterModel() {
 	}
 	
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUsername(String Username) {
+		this.Username = Username;
 	}
 	
-	public String getEmail() {
-		return this.email;
+	public String getUsername() {
+		return this.Username;
 	}
 	
 	public void setPassword(String password) {
@@ -29,4 +30,5 @@ public class RegisterModel {
 	public String getPassword2() {
 		return this.password2;
 	}
+	
 }
