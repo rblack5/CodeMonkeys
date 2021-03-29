@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
 			String password = req.getParameter("password");
 
 			// check for errors in the form data (error message is not yet implemented)
-			if (email == "" || password == "") {
+			if (email.equals("") || password.equals("")) {
 				errorMessage = "Please enter the specified information";
 			}
 			// otherwise, data is good
@@ -100,6 +100,7 @@ public class LoginServlet extends HttpServlet {
 		}
 		else {
 			req.setAttribute("login", model);
+			
 			req.setAttribute("loggedInMessage", loggedInMessage);
 			req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
 		}
