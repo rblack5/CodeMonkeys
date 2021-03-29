@@ -12,6 +12,10 @@
 			request.setAttribute("loggedIn", loggedIn);
 		}
 	%> 
+
+
+
+
     <head>
         <!-- Bootstrap Stuff -->
         <!-- Required meta tags -->
@@ -48,7 +52,7 @@
 	                        </c:if>
 							<!-- profile -->
 							<c:if test="${empty loggedIn }">
-	                        	<a class="nav-item nav-link" href="/project_database/profile"><i class="fas fa-user-circle"></i> Profile</a>
+	                        	<a class="nav-item nav-link" href="/project_database/profile"><i class="fas fa-user-circle"></i> ${username}</a>
 	                        </c:if>
 							<!-- logout-->
 							<c:if test="${empty loggedIn}">

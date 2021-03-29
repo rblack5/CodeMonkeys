@@ -37,7 +37,7 @@
 			
 			Don't have an account? <a href=http://localhost:8081/project_database/register><span class="link">Click here</span></a> to register. 			
 			
-    				
+    			
 
 
 		</form>
