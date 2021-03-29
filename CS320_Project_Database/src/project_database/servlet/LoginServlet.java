@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import project_database.controller.LoginController;
 import project_database.model.LoginModel;
+import project_database.model.UserModel;
 
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -35,7 +36,10 @@ public class LoginServlet extends HttpServlet {
 		String loggedInMessage = null;
 		
 		// Create the model
-		LoginModel model = new LoginModel();
+		UserModel model = new UserModel();
+		
+		// Create the controller
+		LoginController controller = new LoginController();
 		
 		// decode POSTed form parameters
 		try {
@@ -59,14 +63,7 @@ public class LoginServlet extends HttpServlet {
 				model.setPassword(password);
 				model.setUsername(email);
 				
-				LoginController controller = new LoginController();
-				controller.setModel(model);
-				
-				model.setLoggedIn(controller.checkLogIn(model));
-				
-				System.out.println("IsLoggedIn: " + model.getLoggedIn() );
-				
-				if(model.getLoggedIn() == false) {
+				if(controller.checkLogIn(model) == false) {
 					errorMessage = "Incorrect account information, please try again.";
 				}
 				else {
@@ -88,7 +85,7 @@ public class LoginServlet extends HttpServlet {
 			errorMessage = "Invalid double";
 		}
 		
-		if (model.getLoggedIn() == false) {
+		if (controller.checkLogIn(model) == false) {
 			// set the attribute named "login" to return the model
 			req.setAttribute("login", model);
 			
