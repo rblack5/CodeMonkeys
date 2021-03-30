@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import project_database.controller.LoginController;
-import project_database.model.LoginModel;
 import project_database.model.UserModel;
 
 public class LoginServlet extends HttpServlet {
@@ -75,9 +74,6 @@ public class LoginServlet extends HttpServlet {
 					loggedInMessage = "Welcome, " + model.getUsername();
 				}
 				
-				// Output the email and password to the console to verify that the program has reached this point.
-				System.out.println("Email: " + email);
-				System.out.println("Password: " + password);
 			}
 			
 		// This part is probably unnecessary but I am keeping it to help us write catch methods

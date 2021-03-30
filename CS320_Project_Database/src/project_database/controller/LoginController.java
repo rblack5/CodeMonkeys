@@ -3,6 +3,7 @@ package project_database.controller;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -12,16 +13,22 @@ import java.util.List;
 import project_database.model.LoginModel;
 import project_database.model.UserModel;
 
-public class LoginController {
-	private List<UserModel> users = new ArrayList<>();
-	private Path pathToFile = Paths.get("C:\\Users\\Ryan\\eclipse-CS320-TeamProject\\CodeMonkeys\\CS320_Project_Database\\users.csv");
+public class LoginController {	
+	// Obtain the path for the working directory	
+	Path pathToFile = Paths.get(FileSystems.getDefault().getPath("").toAbsolutePath().toString(), "users.csv");
 	
-	public void importCSV() {
+	
+	
+	
+	
+	public List<UserModel> importCSV() {
+		List<UserModel> users = new ArrayList<>();
+				
 		try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)){
 			
+			// Read the first line, remove the quotations. Quotations are exported from a CSV by default.
 			String line = br.readLine();
-			
-			System.out.println(line);
+			line = line.replace("\"", "");
 			
 			while(line != null) {
 				
@@ -36,23 +43,43 @@ public class LoginController {
 				
 				users.add(user);
 				
+				// Read a new line, remove the quotes.
 				line = br.readLine();
+				if(line != null) {
+					line = line.replace("\"", "");
+				}
 			}
 		}
 		catch(IOException ioe) {
 			ioe.printStackTrace();
 		}
+		
+		return users;
 	}
 	
 	public boolean checkLogIn(UserModel model) {
-		
-		importCSV();
+		System.out.println(" ");
+		System.out.println("Starting CheckLogIn... ");
+		List<UserModel> users = importCSV();
 		
 		for(int i = 0; i < users.size(); i++) {
-			if(users.get(i).getUsername() == model.getUsername() && users.get(i).getPassword() == model.getPassword()) {
+			System.out.println(" ");
+			System.out.println("Check LogIn, Iteration: " + i);
+			
+			System.out.println("Model Username: " + model.getUsername());
+			System.out.println("Model Password: " + model.getPassword());
+			System.out.println("ArrayList Username: " + users.get(i).getUsername());
+			System.out.println("ArrayList Password: " + users.get(i).getPassword());
+			System.out.println(" ");
+			System.out.println(" ");
+			
+			
+			if(users.get(i).getUsername().equals(model.getUsername()) && users.get(i).getPassword().equals(model.getPassword())) {
+				System.out.println("--------------------------- RETURNED TRUE ---------------------------");
 				return true;
 			}
 		}
+		System.out.println("--------------------------- RETURNED FALSE ---------------------------");
 		return false;
 	
 	}
