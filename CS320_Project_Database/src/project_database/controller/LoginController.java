@@ -14,12 +14,8 @@ import project_database.model.LoginModel;
 import project_database.model.UserModel;
 
 public class LoginController {	
-	// Obtain the path for the working directory	
+	// Obtain the path for the .csv file
 	Path pathToFile = Paths.get(FileSystems.getDefault().getPath("").toAbsolutePath().toString(), "users.csv");
-	
-	
-	
-	
 	
 	public List<UserModel> importCSV() {
 		List<UserModel> users = new ArrayList<>();
@@ -58,28 +54,12 @@ public class LoginController {
 	}
 	
 	public boolean checkLogIn(UserModel model) {
-		System.out.println(" ");
-		System.out.println("Starting CheckLogIn... ");
 		List<UserModel> users = importCSV();
-		
-		for(int i = 0; i < users.size(); i++) {
-			System.out.println(" ");
-			System.out.println("Check LogIn, Iteration: " + i);
-			
-			System.out.println("Model Username: " + model.getUsername());
-			System.out.println("Model Password: " + model.getPassword());
-			System.out.println("ArrayList Username: " + users.get(i).getUsername());
-			System.out.println("ArrayList Password: " + users.get(i).getPassword());
-			System.out.println(" ");
-			System.out.println(" ");
-			
-			
+		for(int i = 0; i < users.size(); i++) {		
 			if(users.get(i).getUsername().equals(model.getUsername()) && users.get(i).getPassword().equals(model.getPassword())) {
-				System.out.println("--------------------------- RETURNED TRUE ---------------------------");
 				return true;
 			}
 		}
-		System.out.println("--------------------------- RETURNED FALSE ---------------------------");
 		return false;
 	
 	}
