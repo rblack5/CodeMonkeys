@@ -46,8 +46,8 @@ public class LoginController {
 				}
 			}
 		}
-		catch(IOException ioe) {
-			ioe.printStackTrace();
+		catch(IOException e) {
+			e.printStackTrace();
 		}
 		
 		return users;

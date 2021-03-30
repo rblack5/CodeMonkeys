@@ -65,7 +65,7 @@
 	                        </c:if>
 							<!-- register -->
 							<c:if test="${!empty loggedIn}">
-	                        	<a class="nav-item nav-link" href="/project_database/register">Register</a>
+	                        	<a class="nav-item nav-link" href="/project_database/register"><i class="fas fa-clipboard-list"></i> Register</a>
 							</c:if>
 	                   	
 	               		</div>
