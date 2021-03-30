@@ -3,9 +3,7 @@ package project_database.model;
 public class UserModel {
 	private String username, password;
 	
-	public UserModel(String username, String password) {
-		this.username = username;
-		this.password = password;
+	public UserModel() {
 	}
 	
 	public void setUsername(String username) {
@@ -22,5 +20,5 @@ public class UserModel {
 	
 	public String getPassword() {
 		return this.password;
-	}	
+	}
 }

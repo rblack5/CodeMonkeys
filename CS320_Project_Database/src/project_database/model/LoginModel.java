@@ -9,10 +9,6 @@ public class LoginModel {
 	public ArrayList<String> passwords = new ArrayList<String>(); 
 	
 	public LoginModel() {
-		passwords.add("admin");
-		passwords.add("hunter2");
-		passwords.add("password");
-		passwords.add("codemonkeys");
 	}
 	
 	public void setUsername(String email) {
