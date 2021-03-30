@@ -19,6 +19,10 @@
 	
 	<br>
 	<p>This user does not have a bio yet	</p>
+
+	<!-- Edit Profile -->
+	<a class="nav-item nav-link" type=button href=http://localhost:8081/project_database/editProfile><i class="fas fa-plus-square"></i> Edit Profile</a>
+
 	
 </rapid:override>  
 

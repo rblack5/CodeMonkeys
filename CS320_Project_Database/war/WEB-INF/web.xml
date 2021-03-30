@@ -32,6 +32,11 @@
   </servlet>
   
   <servlet>
+    <servlet-name>EditProfileServlet</servlet-name>
+    <servlet-class>project_database.servlet.EditProfileServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>project_database.servlet.LoginServlet</servlet-class>
   </servlet>
@@ -98,6 +103,11 @@
   <servlet-mapping>
     <servlet-name>ProfileServlet</servlet-name>
     <url-pattern>/profile</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>EditProfileServlet</servlet-name>
+    <url-pattern>/editProfile</url-pattern>
   </servlet-mapping>
   
   <servlet-mapping>
