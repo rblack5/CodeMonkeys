@@ -9,7 +9,7 @@
     <body>	
 
 		<c:if test="${! empty errorMessage}">
-			<div class="error">${errorMessage}</div>
+			<div class="error" style="color:Red;">${errorMessage}</div>
 		</c:if>
 		
 		<c:if test="${! empty message}">

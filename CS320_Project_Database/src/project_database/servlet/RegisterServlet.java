@@ -36,24 +36,32 @@ public class RegisterServlet extends HttpServlet {
 		String errorMessage = null;
 		
 		// Create the model
+		System.out.println("Creating model....");
+		
 		RegisterModel model = new RegisterModel();
 		
 		// decode POSTed form parameters
 		try {
 			// Obtain the email and password from the doGet
-			String email = req.getParameter("email");
+			String email = req.getParameter("username");
 			String password = req.getParameter("password");
 			String password2 = req.getParameter("password2");
 
 			// check for errors in the form data (error message is not yet implemented)
 			if (email == null || password == null || password2 == null) {
 				errorMessage = "Please enter the required fields";
+				System.out.println("Missing required fields");
+				System.out.println(email);
+				System.out.println(password);
+				System.out.println(password2);
 			}
+			
 			// otherwise, data is good
 			// must create the controller each time, since it doesn't persist between POSTs
 			// the view does not alter data, only controller methods should be used for that
 			// thus, always call a controller method to operate on the data
 			else {
+				System.out.println("Checking matching passwords...");
 				
 				if(!password.equals(password2)) {
 					errorMessage = "Passwords no not match";
@@ -64,20 +72,11 @@ public class RegisterServlet extends HttpServlet {
 					model.setPassword2(password2);
 					model.setUsername(email);
 					
+					System.out.println("Creating controller....");
 					RegisterController controller = new RegisterController();
-					controller.setModel(model);
+					controller.createAccount(email, password);
 					
-					// Output the email and password to the console to verify that the program has reached this point.
-					System.out.println("Email: " + email);
-					System.out.println("Password: " + password);
-					System.out.println("Password2: " + password2);
 				}
-				
-				
-				
-				
-				
-				
 			}
 			
 		// This part is probably unnecessary but I am keeping it to help us write catch methods

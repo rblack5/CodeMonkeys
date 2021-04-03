@@ -1,6 +1,12 @@
 package project_database.controller;
 
-import project_database.model.LoginModel;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+
 import project_database.model.RegisterModel;
 
 public class RegisterController {
@@ -17,4 +23,19 @@ public class RegisterController {
 		return false;
 	}
 	
+	
+	public void createAccount(String username, String password) throws IOException {
+		Path pathToFile = Paths.get(FileSystems.getDefault().getPath("").toAbsolutePath().toString(), "users.csv");
+		
+		FileWriter writer = new FileWriter(pathToFile.toString(), true);
+		
+		String userInfo = "\"" + String.join(",", username, password) + "\"";
+		
+		System.out.println(userInfo);
+		
+		writer.write(userInfo);
+		writer.write("\n");
+		
+		writer.close();
+	}
 }
