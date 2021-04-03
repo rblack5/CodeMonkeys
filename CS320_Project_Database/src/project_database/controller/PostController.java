@@ -61,11 +61,11 @@ public class PostController {
 		return posts;
 	}
 	
-	public PostModel findPost(String title) {
+	public PostModel findPost(int post_id) {
 		List<PostModel> posts = importCSV();
 		
 		for (PostModel post: posts) {
-			if(post.getTitle().equals(title)) {
+			if(post.getPostID() == post_id) {
 				return post;
 			}
 		}
