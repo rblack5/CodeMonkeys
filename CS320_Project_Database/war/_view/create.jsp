@@ -18,12 +18,12 @@
 			
 			<td class="label">Title: </td>
 			<br>
-			<td><input type="text" name="title" placeholder="Title your Post" size="24" value="${loginModel.title}" /></td>
+			<td><input type="text" name="title" placeholder="Title your Post" size="24" value="${PostModel.title}" /></td>
 			<br><br>
 			
 			<td class="label">Body:</td>
 			<br>
-			<textarea name="body" placeholder="Write your post here..." rows="4" cols="50"></textarea>
+			<textarea name="body" placeholder="Write your post here..." rows="4" cols="50" value="${PostModel.body}"></textarea>
 			<br><br>
 				
 			<input type="Submit" name="submit" value="Create Post!">

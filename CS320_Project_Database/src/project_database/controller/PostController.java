@@ -1,6 +1,7 @@
 package project_database.controller;
 
 import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
@@ -16,12 +17,13 @@ import project_database.model.UserModel;
 public class PostController {
 	private PostModel post;
 	Path pathToFile = Paths.get(FileSystems.getDefault().getPath("").toAbsolutePath().toString(), "posts.csv");
+	PostModel model;
 	
-	public void setPost(PostModel post) {
+	public void setModel(PostModel post) {
 		this.post = post;
 	}
 	
-	public PostModel getPost() {
+	public PostModel getModel() {
 		return this.post;
 	}
 	
@@ -38,10 +40,12 @@ public class PostController {
 				
 				String[] attributes = line.split(",");
 				
-				String title = attributes[0];
-				String body = attributes[1];
+				String post_id = attributes[0];
+				String title = attributes[1];
+				String body = attributes[2];
 				
 				PostModel post = new PostModel();
+				post.setPostID(Integer.parseInt(post_id));
 				post.setTitle(title);
 				post.setBody(body);
 				
@@ -59,6 +63,18 @@ public class PostController {
 		}
 		
 		return posts;
+	}
+	
+	public void createPost(PostModel model) throws IOException {
+		List<PostModel> posts = importCSV();
+		FileWriter writer = new FileWriter(pathToFile.toString(), true);
+		
+		String newPost = "\"" + String.join(",", String.valueOf(posts.size()),model.getTitle(), model.getBody()) + "\"";
+		
+		writer.write(newPost);
+		writer.write("\n");
+		
+		writer.close();
 	}
 	
 	public PostModel findPost(int post_id) {

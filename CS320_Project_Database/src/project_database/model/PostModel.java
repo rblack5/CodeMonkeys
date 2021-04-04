@@ -3,6 +3,7 @@ package project_database.model;
 public class PostModel {
 	private String title, body;
 	int post_id;
+	
 	public PostModel() {
 		
 	}

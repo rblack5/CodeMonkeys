@@ -69,12 +69,12 @@ public class RegisterServlet extends HttpServlet {
 				}else {
 					// send the values to the model
 					model.setPassword(password);
-					model.setPassword2(password2);
 					model.setUsername(email);
 					
 					System.out.println("Creating controller....");
 					RegisterController controller = new RegisterController();
-					controller.createAccount(email, password);
+					controller.setModel(model);
+					controller.createAccount();
 					
 				}
 			}

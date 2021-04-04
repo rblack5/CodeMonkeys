@@ -24,12 +24,12 @@ public class RegisterController {
 	}
 	
 	
-	public void createAccount(String username, String password) throws IOException {
+	public void createAccount() throws IOException {
 		Path pathToFile = Paths.get(FileSystems.getDefault().getPath("").toAbsolutePath().toString(), "users.csv");
 		
 		FileWriter writer = new FileWriter(pathToFile.toString(), true);
 		
-		String userInfo = "\"" + String.join(",", username, password) + "\"";
+		String userInfo = "\"" + String.join(",", model.getUsername(), model.getPassword()) + "\"";
 		
 		System.out.println(userInfo);
 		

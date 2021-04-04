@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import project_database.controller.CreateController;
+import project_database.controller.PostController;
 import project_database.model.CreateModel;
+import project_database.model.PostModel;
 
 public class CreateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -37,13 +39,16 @@ public class CreateServlet extends HttpServlet {
 		String errorMessage = null;
 		
 		// Create the model
-		CreateModel model = new CreateModel();
+		PostModel model = new PostModel();
 		
 		// decode POSTed form parameters
 		try {
 			// Obtain the email and password from the doGet
 			String title = req.getParameter("title");
 			String body = req.getParameter("body");
+			
+			System.out.println("Title after getParameter: " + title);
+			System.out.println("Body after getParameter: " + body);
 
 			// check for errors in the form data (error message is not yet implemented)
 			if (title == null || body == null) {
@@ -58,12 +63,8 @@ public class CreateServlet extends HttpServlet {
 				model.setTitle(title);
 				model.setBody(body);
 				
-				CreateController controller = new CreateController();
-				controller.setModel(model);
-				
-				// Prints Title & Body to the console
-				System.out.println("Title: " + title);
-				System.out.println("Body: " + body);
+				PostController controller = new PostController();
+				controller.createPost(model);
 			}
 			
 		// This part is probably unnecessary but I am keeping it to help us write catch methods
