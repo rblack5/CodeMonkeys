@@ -22,9 +22,26 @@
 	        <small class="text-muted">${post.postID}</small>
 	    </div>
 	    
-	    <h2><a class="article-title" href="/project_database/post"> ${post.title}</a></h2>
-	    </div>
+	    <form action = "/project_database/post">
+		    <div>
+		    	<h2>
+			    	<a class="article-title" href="/project_database/post">
+			    		<input type = "hidden" id = "postID" name = "postID" value = "${post.postID}">
+		    			<input class="article-title" type = "submit" value = "${post.title}" style = "all: unset">
+				     </a>
+				</h2>
+			</div>
+	    </form>
+
+		  
+
+		    	
+		    
+		
+		
+		</div>
 		</article >
+		
 
 	</c:forEach>
  

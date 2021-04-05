@@ -16,7 +16,11 @@ public class PostServlet extends HttpServlet {
 		
 		System.out.println("Post Servlet: doGet");
 		
+		String postID = req.getParameter("postID");
+		System.out.println(postID);
+		
 		req.getRequestDispatcher("/_view/post.jsp").forward(req, resp);
+		
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)

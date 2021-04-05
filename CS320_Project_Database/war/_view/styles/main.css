@@ -88,4 +88,8 @@ body {
   	color: green;
   	margin-bottom: 16px;
   }
+  
+  input[type=submit] {
+  background-color: lightblue;
+  }
 
