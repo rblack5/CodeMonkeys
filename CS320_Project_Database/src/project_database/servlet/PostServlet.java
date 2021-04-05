@@ -7,6 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import project_database.controller.LoginController;
+import project_database.controller.PostController;
+import project_database.model.PostModel;
+import project_database.model.UserModel;
+
 public class PostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -18,6 +23,17 @@ public class PostServlet extends HttpServlet {
 		
 		String postID = req.getParameter("postID");
 		System.out.println(postID);
+		
+		PostModel model = new PostModel();
+		PostController controller = new PostController();
+		
+		int intPostID;
+		intPostID = Integer.parseInt(postID);
+		System.out.println(intPostID + " ==> postID string as an Int");
+		
+		PostModel post = controller.findPost(intPostID);
+		
+		req.setAttribute("post", post);
 		
 		req.getRequestDispatcher("/_view/post.jsp").forward(req, resp);
 		
