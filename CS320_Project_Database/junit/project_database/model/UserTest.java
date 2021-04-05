@@ -1,5 +1,7 @@
 package project_database.model;
 
+import java.io.IOException;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -7,12 +9,12 @@ import project_database.controller.LoginController;
 
 public class UserTest {
 	private UserModel model;
-	private LoginController loginController;
+	private LoginController controller;
 	
 	@Before
 	public void setUp() {
 		model = new UserModel();
-		loginController = new LoginController();
+		controller = new LoginController();
 	}
 	
 	
@@ -37,7 +39,13 @@ public class UserTest {
 	}
 	
 	@Test
-	public void testCreateAccountCheckLogin() {
+	public void testCreateAccountCheckLogin() throws IOException {
+		model.setUsername("test");
+		model.setPassword("test");
 		
+		controller.setModel(model);
+		controller.createAccount();
+		
+		assert(controller.checkLogIn(model));
 	}
 }

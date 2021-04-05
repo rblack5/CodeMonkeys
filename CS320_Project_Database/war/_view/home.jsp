@@ -23,45 +23,6 @@
 	    <h2><a class="article-title" href="{% url 'post-detail' post.id %}">Dogs Are Better</a></h2>
 	    </div>
 	</article>
-	
-	<article class="media content-section">
-	    <img class ="rounded-circle article-img" src= "${pageContext.request.contextPath}/_view/images/cat.jpg">
-	    <div class="media-body">
-	    <div class="article-metadata">
-	        <a class="mr-2" href="{% url 'user-posts' post.author.username %}">snyder</a>
-	        <!--  to get rid of the exact time using '|date:FdY' which the FdY is from tags from the docs django project for the date time call-->
-	        <small class="text-muted">3/20/2021</small>
-	    </div>
-	    
-	    <h2><a class="article-title" href="{% url 'post-detail' post.id %}">Cats Are Great</a></h2>
-	    </div>
-	</article>
-	
-	<article class="media content-section">
-	    <img class ="rounded-circle article-img" src= "${pageContext.request.contextPath}/_view/images/spinach.jpg">
-	    <div class="media-body">
-	    <div class="article-metadata">
-	        <a class="mr-2" href="{% url 'user-posts' post.author.username %}">spinach</a>
-	        <!--  to get rid of the exact time using '|date:FdY' which the FdY is from tags from the docs django project for the date time call-->
-	        <small class="text-muted">3/19/2021</small>
-	    </div>
-	    
-	    <h2><a class="article-title" href="{% url 'post-detail' post.id %}">Eat Your Greens</a></h2>
-	    </div>
-	</article>
-	
-	<article class="media content-section">
-	    <img class ="rounded-circle article-img" src= "${pageContext.request.contextPath}/_view/images/rollercoaster.jpg">
-	    <div class="media-body">
-	    <div class="article-metadata">
-	        <a class="mr-2" href="{% url 'user-posts' post.author.username %}">Spunky</a>
-	        <!--  to get rid of the exact time using '|date:FdY' which the FdY is from tags from the docs django project for the date time call-->
-	        <small class="text-muted">3/19/2021</small>
-	    </div>
-	    
-	    <h2><a class="article-title" href="{% url 'post-detail' post.id %}">Cool Roller Coaster</a></h2>
-	    </div>
-	</article>
  
     
 </rapid:override>  
