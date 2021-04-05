@@ -12,12 +12,12 @@
 			String message = "You cannot logout if you are not logged in!";
 			request.setAttribute("message", message);
 		}
-		
+	
 		Boolean loggedIn = false;
 		session.setAttribute("username", null);
 		request.setAttribute("loggedIn", loggedIn);
 		
-		request.getRequestDispatcher("/_view/home.jsp").forward(request, response);
+		request.getRequestDispatcher("/_view/login.jsp").forward(request, response);
 		
 	%>   
     <h1>Logout Page</h1>

@@ -1,6 +1,7 @@
 package project_database.servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import project_database.controller.LoginController;
+import project_database.controller.PostController;
+import project_database.model.PostModel;
 import project_database.model.UserModel;
 
 public class LoginServlet extends HttpServlet {
@@ -34,6 +37,9 @@ public class LoginServlet extends HttpServlet {
 		String errorMessage = null;
 		String loggedInMessage = null;
 		
+		PostController postController = new PostController();
+		List <PostModel> posts = postController.importCSV(); 
+		
 		// Create the model
 		UserModel model = new UserModel();
 		
@@ -45,7 +51,7 @@ public class LoginServlet extends HttpServlet {
 			// Obtain the email and password from the doGet
 			String email = req.getParameter("email");
 			String password = req.getParameter("password");
-
+			
 			// check for errors in the form data (error message is not yet implemented)
 			if (email.equals("") || password.equals("")) {
 				errorMessage = "Please enter the specified information";
@@ -85,6 +91,8 @@ public class LoginServlet extends HttpServlet {
 			// set the attribute named "login" to return the model
 			req.setAttribute("login", model);
 			
+			req.setAttribute("posts", posts);
+			
 			// this adds the errorMessage text and the result to the response
 			req.setAttribute("errorMessage", errorMessage);
 			
@@ -93,6 +101,8 @@ public class LoginServlet extends HttpServlet {
 		}
 		else {
 			req.setAttribute("login", model);
+			
+			req.setAttribute("posts", posts);
 			
 			req.setAttribute("loggedInMessage", loggedInMessage);
 			req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
