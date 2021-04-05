@@ -24,7 +24,7 @@
 	    
 	    <h2><a class="article-title"> ${post.title}</a></h2>
 	    </div>
-		</article>
+		</article >
 	</c:forEach>
  
     
