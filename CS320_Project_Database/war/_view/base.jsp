@@ -77,23 +77,12 @@
         <main role="main" class="container">
             <div class="row">
 	            <div class="col-md-8">
-	              <!-- Messages -->
-	              <!-- {% if messages %}
-	                {% for message in messages %} -->
-	                <!--   <div class="alert alert-{{ message.tags }}">
-	                    <!-- {{ message }} -->
-	                  
-	         
-	                <!-- {% endfor %}
-	              {% endif %} -->
 	              <!--***********************************  Other non-base HTML ******************************************* -->
-	               <!--  {% block content %}{% endblock %} -->
 	               
 	                <rapid:block name="content">
 		            	base_body_content
 		        	</rapid:block>
 
-		        	<!-- %@ include file="addNumbers.jsp" %> -->
 	              <!--***********************************  End of non-base HTML ******************************************* -->
 	              
 	            </div>

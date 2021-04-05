@@ -11,18 +11,21 @@
 		<div class="" style = "font-size: 1.7rem; color: black; margin-bottom: 16px;"> ${message}</div>
 	</c:if>
 
-	<article class="media content-section">
-	    <img class ="rounded-circle article-img" src= "${pageContext.request.contextPath}/_view/images/gand.jpg">
+	
+	
+	<c:forEach items="${posts}" var="post">
+		<article class="media content-section">
+	    <img class ="rounded-circle article-img" src= "${pageContext.request.contextPath}/_view/images/default.jpg">
 	    <div class="media-body">
 	    <div class="article-metadata">
-	        <a class="mr-2" href="{% url 'user-posts' post.author.username %}">darkloor</a>
-	        <!--  to get rid of the exact time using '|date:FdY' which the FdY is from tags from the docs django project for the date time call-->
+	        <a class="mr-2" href="{% url 'user-posts' post.author.username %}">Default User</a>
 	        <small class="text-muted">3/21/2021</small>
 	    </div>
 	    
-	    <h2><a class="article-title" href="{% url 'post-detail' post.id %}">Dogs Are Better</a></h2>
+	    <h2><a class="article-title" href="{% url 'post-detail' post.id %}">${post.title}</a></h2>
 	    </div>
-	</article>
+		</article 
+	</c:forEach>
  
     
 </rapid:override>  
