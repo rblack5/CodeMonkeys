@@ -34,6 +34,7 @@ public class RegisterServlet extends HttpServlet {
 
 		// holds the error message text, if there is any
 		String errorMessage = null;
+		Boolean passedTests = true;
 		
 		// Create the model
 		System.out.println("Creating model....");
@@ -43,17 +44,18 @@ public class RegisterServlet extends HttpServlet {
 		// decode POSTed form parameters
 		try {
 			// Obtain the email and password from the doGet
-			String email = req.getParameter("username");
+			String username = req.getParameter("username");
 			String password = req.getParameter("password");
 			String password2 = req.getParameter("password2");
 
 			// check for errors in the form data (error message is not yet implemented)
-			if (email == null || password == null || password2 == null) {
+			if (username == null || password == null || password2 == null) {
 				errorMessage = "Please enter the required fields";
 				System.out.println("Missing required fields");
-				System.out.println(email);
+				System.out.println(username);
 				System.out.println(password);
 				System.out.println(password2);
+				passedTests = false;
 			}
 			
 			// otherwise, data is good
@@ -66,10 +68,11 @@ public class RegisterServlet extends HttpServlet {
 				if(!password.equals(password2)) {
 					errorMessage = "Passwords no not match";
 					System.out.println("Passwords do not match");
+					passedTests = false;
 				}else {
 					// send the values to the model
 					model.setPassword(password);
-					model.setUsername(email);
+					model.setUsername(username);
 					
 					System.out.println("Creating controller....");
 					LoginController controller = new LoginController();
@@ -85,14 +88,23 @@ public class RegisterServlet extends HttpServlet {
 		}
 		
 		
-		// set the attribute named "register" to return the model
-		req.setAttribute("register", model);
-		
-		// this adds the errorMessage text and the result to the response
-		req.setAttribute("errorMessage", errorMessage);
-		
-		// Forward to view to render the result HTML document
-		req.getRequestDispatcher("/_view/register.jsp").forward(req, resp);
+		if (!passedTests) {
+			// set the attribute named "register" to return the model
+			req.setAttribute("register", model);
+			
+			// this adds the errorMessage text and the result to the response
+			req.setAttribute("errorMessage", errorMessage);
+			
+			// Forward to view to render the result HTML document
+			req.getRequestDispatcher("/_view/register.jsp").forward(req, resp);
+		}
+		else if (passedTests) {
+			// set the attribute named "register" to return the model
+			req.setAttribute("register", model);
+			req.setAttribute("message", "Account " + req.getParameter("username") + " successfully created, now time to login!");
+			// Forward to view to render the result HTML document
+			req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
+		}
 	}
 	
 }
