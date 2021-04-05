@@ -49,11 +49,11 @@ public class LoginServlet extends HttpServlet {
 		// decode POSTed form parameters
 		try {
 			// Obtain the email and password from the doGet
-			String email = req.getParameter("email");
+			String username = req.getParameter("username");
 			String password = req.getParameter("password");
 			
 			// check for errors in the form data (error message is not yet implemented)
-			if (email.equals("") || password.equals("")) {
+			if (username.equals("") || password.equals("")) {
 				errorMessage = "Please enter the specified information";
 			}
 			// otherwise, data is good
@@ -66,7 +66,7 @@ public class LoginServlet extends HttpServlet {
 				// System.out.println(password);
 				
 				model.setPassword(password);
-				model.setUsername(email);
+				model.setUsername(username);
 				
 				if(controller.checkLogIn(model) == false) {
 					errorMessage = "Incorrect account information, please try again.";
