@@ -82,5 +82,4 @@ public class CreateServlet extends HttpServlet {
 		// Forward to view to render the result HTML document
 		req.getRequestDispatcher("/_view/create.jsp").forward(req, resp);
 	}
-		
 }
