@@ -18,11 +18,11 @@
 	    <img class ="rounded-circle article-img" src= "${pageContext.request.contextPath}/_view/images/default.jpg">
 	    <div class="media-body">
 	    <div class="article-metadata">
-	        <a class="mr-2" href="{% url 'user-posts' post.author.username %}"> Default User </a>
-	        <small class="text-muted">3/21/2021</small>
+	        <a class="mr-2"> Default User </a>
+	        <small class="text-muted">${post.postID}</small>
 	    </div>
 	    
-	    <h2><a class="article-title" href="/project_database/home"}">${post.title}</a></h2>
+	    <h2><a class="article-title"> ${post.title}</a></h2>
 	    </div>
 		</article>
 	</c:forEach>

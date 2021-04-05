@@ -2,7 +2,7 @@ package project_database.model;
 
 public class PostModel {
 	private String title, body;
-	int post_id;
+	private int postID;
 	
 	public PostModel() {
 		
@@ -25,11 +25,11 @@ public class PostModel {
 	}
 	
 	public void setPostID(int post_id) {
-		this.post_id = post_id;
+		this.postID = post_id;
 	}
 	
 	public int getPostID() {
-		return this.post_id;
+		return this.postID;
 	}
 	
 }
