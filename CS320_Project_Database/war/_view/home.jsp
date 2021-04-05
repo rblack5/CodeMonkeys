@@ -22,9 +22,10 @@
 	        <small class="text-muted">${post.postID}</small>
 	    </div>
 	    
-	    <h2><a class="article-title"> ${post.title}</a></h2>
+	    <h2><a class="article-title" href="/project_database/post"> ${post.title}</a></h2>
 	    </div>
 		</article >
+
 	</c:forEach>
  
     

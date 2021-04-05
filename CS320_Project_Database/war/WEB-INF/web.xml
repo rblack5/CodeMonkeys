@@ -65,6 +65,11 @@
   	<servlet-name>MultiplyNumbersServlet</servlet-name>
   	<servlet-class>project_database.servlet.MultiplyNumbersServlet</servlet-class>
   </servlet>
+  
+  <servlet>
+  	<servlet-name>PostServlet</servlet-name>
+  	<servlet-class>project_database.servlet.PostServlet</servlet-class>
+  </servlet>
 
   <!-- AJAX servlets. -->
   <!--
@@ -138,6 +143,11 @@
   <servlet-mapping>
   	<servlet-name>MultiplyNumbersServlet</servlet-name>
   	<url-pattern>/multiplyNumbers</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>PostServlet</servlet-name>
+  	<url-pattern>/post</url-pattern>
   </servlet-mapping>
 
   <!--  AJAX servlet mappings. -->

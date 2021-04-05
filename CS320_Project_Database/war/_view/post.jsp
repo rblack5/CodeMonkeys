@@ -10,6 +10,8 @@
 	<c:if test="${! empty message}">
 		<div class="" style = "font-size: 1.7rem; color: black; margin-bottom: 16px;"> ${message}</div>
 	</c:if>
+	
+	<p>	This is the post servlet, this will eventually have information loaded from the Post Model! </p>
  
     
 </rapid:override>  
