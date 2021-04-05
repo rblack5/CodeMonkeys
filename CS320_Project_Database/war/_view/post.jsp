@@ -10,9 +10,6 @@
 	<c:if test="${! empty message}">
 		<div class="" style = "font-size: 1.7rem; color: black; margin-bottom: 16px;"> ${message}</div>
 	</c:if>
-
-	    </div>
-	</article>
  
     
 </rapid:override>  

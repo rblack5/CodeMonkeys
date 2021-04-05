@@ -44,7 +44,10 @@ public class PostController {
 				String title = attributes[1];
 				String body = attributes[2];
 				
+				System.out.println(post_id);
+				
 				PostModel post = new PostModel();
+				
 				post.setPostID(Integer.parseInt(post_id));
 				post.setTitle(title);
 				post.setBody(body);

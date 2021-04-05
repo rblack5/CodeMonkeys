@@ -1,10 +1,15 @@
 package project_database.model;
 
+import java.io.IOException;
+
 import org.junit.Before;
 import org.junit.Test;
 
-public class PostModelTest {
+import project_database.controller.PostController;
+
+public class PostTest {
 	private PostModel model;
+	private PostController controller;
 	
 	@Before
 	public void setUp() {
@@ -33,5 +38,13 @@ public class PostModelTest {
 		
 		model.setBody("Test Body!$#");
 		assert(model.getBody()=="Test Body!$#");
+	}
+	
+	@Test
+	public void testImport() throws IOException {
+		PostModel post = controller.findPost(2);
+		
+		assert(post.getTitle().equals("test"));
+		assert(post.getPostID() == 2);
 	}
 }
