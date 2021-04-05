@@ -1,6 +1,7 @@
 package project_database.controller;
 
 import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
@@ -15,8 +16,13 @@ import project_database.model.UserModel;
 
 public class LoginController {	
 	// Obtain the path for the .csv file
-	Path pathToFile = Paths.get(FileSystems.getDefault().getPath("").toAbsolutePath().toString(), "users.csv");
+	private Path pathToFile = Paths.get(FileSystems.getDefault().getPath("").toAbsolutePath().toString(), "users.csv");
+	private UserModel model;
 	
+	
+	public void setModel(UserModel model) {
+		this.model = model;
+	}
 	public List<UserModel> importCSV() {
 		List<UserModel> users = new ArrayList<>();
 				
@@ -62,5 +68,20 @@ public class LoginController {
 		}
 		return false;
 	
+	}
+	
+	public void createAccount() throws IOException {
+		Path pathToFile = Paths.get(FileSystems.getDefault().getPath("").toAbsolutePath().toString(), "users.csv");
+		
+		FileWriter writer = new FileWriter(pathToFile.toString(), true);
+		
+		String userInfo = "\"" + String.join(",", model.getUsername(), model.getPassword()) + "\"";
+		
+		System.out.println(userInfo);
+		
+		writer.write(userInfo);
+		writer.write("\n");
+		
+		writer.close();
 	}
 }

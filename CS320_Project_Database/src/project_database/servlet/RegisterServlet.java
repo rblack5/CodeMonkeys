@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import project_database.controller.RegisterController;
-import project_database.model.RegisterModel;
+import project_database.controller.LoginController;
+import project_database.model.UserModel;
 
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -38,7 +38,7 @@ public class RegisterServlet extends HttpServlet {
 		// Create the model
 		System.out.println("Creating model....");
 		
-		RegisterModel model = new RegisterModel();
+		UserModel model = new UserModel();
 		
 		// decode POSTed form parameters
 		try {
@@ -72,7 +72,7 @@ public class RegisterServlet extends HttpServlet {
 					model.setUsername(email);
 					
 					System.out.println("Creating controller....");
-					RegisterController controller = new RegisterController();
+					LoginController controller = new LoginController();
 					controller.setModel(model);
 					controller.createAccount();
 					

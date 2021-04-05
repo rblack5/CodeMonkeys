@@ -23,6 +23,7 @@ public class PostModelTest {
 		assert(model.getTitle()=="Title2!$#");
 	}
 	
+	@Test
 	public void testSetBody() {
 		model.setBody("TestBody");
 		assert(model.getBody()=="TestBody");
