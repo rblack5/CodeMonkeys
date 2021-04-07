@@ -13,6 +13,7 @@ public class PostTest {
 	
 	@Before
 	public void setUp() {
+		controller = new PostController();
 		model = new PostModel();
 	}
 	
@@ -52,9 +53,9 @@ public class PostTest {
 	
 	@Test
 	public void testImport() throws IOException {
-		PostModel post = controller.findPost(2);
+		PostModel post = controller.findPost(0);
 		
-		assert(post.getTitle().equals("test"));
-		assert(post.getPostID() == 2);
+		assert(post.getTitle().equals("ExamplePost"));
+		assert(post.getPostID() == 0);
 	}
 }
