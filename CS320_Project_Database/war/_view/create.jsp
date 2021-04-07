@@ -10,25 +10,35 @@
 	%> 
 	 
 	<head>
-	<title> Create </title>
+		<title> Create a Post </title>
 	</head>
-    <h1>Create a Post</h1>
-    <body>	
+	
+    <div class="content-section">
 		<form action = "${pageContext.servletContext.contextPath}/create" method="post">
+			<fieldset class = "form-group">
+                <legend class="border-bottom mb-4">Create a Post</legend>
 			
-			<td class="label">Title: </td>
-			<br>
-			<td><input type="text" name="title" placeholder="Title your Post" size="24" value="${PostModel.title}" /></td>
-			<br><br>
-			
-			<td class="label">Body:</td>
-			<br>
-			<textarea name="body" placeholder="Write your post here..." rows="4" cols="50" value="${PostModel.body}"></textarea>
-			<br><br>
+				<div class="label mb-2 mt-1">Title: </div>
+				<table>
+					<tr>
+						<td><input type="text" name="title" placeholder="Title your Post" size="50" value="${PostModel.title}" /></td>
+					</tr>
+				</table>
 				
-			<input type="Submit" name="submit" value="Create Post!">
+				<div class="label mb-2 mt-3">Body: </div>
+				<table>
+					<tr>
+						<td><textarea name="body" placeholder="Write your post here..." rows="4" cols="53" value="${PostModel.body}"></textarea></td>
+					</tr>
+				</table>
+				
+				<div class="form-group mt-4">
+					<button class="btn btn-outline-info" type="Submit" value="Create Post!">Create Post!</button>
+				</div>
+				
+			</fieldset>
 		</form>
-	</body>
+	</div>
 
 
 </rapid:override>  

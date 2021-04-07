@@ -40,7 +40,6 @@
             </small>
         </div>
     </div>
-
     
 </rapid:override>  
 
