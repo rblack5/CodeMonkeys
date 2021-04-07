@@ -7,9 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import project_database.controller.CreateController;
 import project_database.controller.PostController;
-import project_database.model.CreateModel;
 import project_database.model.PostModel;
 
 public class CreateServlet extends HttpServlet {
