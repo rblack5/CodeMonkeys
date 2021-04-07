@@ -36,10 +36,12 @@ public class LoginController {
 				
 				String[] attributes = line.split(",");
 				
-				String username = attributes[0];
-				String password = attributes[1];
+				String userID = attributes[0];
+				String username = attributes[1];
+				String password = attributes[2];
 				
 				UserModel user = new UserModel();
+				user.setUserID(Integer.parseInt(userID));
 				user.setUsername(username);
 				user.setPassword(password);
 				
@@ -72,10 +74,11 @@ public class LoginController {
 	
 	public void createAccount() throws IOException {
 		Path pathToFile = Paths.get(FileSystems.getDefault().getPath("").toAbsolutePath().toString(), "users.csv");
+		List <UserModel> users = importCSV();
 		
 		FileWriter writer = new FileWriter(pathToFile.toString(), true);
 		
-		String userInfo = "\"" + String.join(",", model.getUsername(), model.getPassword()) + "\"";
+		String userInfo = "\"" + String.join(",", String.valueOf(users.size()),model.getUsername(), model.getPassword()) + "\"";
 		
 		System.out.println(userInfo);
 		
