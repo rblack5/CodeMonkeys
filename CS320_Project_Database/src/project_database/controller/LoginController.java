@@ -11,7 +11,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import project_database.model.LoginModel;
 import project_database.model.UserModel;
 
 public class LoginController {	
