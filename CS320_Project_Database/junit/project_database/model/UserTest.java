@@ -19,7 +19,6 @@ public class UserTest {
 		controller = new LoginController();
 	}
 	
-	
 	@Test
 	public void testSetUsername() {
 		model.setUsername("test");

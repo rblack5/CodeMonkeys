@@ -17,11 +17,13 @@ public class LoginController {
 	// Obtain the path for the .csv file
 	private Path pathToFile = Paths.get(FileSystems.getDefault().getPath("").toAbsolutePath().toString(), "users.csv");
 	private UserModel model;
+
 	
 	
 	public void setModel(UserModel model) {
 		this.model = model;
 	}
+	
 	public List<UserModel> importCSV() {
 		List<UserModel> users = new ArrayList<>();
 				
