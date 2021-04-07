@@ -6,11 +6,14 @@
 	<head>
 	<title> Login </title>
 	</head>
-
+	
 	<div class="content-section">
         <form action = "${pageContext.servletContext.contextPath}/login" method="post">
             <fieldset class = "form-group">
                 <legend class="border-bottom mb-4">Login</legend>
+                <c:if test="${! empty message}">
+					<div class="error mb-2" style="font-weight: bold;">${message}</div>
+				</c:if>
                 <div class="label mb-2 mt-1">Username: </div>
                 <table>
 					<tr>
