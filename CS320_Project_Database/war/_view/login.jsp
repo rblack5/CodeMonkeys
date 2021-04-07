@@ -6,46 +6,7 @@
 	<head>
 	<title> Login </title>
 	</head>
-	<!--  
- <h1>Login Page</h1>
-     <body>	
 
-		<c:if test="${! empty errorMessage}">
-			<div class="error" style="color:Red;">${errorMessage}</div>
-		</c:if>
-		
-		<c:if test="${! empty message}">
-			<div class="error">${message}</div>
-		</c:if>
-
-		<form action = "${pageContext.servletContext.contextPath}/login" method="post">
-			<br>
-			<div class="label">Username: </div>
-			<table>
-				<tr>
-					<td><input type="text" name="email" size="12" value="${loginModel.username}" placeholder="Email" /></td>
-				</tr>
-			</table>
-			<div class="label">Password: </div>
-			<table>
-				<tr>
-					
-					<td><input type="password" name="password" size="12" value="${loginModel.password}" placeholder="Password" /></td>
-				</tr>
-			</table>
-			
-			<br>
-			<input type="Submit" name="submit" value="Login">
-			
-			<br><br>
-			
-			
-			Don't have an account? <a href=http://localhost:8081/project_database/register><span class="link">Click here</span></a> to register. 			
-			
-		</form>
-	</body>
-	-->
-	
 	<div class="content-section">
         <form action = "${pageContext.servletContext.contextPath}/login" method="post">
             <fieldset class = "form-group">

@@ -35,6 +35,8 @@ public class RegisterServlet extends HttpServlet {
 		// holds the error message text, if there is any
 		String errorMessage = null;
 		Boolean passedTests = true;
+		String username = "none";
+		String message = "";
 		
 		// Create the model
 		System.out.println("Creating model....");
@@ -44,10 +46,12 @@ public class RegisterServlet extends HttpServlet {
 		// decode POSTed form parameters
 		try {
 			// Obtain the email and password from the doGet
-			String username = req.getParameter("username");
+			username = req.getParameter("username");
 			String password = req.getParameter("password");
 			String password2 = req.getParameter("password2");
-
+			
+			
+			
 			// check for errors in the form data (error message is not yet implemented)
 			if (username == null || password == null || password2 == null) {
 				errorMessage = "Please enter the required fields";
@@ -76,6 +80,8 @@ public class RegisterServlet extends HttpServlet {
 					
 					System.out.println("Creating controller....");
 					LoginController controller = new LoginController();
+					message = "Account " + username + " successfully created, now time to login!";
+					System.out.println(message);
 					controller.setModel(model);
 					controller.createAccount();
 					
@@ -101,7 +107,7 @@ public class RegisterServlet extends HttpServlet {
 		else if (passedTests) {
 			// set the attribute named "register" to return the model
 			req.setAttribute("register", model);
-			req.setAttribute("message", "Account " + req.getParameter("username") + " successfully created, now time to login!");
+			req.setAttribute("message", message);
 			// Forward to view to render the result HTML document
 			req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
 		}

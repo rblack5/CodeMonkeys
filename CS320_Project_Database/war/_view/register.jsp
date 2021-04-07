@@ -6,40 +6,54 @@
     <head>
 	<title> Account Registration </title>
 	</head>
-    <h1>Create a New Account</h1>
-    <body>	
+    
+    <div class="content-section">
 		<c:if test="${! empty errorMessage}">
 			<div class="error" style="color:Red;">${errorMessage}</div>
 		</c:if>
 		
 		<form action = "${pageContext.servletContext.contextPath}/register" method="post">
-			
-			<td class="label">Enter a Username: </td>
-			<br>
-			<td><input type="username" name="username" placeholder="Username" size="24" value="${registerModel.username}" /></td>
-			<br><br>
-			
-			<td class="label">Create your password:</td>
-			<br>
-			<td><input type="password" name="password" placeholder="Password" size="24" value="${registerModel.password}" /></td>
-			
-			<br>
-			<td class="label">Confirm your password:</td>
-			<br>
-			<td><input type="password" name="password2" placeholder="Confirm Password" size="24" value="${registerModel.password2}" /></td>
-						
-
-
-			<br><br>
+			<fieldset class = "form-group">
+				<legend class="border-bottom mb-4">Create Account</legend>
+				<div class="label mb-2 mt-1">Username: </div>
+				 <table>
+					<tr>
+						<td><input type="text" name="username" size="50" value="${registerModel.username}" placeholder="Username" /></td>
+					</tr>
+				</table>
 				
-			<input type="Submit" name="submit" value="Create your Account">
+				<div class="label mb-2 mt-3">Password: </div>
+				 <table>
+					<tr>
+						<td><input type="password" name="password" size="50" value="${registerModel.password}" placeholder="Password" /></td>
+					</tr>
+				</table>
+				
+				<div class="label mb-2 mt-3">Confirm Password: </div>
+				 <table>
+					<tr>
+						<td><input type="password" name="password2" size="50" value="${registerModel.password2}" placeholder="Confirm Password" /></td>
+					</tr>
+				</table>
+				
+			</fieldset>
+			
+			<div class="form-group mt-4">
+				<button class="btn btn-outline-info" type="Submit" name="submit" value="Create your Account">Create your Account</button>
+			</div>
 
-
-			<br><br>
-			<p>Already have an account? <a href=http://localhost:8081/project_database/login><span class="link">Click here</span></a> to sign in.</p>
+			<div class="border-top pt-3">
+	            <small class="text-muted">
+	                Already have an account?<a class = "ml-2" href=http://localhost:8081/project_database/login><span class="link">Click here</span></a> to login. 
+	            </small>
+        	</div>
 			
 		</form>
-	</body>
+	</div>
+
+       
+   
+
 
 
 </rapid:override>  
