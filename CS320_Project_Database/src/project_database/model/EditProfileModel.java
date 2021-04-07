@@ -1,7 +1,7 @@
 package project_database.model;
 
 public class EditProfileModel {
-	private String name, bio;
+	private String name, bio, password;
 	
 	public EditProfileModel() {
 	}
@@ -18,7 +18,17 @@ public class EditProfileModel {
 		this.bio = bio;
 	}
 	
-	public String getBody() {
+	public String getBio() {
 		return this.bio;
 	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public String getPassword() {
+		return this.password;
+	}
+	
+	
 }
