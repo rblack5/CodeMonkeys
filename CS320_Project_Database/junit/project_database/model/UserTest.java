@@ -1,5 +1,7 @@
 package project_database.model;
 
+import static org.junit.Assert.assertArrayEquals;
+
 import java.io.IOException;
 
 import org.junit.Before;
@@ -36,6 +38,17 @@ public class UserTest {
 		assert(model.getPassword().equals("test 2"));
 		model.setPassword("test 3!$#");
 		assert(model.getPassword().equals("test 3!$#"));
+	}
+	
+	@Test
+	public void testSetUserID() {
+		model.setUserID(1000);
+		assert(model.getUserID() == 1000);
+		model.setUserID(123);
+		assert(model.getUserID() == 123);
+		model.setUserID(4);
+		assert(model.getUserID() == 4);
+		
 	}
 	
 	@Test

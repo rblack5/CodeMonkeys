@@ -41,6 +41,16 @@ public class PostTest {
 	}
 	
 	@Test
+	public void testSetPostID() {
+		model.setPostID(1000);
+		assert(model.getPostID() == 1000);
+		model.setPostID(10);
+		assert(model.getPostID() == 10);
+		model.setPostID(23);
+		assert(model.getPostID() == 23);
+	}
+	
+	@Test
 	public void testImport() throws IOException {
 		PostModel post = controller.findPost(2);
 		
