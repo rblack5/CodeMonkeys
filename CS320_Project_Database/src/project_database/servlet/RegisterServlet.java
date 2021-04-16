@@ -70,7 +70,7 @@ public class RegisterServlet extends HttpServlet {
 				System.out.println("Checking matching passwords...");
 				
 				if(!password.equals(password2)) {
-					errorMessage = "Passwords no not match";
+					errorMessage = "Passwords do not match";
 					System.out.println("Passwords do not match");
 					passedTests = false;
 				}else {
