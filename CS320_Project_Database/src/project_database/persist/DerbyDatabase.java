@@ -38,13 +38,16 @@ public class DerbyDatabase {
 				
 				try {
 					// retrieve all attributes from both PostModels and UserModels tables
+					System.out.println("Checkpoint 1");
 					stmt = conn.prepareStatement(
 							"select Users.*, Posts.* " +
 							"  from Users, Posts " +
 							" where Users.userID = Posts.userID " +
-							"   and Posts.title = ?"
+							"   and Posts.postTitle = ?"
 					);
 					stmt.setString(1, title);
+					
+					System.out.println("Checkpoint 2");
 					
 					List<Pair<UserModel, PostModel>> result = new ArrayList<Pair<UserModel,PostModel>>();
 					
@@ -296,18 +299,27 @@ public class DerbyDatabase {
 			public Boolean execute(Connection conn) throws SQLException {
 				PreparedStatement stmt1 = null;
 				PreparedStatement stmt2 = null;
+				PreparedStatement stmt3 = null;
+				PreparedStatement stmt4 = null;
 				try {
-					System.out.println("first checkpoint");
+//					stmt3 = conn.prepareStatement(
+//							"DROP TABLE Users"
+//					);	
+//					stmt3.executeUpdate();
+//					
+//					stmt4 = conn.prepareStatement(
+//							"DROP TABLE Posts"
+//					);	
+//					stmt4.executeUpdate();
+					
 					stmt1 = conn.prepareStatement(
-							"create table authors (" +
+							"create table Users (" +
 							"	userID integer primary key " +
 							"		generated always as identity (start with 1, increment by 1), " +									
 							"	username varchar(40)" +
 							")"
 					);	
-					System.out.println("second checkpoint");
 					stmt1.executeUpdate();
-					System.out.println("third checkpoint");
 					stmt2 = conn.prepareStatement(
 							"create table Posts (" +
 							"	PostID integer primary key " +
