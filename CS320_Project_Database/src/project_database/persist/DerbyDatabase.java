@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.util.Pair;
+import project_database.model.Pair;
 import project_database.model.UserModel;
 import project_database.model.PostModel;
 
@@ -138,7 +138,7 @@ public class DerbyDatabase {
 		});
 	}
 	
-	public List<Pair<UserModel, PostModel>> insertNewPostModelWithUserModel(String firstName, String lastName, String title, String ISBN, int yearPublished) {
+	public List<Pair<UserModel, PostModel>> insertNewPostModelWithUserModel(String username, int userID, String postTitle, int postID, String postBody) {
 		return executeTransaction(new Transaction<List<Pair<UserModel, PostModel>>>() {
 			
 			@SuppressWarnings("resource")
@@ -149,77 +149,79 @@ public class DerbyDatabase {
 				String UserModel_id;
 				List<Pair<UserModel, PostModel>> result = new ArrayList<Pair<UserModel,PostModel>>();
 				
+//				try {
+//					// Prepare the statement to obtain an existing UserModel_id.
+//					stmt = conn.prepareStatement(
+//							"select UserModels.UserModel_id"
+//							+ " from UserModels "
+//							+ " where UserModels.firstname = ? and UserModels.lastname = ?"
+//							);
+//					
+//					stmt.setString(1, username);
+//					stmt.setString(2, userID);
+//					
+//					// Return the UserModel_id for the existing UserModel. If no UserModel_id is returned, move onto the else statement.
+//					resultSet = stmt.executeQuery();
+//					resultSet.next();
+//					
+//					if(resultSet.next()) {
+//						UserModel_id = resultSet.getString("UserModel_id");
+//					}
+//					else {
+//						// Prepare the insert statement for the new UserModel.
+//						stmt = conn.prepareStatement(
+//								" INSERT INTO UserModels (firstname, lastname) "
+//								+ " VALUES (?, ?)"
+//								);
+//						
+//						stmt.setString(1, firstName);
+//						stmt.setString(2, lastName);
+//						
+//						// **Insert the new UserModel**
+//						// ResultSet.executeUpdate is used for statements such as INSERT, UPDATE, and DELETE,
+//						// while ResultSet.executeQuery is used for statements that return tabular data.
+//						
+//						stmt.executeUpdate();				
+//						
+//						// Obtain the new UserModel_id
+//						stmt = conn.prepareStatement(
+//								"select UserModels.UserModel_id"
+//								+ " from UserModels "
+//								+ " where UserModels.firstname = ? and UserModels.lastname = ?"
+//								);
+//						
+//						stmt.setString(1, firstName);
+//						stmt.setString(2, lastName);
+//						
+//						resultSet = stmt.executeQuery();
+//						resultSet.next();
+//						
+//						UserModel_id = resultSet.getString("UserModel_id");
+//					}
+					
+					// Prepare the statement to insert the new PostModel into the PostModels table.
 				try {
-					// Prepare the statement to obtain an existing UserModel_id.
 					stmt = conn.prepareStatement(
-							"select UserModels.UserModel_id"
-							+ " from UserModels "
-							+ " where UserModels.firstname = ? and UserModels.lastname = ?"
-							);
-					
-					stmt.setString(1, firstName);
-					stmt.setString(2, lastName);
-					
-					// Return the UserModel_id for the existing UserModel. If no UserModel_id is returned, move onto the else statement.
-					resultSet = stmt.executeQuery();
-					resultSet.next();
-					
-					if(resultSet.next()) {
-						UserModel_id = resultSet.getString("UserModel_id");
-					}
-					else {
-						// Prepare the insert statement for the new UserModel.
-						stmt = conn.prepareStatement(
-								" INSERT INTO UserModels (firstname, lastname) "
-								+ " VALUES (?, ?)"
-								);
-						
-						stmt.setString(1, firstName);
-						stmt.setString(2, lastName);
-						
-						// **Insert the new UserModel**
-						// ResultSet.executeUpdate is used for statements such as INSERT, UPDATE, and DELETE,
-						// while ResultSet.executeQuery is used for statements that return tabular data.
-						
-						stmt.executeUpdate();				
-						
-						// Obtain the new UserModel_id
-						stmt = conn.prepareStatement(
-								"select UserModels.UserModel_id"
-								+ " from UserModels "
-								+ " where UserModels.firstname = ? and UserModels.lastname = ?"
-								);
-						
-						stmt.setString(1, firstName);
-						stmt.setString(2, lastName);
-						
-						resultSet = stmt.executeQuery();
-						resultSet.next();
-						
-						UserModel_id = resultSet.getString("UserModel_id");
-					}
-					
-					// Prepare the statement to insert the new PostModel into the PostModels table. 
-					stmt = conn.prepareStatement(
-							" INSERT INTO PostModels (UserModel_id, title, ISBN, published) "
+							" INSERT INTO PostModels (userID, postTitle, postBody, postID) "
 							+ "VALUES (?, ?, ?, ?) "		
 							);
 					
-					stmt.setString(1, UserModel_id);
-					stmt.setString(2, title);
-					stmt.setString(3, ISBN);
-					stmt.setInt(4, yearPublished);
+					stmt.setInt(1, userID);
+					stmt.setString(2, postTitle);
+					stmt.setString(3, postBody);
+					stmt.setInt(4, postID);
 					
 					// Execute the query and insert the new PostModel into the PostModels table.
-					stmt.executeUpdate();
+					stmt.execute();
 					
 					return result;
-					
-				} finally {
-					DBUtil.closeQuietly(resultSet);
-					DBUtil.closeQuietly(stmt);
-					DBUtil.closeQuietly(conn);
 				}
+				finally {
+						DBUtil.closeQuietly(resultSet);
+						DBUtil.closeQuietly(stmt);
+						DBUtil.closeQuietly(conn);
+					}
+				
 			}
 		});
 	}
