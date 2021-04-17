@@ -17,19 +17,19 @@ public class PostsByUsernameQuery {
 		// Create the default IDatabase instance
 		// InitDatabase.init(keyboard);
 		
-		System.out.print("Enter the author's last name: ");
-		String lastName = keyboard.nextLine();
+		System.out.print("Enter the post title: ");
+		String postTitle = keyboard.nextLine();
 		
 		// get the DB instance and execute transaction
 		// IDatabase db = DatabaseProvider.getInstance();
 		
 		DerbyDatabase db = new DerbyDatabase();
 		
-		List<Pair<UserModel, PostModel>> userPostList = db.findUserModelAndPostModelByTitle(lastName);
+		List<Pair<UserModel, PostModel>> userPostList = db.findUserModelAndPostModelByTitle(postTitle);
 		
 		// check if anything was returned and output the list
 		if (userPostList.isEmpty()) {
-			System.out.println("No books found with author <" + lastName + ">");
+			System.out.println("No posts found with title  <" + postTitle + ">");
 		}
 		else {
 			for (Pair<UserModel, PostModel>  userPost : userPostList) {

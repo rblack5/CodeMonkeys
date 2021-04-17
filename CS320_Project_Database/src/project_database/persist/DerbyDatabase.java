@@ -202,17 +202,17 @@ public class DerbyDatabase {
 					// Prepare the statement to insert the new PostModel into the PostModels table.
 				try {
 					stmt = conn.prepareStatement(
-							" INSERT INTO PostModels (username, userID, postTitle, postBody, postID) "
-							+ "VALUES (?, ?, ?, ?) "		
+							" INSERT INTO Posts (userID, postTitle, postBody) "
+							+ "VALUES (?, ?, ?) "		
 							);
 					
 					stmt.setInt(1, userID);
 					stmt.setString(2, postTitle);
 					stmt.setString(3, postBody);
-					stmt.setInt(4, postID);
+					// stmt.setInt(4, postID);
 					
 					// Execute the query and insert the new PostModel into the PostModels table.
-					stmt.execute();
+					stmt.executeUpdate();
 					
 					return result;
 				}
@@ -296,29 +296,29 @@ public class DerbyDatabase {
 			public Boolean execute(Connection conn) throws SQLException {
 				PreparedStatement stmt1 = null;
 				PreparedStatement stmt2 = null;
-				
 				try {
+					System.out.println("first checkpoint");
 					stmt1 = conn.prepareStatement(
-						"create table Users (" +
-						"	UserID integer primary key " +
-						"		generated always as identity (start with 1, increment by 1), " +									
-						"	username varchar(40)," +
-						")"
+							"create table authors (" +
+							"	userID integer primary key " +
+							"		generated always as identity (start with 1, increment by 1), " +									
+							"	username varchar(40)" +
+							")"
 					);	
+					System.out.println("second checkpoint");
 					stmt1.executeUpdate();
-					
+					System.out.println("third checkpoint");
 					stmt2 = conn.prepareStatement(
 							"create table Posts (" +
 							"	PostID integer primary key " +
 							"		generated always as identity (start with 1, increment by 1), " +
-						//	"	UserID integer constraint UserModel_id references UserModels, " +
 							"	UserID integer, " +
 							"	postTitle varchar(70)," +
-							"	postBody varchar(200)," +
+							"	postBody varchar(200)" +
 							")"
 					);
 					stmt2.executeUpdate();
-					
+					//	"	UserID integer constraint UserModel_id references UserModels, " +
 					return true;
 				} finally {
 					DBUtil.closeQuietly(stmt1);
