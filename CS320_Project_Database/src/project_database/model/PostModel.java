@@ -40,4 +40,8 @@ public class PostModel {
 		return this.userID;
 	}
 	
+	public void setTest(String title) {
+		this.title = title;
+	}
+	
 }
