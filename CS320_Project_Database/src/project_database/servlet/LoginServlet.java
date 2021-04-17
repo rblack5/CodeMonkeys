@@ -20,7 +20,7 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
+		// test
 		System.out.println("Login Servlet: doGet");
 		
 		req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
