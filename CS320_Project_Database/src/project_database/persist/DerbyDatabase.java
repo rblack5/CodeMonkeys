@@ -39,10 +39,10 @@ public class DerbyDatabase {
 				try {
 					// retrieve all attributes from both PostModels and UserModels tables
 					stmt = conn.prepareStatement(
-							"select UserModels.*, PostModels.* " +
-							"  from UserModels, PostModels " +
-							" where UserModels.UserModel_id = PostModels.UserModel_id " +
-							"   and PostModels.title = ?"
+							"select Users.*, Posts.* " +
+							"  from Users, Posts " +
+							" where Users.userID = Posts.userID " +
+							"   and Posts.title = ?"
 					);
 					stmt.setString(1, title);
 					
@@ -138,7 +138,7 @@ public class DerbyDatabase {
 		});
 	}
 	
-	public List<Pair<UserModel, PostModel>> insertNewPostModelWithUserModel(String username, int userID, String postTitle, int postID, String postBody) {
+	public List<Pair<UserModel, PostModel>> insertNewPostWithUser(String username, int userID, String postTitle, int postID, String postBody) {
 		return executeTransaction(new Transaction<List<Pair<UserModel, PostModel>>>() {
 			
 			@SuppressWarnings("resource")
@@ -202,7 +202,7 @@ public class DerbyDatabase {
 					// Prepare the statement to insert the new PostModel into the PostModels table.
 				try {
 					stmt = conn.prepareStatement(
-							" INSERT INTO PostModels (userID, postTitle, postBody, postID) "
+							" INSERT INTO PostModels (username, userID, postTitle, postBody, postID) "
 							+ "VALUES (?, ?, ?, ?) "		
 							);
 					
@@ -299,23 +299,22 @@ public class DerbyDatabase {
 				
 				try {
 					stmt1 = conn.prepareStatement(
-						"create table UserModels (" +
-						"	UserModel_id integer primary key " +
+						"create table Users (" +
+						"	UserID integer primary key " +
 						"		generated always as identity (start with 1, increment by 1), " +									
-						"	lastname varchar(40)," +
-						"	firstname varchar(40)" +
+						"	username varchar(40)," +
 						")"
 					);	
 					stmt1.executeUpdate();
 					
 					stmt2 = conn.prepareStatement(
-							"create table PostModels (" +
-							"	PostModel_id integer primary key " +
+							"create table Posts (" +
+							"	PostID integer primary key " +
 							"		generated always as identity (start with 1, increment by 1), " +
-							"	UserModel_id integer constraint UserModel_id references UserModels, " +
-							"	title varchar(70)," +
-							"	isbn varchar(15)," +
-							"   published integer " +
+						//	"	UserID integer constraint UserModel_id references UserModels, " +
+							"	UserID integer, " +
+							"	postTitle varchar(70)," +
+							"	postBody varchar(200)," +
 							")"
 					);
 					stmt2.executeUpdate();
@@ -390,4 +389,5 @@ public class DerbyDatabase {
 		
 		System.out.println("Success!");
 	}
+
 }
