@@ -9,10 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import project_database.model.UserModel;
 import project_database.controller.LoginController;
 import project_database.controller.PostController;
 import project_database.model.PostModel;
-import project_database.model.UserModel;
+
 
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
