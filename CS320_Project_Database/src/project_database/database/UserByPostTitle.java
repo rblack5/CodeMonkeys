@@ -10,7 +10,7 @@ import project_database.persist.DerbyDatabase;
 // import project_database.persist.DatabaseProvider;
 // import project_database.persist.IDatabase;
 
-public class PostsByUsernameQuery {
+public class UserByPostTitle {
 	public static void main(String[] args) throws Exception {
 		Scanner keyboard = new Scanner(System.in);
 
@@ -20,21 +20,26 @@ public class PostsByUsernameQuery {
 		System.out.print("Enter the post title: ");
 		String postTitle = keyboard.nextLine();
 		
+		System.out.print("Enter the post ID: ");
+		String postID = keyboard.nextLine();
+		
 		// get the DB instance and execute transaction
 		// IDatabase db = DatabaseProvider.getInstance();
 		
 		DerbyDatabase db = new DerbyDatabase();
 		
-		List<Pair<UserModel, PostModel>> userPostList = db.findUserModelAndPostModelByTitle(postTitle);
+		List<Pair<UserModel, PostModel>> userPostList = db.findUserModelAndPostModelByTitle(postTitle, postID);
 		
 		// check if anything was returned and output the list
 		if (userPostList.isEmpty()) {
-			System.out.println("No posts found with title  <" + postTitle + ">");
+			System.out.println("No posts found with title  <" + postTitle + "> and ID of <" + postID + ">");
 		}
-		else {
+		else { 
 			for (Pair<UserModel, PostModel>  userPost : userPostList) {
 				UserModel user = userPost.getLeft();
 				PostModel post = userPost.getRight();
+				System.out.println("Username => " + user.getUsername());
+				System.out.println("Username => " + user.getUserID());
 				System.out.println(user.getUsername() + "," + user.getUserID() + "," + post.getTitle() + "," + post.getPostID());
 			}
 		}

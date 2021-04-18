@@ -29,7 +29,7 @@ public class DerbyDatabase {
 	private static final int MAX_ATTEMPTS = 10;
 
 	// @Override
-	public List<Pair<UserModel, PostModel>> findUserModelAndPostModelByTitle(final String title) {
+	public List<Pair<UserModel, PostModel>> findUserModelAndPostModelByTitle(final String postTitle, final String postID) {
 		return executeTransaction(new Transaction<List<Pair<UserModel,PostModel>>>() {
 			@Override
 			public List<Pair<UserModel, PostModel>> execute(Connection conn) throws SQLException {
@@ -38,16 +38,14 @@ public class DerbyDatabase {
 				
 				try {
 					// retrieve all attributes from both PostModels and UserModels tables
-					System.out.println("Checkpoint 1");
 					stmt = conn.prepareStatement(
 							"select Users.*, Posts.* " +
 							"  from Users, Posts " +
 							" where Users.userID = Posts.userID " +
-							"   and Posts.postTitle = ?"
+							"   and Posts.postTitle = ? and Posts.postID = ?"
 					);
-					stmt.setString(1, title);
-					
-					System.out.println("Checkpoint 2");
+					stmt.setString(1, postTitle);
+					stmt.setString(2, postID);
 					
 					List<Pair<UserModel, PostModel>> result = new ArrayList<Pair<UserModel,PostModel>>();
 					
@@ -74,7 +72,7 @@ public class DerbyDatabase {
 					
 					// check if the title was found
 					if (!found) {
-						System.out.println("<" + title + "> was not found in the PostModels table");
+						System.out.println("<" + postTitle + "> with ID <" + postID + "> of was not found in the PostModels table");
 					}
 					
 					return result;
