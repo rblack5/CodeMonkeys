@@ -15,6 +15,8 @@ public class InsertNewPost {
 		// Create the default IDatabase instance
 		DerbyDatabase db = new DerbyDatabase();
 		
+		System.out.print("Enter a username: ");
+		String username = keyboard.nextLine();
 		System.out.print("Enter a post title: ");
 		String postTitle = keyboard.nextLine();
 		System.out.print("Enter a post body: ");
@@ -24,15 +26,15 @@ public class InsertNewPost {
 		
 		// get the DB instance and execute transaction
 		
-		db.insertNewPost(userID, postTitle, postBody);
+		db.insertNewPost(userID, username, postTitle, postBody);
 		
 		System.out.println("Success");
 		
 	}
 	
-	public void insertNewPost(int userID, String postTitle, String postBody) {
+	public void insertNewPost(int userID, String username, String postTitle, String postBody) {
 		DerbyDatabase db = new DerbyDatabase();
-		db.insertNewPost(userID, postTitle, postBody);
+		db.insertNewPost(userID, username, postTitle, postBody);
 		System.out.println("Success");
 	}
 

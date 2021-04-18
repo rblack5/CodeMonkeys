@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
 		String loggedInMessage = null;
 		
 		PostController postController = new PostController();
-		List <PostModel> posts = postController.importCSV(); 
+		List <PostModel> posts = postController.getAllPosts();
 		
 		// Create the model
 		UserModel model = new UserModel();
@@ -76,7 +76,7 @@ public class LoginServlet extends HttpServlet {
 					// of the website knows that the person is logged in
 					HttpSession session = req.getSession();
 					session.setAttribute("username", model.getUsername());
-					
+					session.setAttribute("userID", model.getUserID());
 					loggedInMessage = "Welcome, " + model.getUsername();
 				}
 				

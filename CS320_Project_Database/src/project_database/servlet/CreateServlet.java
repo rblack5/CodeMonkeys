@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import project_database.controller.PostController;
 import project_database.model.PostModel;
@@ -60,6 +61,17 @@ public class CreateServlet extends HttpServlet {
 				// Send the values to the model
 				model.setTitle(title);
 				model.setBody(body);
+				HttpSession session = req.getSession();
+				String username = (String) session.getAttribute("username");
+				System.out.println("username is: " + username);
+				int userID = (int) session.getAttribute("userID");
+				System.out.println("userID is: " + userID);
+				model.setUserID(userID);
+				
+				model.setUsername(username);
+				
+				System.out.println("model.getUserID =>" + model.getUserID());
+				System.out.println("model.getUsername =>" + model.getUsername());
 				
 				PostController controller = new PostController();
 				controller.createPost(model);

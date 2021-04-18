@@ -28,5 +28,9 @@ public class ViewAllPosts {
 		}
 	}
 	
-	
+	public List<PostModel> getPostList() {
+		DerbyDatabase db = new DerbyDatabase();
+		List<PostModel> postList = db.viewAllPosts();
+		return postList;
+	}
 }

@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import project_database.database.*;
 import project_database.model.PostModel;
 import project_database.model.UserModel;
 
@@ -67,19 +68,28 @@ public class PostController {
 	}
 	
 	public void createPost(PostModel model) throws IOException {
-		List<PostModel> posts = importCSV();
-		FileWriter writer = new FileWriter(pathToFile.toString(), true);
+//		List<PostModel> posts = importCSV();
+//		FileWriter writer = new FileWriter(pathToFile.toString(), true);
+//		
+//		String newPost = "\"" + String.join(",", String.valueOf(posts.size()),model.getTitle(), model.getBody()) + "\"";
+//		
+//		writer.write(newPost);
+//		writer.write("\n");
+//		
+//		writer.close();
 		
-		String newPost = "\"" + String.join(",", String.valueOf(posts.size()),model.getTitle(), model.getBody()) + "\"";
+		InsertNewPost g = new InsertNewPost();
 		
-		writer.write(newPost);
-		writer.write("\n");
+//		FindMatchingUserByUserID h = new FindMatchingUserByUserID();
+//		UserModel user = h.findMatchingUserByUserID(model.getUserID());
 		
-		writer.close();
+		g.insertNewPost(model.getUserID(), model.getUsername(), model.getTitle(), model.getBody());
 	}
 	
 	public PostModel findPost(int post_id) {
-		List<PostModel> posts = importCSV();
+	//	List<PostModel> posts = importCSV();
+		ViewAllPosts g = new ViewAllPosts();
+		List<PostModel> posts = g.getPostList();
 		
 		for (PostModel post: posts) {
 			if(post.getPostID() == post_id) {
@@ -88,4 +98,11 @@ public class PostController {
 		}
 		return null;
 	}
+	
+	public List<PostModel> getAllPosts() {
+			ViewAllPosts g = new ViewAllPosts();
+			List<PostModel> posts = g.getPostList();
+			return posts;
+	}
+	
 }

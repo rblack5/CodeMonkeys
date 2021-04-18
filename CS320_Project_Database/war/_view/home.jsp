@@ -18,7 +18,7 @@
 	    <img class ="rounded-circle article-img" src= "${pageContext.request.contextPath}/_view/images/default.jpg">
 	    <div class="media-body">
 	    <div class="article-metadata">
-	        <a class="mr-2"> Default User </a>
+	        <a class="mr-2">Default</a>
 	        <small class="text-muted">${post.postID}</small>
 	    </div>
 	    

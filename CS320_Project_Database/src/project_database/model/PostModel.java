@@ -1,7 +1,9 @@
 package project_database.model;
 
+import project_database.database.FindMatchingUserByUserID;
+
 public class PostModel {
-	private String title, body;
+	private String title, body, username;
 	int postID, userID;
 	
 	public PostModel() {
@@ -38,6 +40,14 @@ public class PostModel {
 	
 	public int getUserID() {
 		return this.userID;
+	}
+	
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	public String getUsername() {
+		return this.username;
 	}
 	
 }
