@@ -64,9 +64,12 @@ public class CreateServlet extends HttpServlet {
 				HttpSession session = req.getSession();
 				String username = (String) session.getAttribute("username");
 				System.out.println("username is: " + username);
-				int userID = (int) session.getAttribute("userID");
+				String userID = (String) session.getAttribute("userID");
 				System.out.println("userID is: " + userID);
-				model.setUserID(userID);
+				
+				int realUserID = Integer.parseInt(userID);
+				
+				model.setUserID(realUserID);
 				
 				model.setUsername(username);
 				

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import project_database.database.*;
 import project_database.controller.LoginController;
 import project_database.controller.PostController;
 import project_database.model.PostModel;
@@ -76,7 +77,17 @@ public class LoginServlet extends HttpServlet {
 					// of the website knows that the person is logged in
 					HttpSession session = req.getSession();
 					session.setAttribute("username", model.getUsername());
-					session.setAttribute("userID", model.getUserID());
+					
+					// We are doing this to find what the userID of the user is, and setting
+					// the session attribute so that we can use that userID throughout the site.
+					// Also need to convert it to a string so that it can be worked with easier.
+					FindMatchingUserByUsername g = new FindMatchingUserByUsername();
+					UserModel user = g.findMatchingUserByUserID(model.getUsername());
+					int ID = user.getUserID();
+					String StringID = String.valueOf(ID);
+					System.out.println("Login servlet userID is now:" + StringID);
+					session.setAttribute("userID", StringID);
+					
 					loggedInMessage = "Welcome, " + model.getUsername();
 				}
 				

@@ -225,6 +225,57 @@ public class DerbyDatabase {
 		});
 	}
 	
+	public UserModel findMatchingUserByUsername(String username) {
+		return executeTransaction(new Transaction<UserModel>() {
+			@Override
+			public UserModel execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+					// retrieve all attributes from both PostModels and UserModels tables
+					stmt = conn.prepareStatement(
+							"select Users.*" +
+							"  from Users" +
+							" where Users.username = ? "
+					);
+					stmt.setString(1, username);
+					UserModel result = new UserModel();
+					
+					
+					resultSet = stmt.executeQuery();
+
+					// for testing that a result was returned
+					Boolean found = false;
+					
+					
+					while (resultSet.next()) {
+						found = true;
+						
+						// create new UserModel object
+						// retrieve attributes from resultSet starting with index 1
+						UserModel UserModel = new UserModel();
+						loadUserModel(UserModel, resultSet, 1);
+						
+						result = UserModel;
+					}
+					
+					// check if the title was found
+					if (!found) {
+						System.out.println("No users found.");
+					}
+					
+					
+					
+					return result;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
+	
 	
 	public List<Pair<UserModel, PostModel>> insertNewUser(String username, String password) {
 		return executeTransaction(new Transaction<List<Pair<UserModel, PostModel>>>() {

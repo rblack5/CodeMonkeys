@@ -56,7 +56,7 @@ public class UserTest {
 		model.setPassword("test");
 		
 		controller.setModel(model);
-		controller.createAccount();
+		controller.createAccount(model);
 		
 		assert(controller.checkLogIn(model));
 	}

@@ -83,7 +83,7 @@ public class RegisterServlet extends HttpServlet {
 					message = "Account " + username + " successfully created, now time to login!";
 					System.out.println(message);
 					controller.setModel(model);
-					controller.createAccount();
+					controller.createAccount(model);
 					
 				}
 			}

@@ -78,7 +78,7 @@ public class LoginController {
 	
 	}
 	
-	public void createAccount() throws IOException {
+	public void createAccount(UserModel model) throws IOException {
 //		Path pathToFile = Paths.get(FileSystems.getDefault().getPath("").toAbsolutePath().toString(), "users.csv");
 //		List <UserModel> users = importCSV();
 //		

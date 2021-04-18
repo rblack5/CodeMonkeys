@@ -18,7 +18,7 @@
 		    <div class="article-metadata">
 		        <a class="mr-2" href="{% url 'user-posts' object.author.username %}">${post.username}</a>
 
-		        <small class="text-muted">${post.postID}</small>
+		        <small class="text-muted">Post ID: ${post.postID} User ID: ${post.userID}</small>
 		        
 		        <!--  
 		            <div>

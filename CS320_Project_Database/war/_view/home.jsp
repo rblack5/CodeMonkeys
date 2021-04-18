@@ -18,10 +18,10 @@
 	    <img class ="rounded-circle article-img" src= "${pageContext.request.contextPath}/_view/images/default.jpg">
 	    <div class="media-body">
 	    <div class="article-metadata">
-	        <a class="mr-2">${post.username}</a>
-	        <small class="text-muted">${post.postID}</small>
+	        <a class="mr-2" href="{% url 'user-posts' object.author.username %}">${post.username}</a>
+	        <small class="text-muted">Post ID: ${post.postID} User ID: ${post.userID}</small>
 	    </div>
-	    
+	    <!--  User ID is => ${post.userID} -->
 	    <form action = "/project_database/post">
 		    <div>
 		    	<h2>

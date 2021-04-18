@@ -34,6 +34,7 @@ public class InsertNewPost {
 	
 	public void insertNewPost(int userID, String username, String postTitle, String postBody) {
 		DerbyDatabase db = new DerbyDatabase();
+		System.out.println("User id is ==> " + userID);
 		db.insertNewPost(userID, username, postTitle, postBody);
 		System.out.println("Success");
 	}
