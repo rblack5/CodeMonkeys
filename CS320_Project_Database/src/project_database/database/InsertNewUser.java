@@ -29,5 +29,11 @@ public class InsertNewUser {
 		System.out.println("Success");
 		
 	}
+	
+	public void insertNewUser(String username, String password) {
+		DerbyDatabase db = new DerbyDatabase();
+		db.insertNewUser(username, password);
+		System.out.println("Success");
+	}
 
 }

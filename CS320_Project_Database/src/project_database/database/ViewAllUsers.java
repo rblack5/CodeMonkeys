@@ -28,5 +28,11 @@ public class ViewAllUsers {
 		}
 	}
 	
+	public List<UserModel> getUserList() {
+		DerbyDatabase db = new DerbyDatabase();
+		List<UserModel> userList = db.viewAllUsers();
+		return userList;
+	}
+	
 	
 }

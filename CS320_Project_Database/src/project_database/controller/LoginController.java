@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import project_database.database.*;
 import project_database.model.UserModel;
 
 public class LoginController {	
@@ -63,7 +64,11 @@ public class LoginController {
 	}
 	
 	public boolean checkLogIn(UserModel model) {
-		List<UserModel> users = importCSV();
+		// List<UserModel> users = importCSV();
+		
+		ViewAllUsers g = new ViewAllUsers();
+		List<UserModel> users = g.getUserList();
+		
 		for(int i = 0; i < users.size(); i++) {		
 			if(users.get(i).getUsername().equals(model.getUsername()) && users.get(i).getPassword().equals(model.getPassword())) {
 				return true;
@@ -74,18 +79,21 @@ public class LoginController {
 	}
 	
 	public void createAccount() throws IOException {
-		Path pathToFile = Paths.get(FileSystems.getDefault().getPath("").toAbsolutePath().toString(), "users.csv");
-		List <UserModel> users = importCSV();
+//		Path pathToFile = Paths.get(FileSystems.getDefault().getPath("").toAbsolutePath().toString(), "users.csv");
+//		List <UserModel> users = importCSV();
+//		
+//		FileWriter writer = new FileWriter(pathToFile.toString(), true);
+//		
+//		String userInfo = "\"" + String.join(",", String.valueOf(users.size()),model.getUsername(), model.getPassword()) + "\"";
+//		
+//		System.out.println(userInfo);
+//		
+//		writer.write(userInfo);
+//		writer.write("\n");
+//		
+//		writer.close();
 		
-		FileWriter writer = new FileWriter(pathToFile.toString(), true);
-		
-		String userInfo = "\"" + String.join(",", String.valueOf(users.size()),model.getUsername(), model.getPassword()) + "\"";
-		
-		System.out.println(userInfo);
-		
-		writer.write(userInfo);
-		writer.write("\n");
-		
-		writer.close();
+		InsertNewUser g = new InsertNewUser();
+		g.insertNewUser(model.getUsername(), model.getPassword());
 	}
 }

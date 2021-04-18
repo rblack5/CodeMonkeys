@@ -29,5 +29,11 @@ public class InsertNewPost {
 		System.out.println("Success");
 		
 	}
+	
+	public void insertNewPost(int userID, String postTitle, String postBody) {
+		DerbyDatabase db = new DerbyDatabase();
+		db.insertNewPost(userID, postTitle, postBody);
+		System.out.println("Success");
+	}
 
 }
