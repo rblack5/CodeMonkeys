@@ -84,6 +84,106 @@ public class DerbyDatabase {
 		});
 	}
 	
+	public List<Pair<UserModel, PostModel>> viewAllUsers() {
+		return executeTransaction(new Transaction<List<Pair<UserModel,PostModel>>>() {
+			@Override
+			public List<Pair<UserModel, PostModel>> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+					// retrieve all attributes from both PostModels and UserModels tables
+					stmt = conn.prepareStatement(
+							"select Users.*, Posts.* " +
+							"  from Users, Posts "
+					);
+					List<Pair<UserModel, PostModel>> result = new ArrayList<Pair<UserModel,PostModel>>();
+					
+					resultSet = stmt.executeQuery();
+
+					// for testing that a result was returned
+					Boolean found = false;
+					
+					while (resultSet.next()) {
+						found = true;
+						
+						// create new UserModel object
+						// retrieve attributes from resultSet starting with index 1
+						UserModel UserModel = new UserModel();
+						loadUserModel(UserModel, resultSet, 1);
+						
+						// create new PostModel object
+						// retrieve attributes from resultSet starting at index 4
+						PostModel PostModel = new PostModel();
+						loadPostModel(PostModel, resultSet, 4);
+						
+						result.add(new Pair<UserModel, PostModel>(UserModel, PostModel));
+					}
+					
+					// check if the title was found
+					if (!found) {
+						System.out.println("No users found.");
+					}
+					
+					return result;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
+	
+	public List<Pair<UserModel, PostModel>> viewAllPosts() {
+		return executeTransaction(new Transaction<List<Pair<UserModel,PostModel>>>() {
+			@Override
+			public List<Pair<UserModel, PostModel>> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+					// retrieve all attributes from both PostModels and UserModels tables
+					stmt = conn.prepareStatement(
+							"select Users.*, Posts.* " +
+							"  from Users, Posts "
+					);
+					List<Pair<UserModel, PostModel>> result = new ArrayList<Pair<UserModel,PostModel>>();
+					
+					resultSet = stmt.executeQuery();
+
+					// for testing that a result was returned
+					Boolean found = false;
+					
+					while (resultSet.next()) {
+						found = true;
+						
+						// create new UserModel object
+						// retrieve attributes from resultSet starting with index 1
+						UserModel UserModel = new UserModel();
+						loadUserModel(UserModel, resultSet, 1);
+						
+						// create new PostModel object
+						// retrieve attributes from resultSet starting at index 4
+						PostModel PostModel = new PostModel();
+						loadPostModel(PostModel, resultSet, 4);
+						
+						result.add(new Pair<UserModel, PostModel>(UserModel, PostModel));
+					}
+					
+					// check if the title was found
+					if (!found) {
+						System.out.println("No users found.");
+					}
+					
+					return result;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
+	
 	public List<Pair<UserModel, PostModel>> insertNewUser(String username, String password) {
 		return executeTransaction(new Transaction<List<Pair<UserModel, PostModel>>>() {
 			
@@ -172,7 +272,7 @@ public class DerbyDatabase {
 		});
 	}
 	
-	public List<Pair<UserModel, PostModel>> insertNewPostWithUser(String username, int userID, String postTitle, int postID, String postBody) {
+	public List<Pair<UserModel, PostModel>> insertNewPost(int userID, String postTitle, String postBody) {
 		return executeTransaction(new Transaction<List<Pair<UserModel, PostModel>>>() {
 			
 			@SuppressWarnings("resource")
@@ -243,7 +343,7 @@ public class DerbyDatabase {
 					stmt.setInt(1, userID);
 					stmt.setString(2, postTitle);
 					stmt.setString(3, postBody);
-					// stmt.setInt(4, postID);
+
 					
 					// Execute the query and insert the new PostModel into the PostModels table.
 					stmt.executeUpdate();
@@ -316,12 +416,39 @@ public class DerbyDatabase {
 	private void loadUserModel(UserModel UserModel, ResultSet resultSet, int index) throws SQLException {
 		UserModel.setUserID(resultSet.getInt(index++));
 		UserModel.setUsername(resultSet.getString(index++));
+		UserModel.setPassword(resultSet.getString(index++));
 	}
 	
 	private void loadPostModel(PostModel PostModel, ResultSet resultSet, int index) throws SQLException {
 		PostModel.setPostID(resultSet.getInt(index++));
 		PostModel.setUserID(resultSet.getInt(index++));
-		PostModel.setTitle(resultSet.getString(index++));	
+		PostModel.setTitle(resultSet.getString(index++));
+		PostModel.setBody(resultSet.getString(index++));	
+	}
+	
+	public void dropAllTables() {
+		executeTransaction(new Transaction<Boolean>() {
+			@Override
+			public Boolean execute(Connection conn) throws SQLException {
+				PreparedStatement stmt3 = null;
+				PreparedStatement stmt4 = null;
+				try {
+					stmt3 = conn.prepareStatement(
+							"DROP TABLE Users"
+					);	
+					stmt3.executeUpdate();
+					
+					stmt4 = conn.prepareStatement(
+							"DROP TABLE Posts"
+					);	
+					stmt4.executeUpdate();
+					return true;
+				} finally {
+					DBUtil.closeQuietly(stmt3);
+					DBUtil.closeQuietly(stmt4);
+				}
+			}
+		});
 	}
 	
 	public void createTables() {
@@ -330,19 +457,7 @@ public class DerbyDatabase {
 			public Boolean execute(Connection conn) throws SQLException {
 				PreparedStatement stmt1 = null;
 				PreparedStatement stmt2 = null;
-				PreparedStatement stmt3 = null;
-				PreparedStatement stmt4 = null;
-				try {
-//					stmt3 = conn.prepareStatement(
-//							"DROP TABLE Users"
-//					);	
-//					stmt3.executeUpdate();
-//					
-//					stmt4 = conn.prepareStatement(
-//							"DROP TABLE Posts"
-//					);	
-//					stmt4.executeUpdate();
-					
+				try {		
 					stmt1 = conn.prepareStatement(
 							"create table Users (" +
 							"	userID integer primary key " +

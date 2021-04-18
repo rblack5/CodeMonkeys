@@ -1,0 +1,34 @@
+package project_database.database;
+
+import java.util.List;
+import java.util.Scanner;
+
+import project_database.model.Pair;
+import project_database.model.PostModel;
+import project_database.model.UserModel;
+import project_database.persist.DerbyDatabase;
+// import project_database.persist.DatabaseProvider;
+// import project_database.persist.IDatabase;
+
+public class ViewAllPosts {
+	public static void main(String[] args) throws Exception {
+
+		DerbyDatabase db = new DerbyDatabase();
+		
+		List<Pair<UserModel, PostModel>> userPostList = db.viewAllPosts();
+		
+		// check if anything was returned and output the list
+		if (userPostList.isEmpty()) {
+			System.out.println("There are no posts.");
+		}
+		else { 
+			for (Pair<UserModel, PostModel>  userPost : userPostList) {
+				PostModel post = userPost.getRight();
+
+				System.out.println("PostID: " + post.getPostID() + " | PostAuthorID: " + post.getUserID() +  " | Title: " + post.getTitle() + " | Body: " + post.getBody());
+			}
+		}
+	}
+	
+	
+}

@@ -38,8 +38,6 @@ public class UserByPostTitle {
 			for (Pair<UserModel, PostModel>  userPost : userPostList) {
 				UserModel user = userPost.getLeft();
 				PostModel post = userPost.getRight();
-				System.out.println("Username => " + user.getUsername());
-				System.out.println("Username => " + user.getUserID());
 				System.out.println(user.getUsername() + "," + user.getUserID() + "," + post.getTitle() + "," + post.getPostID());
 			}
 		}
