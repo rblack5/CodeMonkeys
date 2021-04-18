@@ -86,57 +86,90 @@ public class DerbyDatabase {
 		});
 	}
 	
-	public List<Pair<UserModel, PostModel>> findUserModelAndPostModelByLastname(final String lastName) {
-		return executeTransaction(new Transaction<List<Pair<UserModel,PostModel>>>() {
+	public List<Pair<UserModel, PostModel>> insertNewUser(String username, String password) {
+		return executeTransaction(new Transaction<List<Pair<UserModel, PostModel>>>() {
+			
+			@SuppressWarnings("resource")
 			@Override
 			public List<Pair<UserModel, PostModel>> execute(Connection conn) throws SQLException {
 				PreparedStatement stmt = null;
 				ResultSet resultSet = null;
+				String UserModel_id;
+				List<Pair<UserModel, PostModel>> result = new ArrayList<Pair<UserModel,PostModel>>();
 				
+//				try {
+//					// Prepare the statement to obtain an existing UserModel_id.
+//					stmt = conn.prepareStatement(
+//							"select UserModels.UserModel_id"
+//							+ " from UserModels "
+//							+ " where UserModels.firstname = ? and UserModels.lastname = ?"
+//							);
+//					
+//					stmt.setString(1, username);
+//					stmt.setString(2, userID);
+//					
+//					// Return the UserModel_id for the existing UserModel. If no UserModel_id is returned, move onto the else statement.
+//					resultSet = stmt.executeQuery();
+//					resultSet.next();
+//					
+//					if(resultSet.next()) {
+//						UserModel_id = resultSet.getString("UserModel_id");
+//					}
+//					else {
+//						// Prepare the insert statement for the new UserModel.
+//						stmt = conn.prepareStatement(
+//								" INSERT INTO UserModels (firstname, lastname) "
+//								+ " VALUES (?, ?)"
+//								);
+//						
+//						stmt.setString(1, firstName);
+//						stmt.setString(2, lastName);
+//						
+//						// **Insert the new UserModel**
+//						// ResultSet.executeUpdate is used for statements such as INSERT, UPDATE, and DELETE,
+//						// while ResultSet.executeQuery is used for statements that return tabular data.
+//						
+//						stmt.executeUpdate();				
+//						
+//						// Obtain the new UserModel_id
+//						stmt = conn.prepareStatement(
+//								"select UserModels.UserModel_id"
+//								+ " from UserModels "
+//								+ " where UserModels.firstname = ? and UserModels.lastname = ?"
+//								);
+//						
+//						stmt.setString(1, firstName);
+//						stmt.setString(2, lastName);
+//						
+//						resultSet = stmt.executeQuery();
+//						resultSet.next();
+//						
+//						UserModel_id = resultSet.getString("UserModel_id");
+//					}
+					
+					// Prepare the statement to insert the new PostModel into the PostModels table.
 				try {
-					// retrieve all attributes from both PostModels and UserModels tables
 					stmt = conn.prepareStatement(
-							"select UserModels.*, PostModels.* "
-							+ "  from UserModels, PostModels "
-							+ "  where UserModels.UserModel_id = PostModels.UserModel_id "
-							+ "        and UserModels.lastname = ?"
-							+ "        order by PostModels.title ASC"
-					);
-					stmt.setString(1, lastName);
+							" INSERT INTO Users (username, password) "
+							+ "VALUES (?, ?) "		
+							);
 					
-					List<Pair<UserModel, PostModel>> result = new ArrayList<Pair<UserModel,PostModel>>();
+					stmt.setString(1, username);
+					stmt.setString(2, password);
 					
-					resultSet = stmt.executeQuery();
+					// stmt.setInt(4, postID);
 					
-					// for testing that a result was returned
-					Boolean found = false;
-					
-					while (resultSet.next()) {
-						found = true;
-						
-						// create new UserModel object
-						// retrieve attributes from resultSet starting with index 1
-						UserModel UserModel = new UserModel();
-						loadUserModel(UserModel, resultSet, 1);
-						
-						// create new PostModel object
-						// retrieve attributes from resultSet starting at index 4
-						PostModel PostModel = new PostModel();
-						loadPostModel(PostModel, resultSet, 4);
-						
-						result.add(new Pair<UserModel, PostModel>(UserModel, PostModel));
-					}
-					
-					// check if the title was found
-					if (!found) {
-						System.out.println("<" + lastName + "> was not found in the PostModels table");
-					}
+					// Execute the query and insert the new PostModel into the PostModels table.
+					stmt.executeUpdate();
 					
 					return result;
-				} finally {
-					DBUtil.closeQuietly(resultSet);
-					DBUtil.closeQuietly(stmt);
 				}
+				finally {
+						DBUtil.closeQuietly(resultSet);
+						DBUtil.closeQuietly(stmt);
+						DBUtil.closeQuietly(conn);
+					}
+				
 			}
 		});
 	}
@@ -316,15 +349,16 @@ public class DerbyDatabase {
 							"create table Users (" +
 							"	userID integer primary key " +
 							"		generated always as identity (start with 1, increment by 1), " +									
-							"	username varchar(40)" +
+							"	username varchar(40)," +
+							"	password varchar(40)" +
 							")"
 					);	
 					stmt1.executeUpdate();
 					stmt2 = conn.prepareStatement(
 							"create table Posts (" +
-							"	PostID integer primary key " +
+							"	postID integer primary key " +
 							"		generated always as identity (start with 1, increment by 1), " +
-							"	UserID integer, " +
+							"	userID integer, " +
 							"	postTitle varchar(70)," +
 							"	postBody varchar(200)" +
 							")"
