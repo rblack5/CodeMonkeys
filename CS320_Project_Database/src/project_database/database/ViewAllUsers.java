@@ -15,16 +15,14 @@ public class ViewAllUsers {
 
 		DerbyDatabase db = new DerbyDatabase();
 		
-		List<Pair<UserModel, PostModel>> userList = db.viewAllUsers();
+		List<UserModel> userList = db.viewAllUsers();
 		
 		// check if anything was returned and output the list
 		if (userList.isEmpty()) {
 			System.out.println("There are no users.");
 		}
 		else { 
-			for (Pair<UserModel, PostModel>  userPost : userList) {
-				UserModel user = userPost.getLeft();
-
+			for (UserModel user : userList) {
 				System.out.println("UserID: " + user.getUserID() + " | Username: " + user.getUsername() +  " | Password: " + user.getPassword());
 			}
 		}

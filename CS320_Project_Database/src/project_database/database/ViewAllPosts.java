@@ -15,16 +15,14 @@ public class ViewAllPosts {
 
 		DerbyDatabase db = new DerbyDatabase();
 		
-		List<Pair<UserModel, PostModel>> userPostList = db.viewAllPosts();
+		List<PostModel> postList = db.viewAllPosts();
 		
 		// check if anything was returned and output the list
-		if (userPostList.isEmpty()) {
+		if (postList.isEmpty()) {
 			System.out.println("There are no posts.");
 		}
 		else { 
-			for (Pair<UserModel, PostModel>  userPost : userPostList) {
-				PostModel post = userPost.getRight();
-
+			for (PostModel post : postList) {
 				System.out.println("PostID: " + post.getPostID() + " | PostAuthorID: " + post.getUserID() +  " | Title: " + post.getTitle() + " | Body: " + post.getBody());
 			}
 		}

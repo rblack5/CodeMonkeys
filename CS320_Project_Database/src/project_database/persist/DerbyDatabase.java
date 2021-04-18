@@ -84,20 +84,20 @@ public class DerbyDatabase {
 		});
 	}
 	
-	public List<Pair<UserModel, PostModel>> viewAllUsers() {
-		return executeTransaction(new Transaction<List<Pair<UserModel,PostModel>>>() {
+	public List<UserModel> viewAllUsers() {
+		return executeTransaction(new Transaction<List<UserModel>>() {
 			@Override
-			public List<Pair<UserModel, PostModel>> execute(Connection conn) throws SQLException {
+			public List<UserModel> execute(Connection conn) throws SQLException {
 				PreparedStatement stmt = null;
 				ResultSet resultSet = null;
 				
 				try {
 					// retrieve all attributes from both PostModels and UserModels tables
 					stmt = conn.prepareStatement(
-							"select Users.*, Posts.* " +
-							"  from Users, Posts "
+							"select Users.*" +
+							"  from Users"
 					);
-					List<Pair<UserModel, PostModel>> result = new ArrayList<Pair<UserModel,PostModel>>();
+					List<UserModel> result = new ArrayList<UserModel>();
 					
 					resultSet = stmt.executeQuery();
 
@@ -112,12 +112,7 @@ public class DerbyDatabase {
 						UserModel UserModel = new UserModel();
 						loadUserModel(UserModel, resultSet, 1);
 						
-						// create new PostModel object
-						// retrieve attributes from resultSet starting at index 4
-						PostModel PostModel = new PostModel();
-						loadPostModel(PostModel, resultSet, 4);
-						
-						result.add(new Pair<UserModel, PostModel>(UserModel, PostModel));
+						result.add(UserModel);
 					}
 					
 					// check if the title was found
@@ -134,20 +129,20 @@ public class DerbyDatabase {
 		});
 	}
 	
-	public List<Pair<UserModel, PostModel>> viewAllPosts() {
-		return executeTransaction(new Transaction<List<Pair<UserModel,PostModel>>>() {
+	public List<PostModel> viewAllPosts() {
+		return executeTransaction(new Transaction<List<PostModel>>() {
 			@Override
-			public List<Pair<UserModel, PostModel>> execute(Connection conn) throws SQLException {
+			public List<PostModel> execute(Connection conn) throws SQLException {
 				PreparedStatement stmt = null;
 				ResultSet resultSet = null;
 				
 				try {
 					// retrieve all attributes from both PostModels and UserModels tables
 					stmt = conn.prepareStatement(
-							"select Users.*, Posts.* " +
-							"  from Users, Posts "
+							"select Posts.* " +
+							"  from Posts"
 					);
-					List<Pair<UserModel, PostModel>> result = new ArrayList<Pair<UserModel,PostModel>>();
+					List<PostModel> result = new ArrayList<PostModel>();
 					
 					resultSet = stmt.executeQuery();
 
@@ -157,22 +152,17 @@ public class DerbyDatabase {
 					while (resultSet.next()) {
 						found = true;
 						
-						// create new UserModel object
-						// retrieve attributes from resultSet starting with index 1
-						UserModel UserModel = new UserModel();
-						loadUserModel(UserModel, resultSet, 1);
-						
 						// create new PostModel object
 						// retrieve attributes from resultSet starting at index 4
 						PostModel PostModel = new PostModel();
-						loadPostModel(PostModel, resultSet, 4);
+						loadPostModel(PostModel, resultSet, 1);
 						
-						result.add(new Pair<UserModel, PostModel>(UserModel, PostModel));
+						result.add(PostModel);
 					}
 					
 					// check if the title was found
 					if (!found) {
-						System.out.println("No users found.");
+						System.out.println("No posts found.");
 					}
 					
 					return result;
