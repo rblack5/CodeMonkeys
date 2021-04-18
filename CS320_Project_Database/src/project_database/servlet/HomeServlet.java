@@ -24,7 +24,7 @@ public class HomeServlet extends HttpServlet {
 		
 		PostController controller = new PostController();
 		List <PostModel> posts = controller.getAllPosts();
-		System.out.println(posts.get(0).getTitle());
+
 		req.setAttribute("posts", posts);
 		
 		

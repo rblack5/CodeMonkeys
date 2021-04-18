@@ -16,7 +16,7 @@
 	    
 	    <div class="media-body">
 		    <div class="article-metadata">
-		        <a class="mr-2" href="{% url 'user-posts' object.author.username %}">Default User</a>
+		        <a class="mr-2" href="{% url 'user-posts' object.author.username %}">${post.username}</a>
 
 		        <small class="text-muted">${post.postID}</small>
 		        
