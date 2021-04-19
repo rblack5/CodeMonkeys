@@ -3,7 +3,7 @@
 <rapid:override name="content">
 	<%
 		if (session.getAttribute("username") == null) {
-			String message = "Login before you create a post!";
+			String message = "Login before you edit your profile!";
 			request.setAttribute("message", message);
 			request.getRequestDispatcher("/_view/login.jsp").forward(request, response);
 		}
@@ -12,26 +12,45 @@
 	<head>
 	<title> Edit Profile</title>
 	</head>
-    <h1>Edit Profile</h1>
-    <body>	
+
+   <div class="content-section">
 		<form action = "${pageContext.servletContext.contextPath}/editProfile" method="post" >
 			
-			<td class="label">Name: </td>
-			<br>
-			<td><input type="text" name="name" placeholder="Your name here..." size="24" value="${loginModel.name}" /></td>
-			<br><br>
+
+			<fieldset class = "form-group">
+                <legend class="border-bottom mb-4">Edit Profile</legend>
 			
-			<td class="label">Bio:</td>
-			<br>
-			<textarea name="bio" placeholder="Write your bio here..." rows="2" cols="64"></textarea>
-			<br><br>
+			<div class="label mb-2 mt-1">Username: </div>
+			<table>
+				<tr>
+					<td><input type="text" name="username" placeholder="Enter New Username" size="50" value="${UserModel.username}" /></td>
+				</tr>
+			</table>
 			
-			<input type="Submit" name="submit" value="Save Changes" class="nav-item nav-link" href= http://localhost:8081/project_database/profile>
-			<a class="nav-item nav-link" type=button href=http://localhost:8081/project_database/profile></i> Return to Profile</a>
+			<div class="label mb-2 mt-3">Bio: </div>
+			<table>
+				<tr>
+					<td><textarea name="bio" placeholder="Write your bio here..." rows="4" cols="53" value="${UserModel.bio}"></textarea></td>
+				</tr>
+			</table>
 			
+			<div class="label mb-2 mt-3">Password: </div>
+			<table>
+				<tr>
+					<td><input type="text" name="password" placeholder="Enter New Password" size="50" value="${UserModel.password}" /></td>
+				</tr>
+			</table>
+
+				<div class="form-group mt-4">
+				<button class="btn btn-outline-info" type="Submit" value="Save Changes">Save Changes</button>
+			</div>
+				
+		</fieldset>
+
+		<a class="nav-item nav-link" type=button href=http://localhost:8081/project_database/profile></i> Return to Profile</a>
 
 </form>
-	</body>
+	</div>
 
 
 </rapid:override>  

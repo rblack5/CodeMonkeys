@@ -40,11 +40,13 @@ public class EditProfileServlet extends HttpServlet {
 			// Obtain the name,bio from the doGet
 			String name = req.getParameter("name");
 			String bio = req.getParameter("bio");
+			String password = req.getParameter("password");
 
 			
 			// Send the values to the model
 			model.setName(name);
 			model.setBio(bio);
+			model.setPassword(password);
 				
 			EditProfileController controller = new EditProfileController();
 			controller.setModel(model);
@@ -52,6 +54,7 @@ public class EditProfileServlet extends HttpServlet {
 			// Prints name,bio to the console
 			System.out.println("Name: " + name);
 			System.out.println("Bio: " + bio);
+			System.out.println("Password: " + password);
 			
 		} catch (NumberFormatException e) {
 			errorMessage = "Invalid double";

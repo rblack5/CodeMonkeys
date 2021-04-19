@@ -277,7 +277,7 @@ public class DerbyDatabase {
 	}
 	
 	
-	public List<Pair<UserModel, PostModel>> insertNewUser(String username, String password) {
+	public List<Pair<UserModel, PostModel>> insertNewUser(String username, String password, String bio) {
 		return executeTransaction(new Transaction<List<Pair<UserModel, PostModel>>>() {
 			
 			@SuppressWarnings("resource")
@@ -287,56 +287,6 @@ public class DerbyDatabase {
 				ResultSet resultSet = null;
 				String UserModel_id;
 				List<Pair<UserModel, PostModel>> result = new ArrayList<Pair<UserModel,PostModel>>();
-				
-//				try {
-//					// Prepare the statement to obtain an existing UserModel_id.
-//					stmt = conn.prepareStatement(
-//							"select UserModels.UserModel_id"
-//							+ " from UserModels "
-//							+ " where UserModels.firstname = ? and UserModels.lastname = ?"
-//							);
-//					
-//					stmt.setString(1, username);
-//					stmt.setString(2, userID);
-//					
-//					// Return the UserModel_id for the existing UserModel. If no UserModel_id is returned, move onto the else statement.
-//					resultSet = stmt.executeQuery();
-//					resultSet.next();
-//					
-//					if(resultSet.next()) {
-//						UserModel_id = resultSet.getString("UserModel_id");
-//					}
-//					else {
-//						// Prepare the insert statement for the new UserModel.
-//						stmt = conn.prepareStatement(
-//								" INSERT INTO UserModels (firstname, lastname) "
-//								+ " VALUES (?, ?)"
-//								);
-//						
-//						stmt.setString(1, firstName);
-//						stmt.setString(2, lastName);
-//						
-//						// **Insert the new UserModel**
-//						// ResultSet.executeUpdate is used for statements such as INSERT, UPDATE, and DELETE,
-//						// while ResultSet.executeQuery is used for statements that return tabular data.
-//						
-//						stmt.executeUpdate();				
-//						
-//						// Obtain the new UserModel_id
-//						stmt = conn.prepareStatement(
-//								"select UserModels.UserModel_id"
-//								+ " from UserModels "
-//								+ " where UserModels.firstname = ? and UserModels.lastname = ?"
-//								);
-//						
-//						stmt.setString(1, firstName);
-//						stmt.setString(2, lastName);
-//						
-//						resultSet = stmt.executeQuery();
-//						resultSet.next();
-//						
-//						UserModel_id = resultSet.getString("UserModel_id");
-//					}
 					
 					// Prepare the statement to insert the new PostModel into the PostModels table.
 				try {
@@ -348,7 +298,7 @@ public class DerbyDatabase {
 					stmt.setString(1, username);
 					stmt.setString(2, password);
 					
-					// stmt.setInt(4, postID);
+					
 					
 					// Execute the query and insert the new PostModel into the PostModels table.
 					stmt.executeUpdate();
@@ -375,56 +325,6 @@ public class DerbyDatabase {
 				ResultSet resultSet = null;
 				String UserModel_id;
 				List<Pair<UserModel, PostModel>> result = new ArrayList<Pair<UserModel,PostModel>>();
-				
-//				try {
-//					// Prepare the statement to obtain an existing UserModel_id.
-//					stmt = conn.prepareStatement(
-//							"select UserModels.UserModel_id"
-//							+ " from UserModels "
-//							+ " where UserModels.firstname = ? and UserModels.lastname = ?"
-//							);
-//					
-//					stmt.setString(1, username);
-//					stmt.setString(2, userID);
-//					
-//					// Return the UserModel_id for the existing UserModel. If no UserModel_id is returned, move onto the else statement.
-//					resultSet = stmt.executeQuery();
-//					resultSet.next();
-//					
-//					if(resultSet.next()) {
-//						UserModel_id = resultSet.getString("UserModel_id");
-//					}
-//					else {
-//						// Prepare the insert statement for the new UserModel.
-//						stmt = conn.prepareStatement(
-//								" INSERT INTO UserModels (firstname, lastname) "
-//								+ " VALUES (?, ?)"
-//								);
-//						
-//						stmt.setString(1, firstName);
-//						stmt.setString(2, lastName);
-//						
-//						// **Insert the new UserModel**
-//						// ResultSet.executeUpdate is used for statements such as INSERT, UPDATE, and DELETE,
-//						// while ResultSet.executeQuery is used for statements that return tabular data.
-//						
-//						stmt.executeUpdate();				
-//						
-//						// Obtain the new UserModel_id
-//						stmt = conn.prepareStatement(
-//								"select UserModels.UserModel_id"
-//								+ " from UserModels "
-//								+ " where UserModels.firstname = ? and UserModels.lastname = ?"
-//								);
-//						
-//						stmt.setString(1, firstName);
-//						stmt.setString(2, lastName);
-//						
-//						resultSet = stmt.executeQuery();
-//						resultSet.next();
-//						
-//						UserModel_id = resultSet.getString("UserModel_id");
-//					}
 					
 					// Prepare the statement to insert the new PostModel into the PostModels table.
 				try {
@@ -559,6 +459,7 @@ public class DerbyDatabase {
 							"		generated always as identity (start with 1, increment by 1), " +									
 							"	username varchar(40)," +
 							"	password varchar(40)" +
+							"	bio varchar(40)," +
 							")"
 					);	
 					stmt1.executeUpdate();
@@ -582,56 +483,6 @@ public class DerbyDatabase {
 			}
 		});
 	}
-	
-//	public void loadInitialData() {
-//		executeTransaction(new Transaction<Boolean>() {
-//			@Override
-//			public Boolean execute(Connection conn) throws SQLException {
-//				List<UserModel> UserModelList;
-//				List<PostModel> PostModelList;
-//				
-//				try {
-//					UserModelList = InitialData.getUserModels();
-//					PostModelList = InitialData.getPostModels();
-//				} catch (IOException e) {
-//					throw new SQLException("Couldn't read initial data", e);
-//				}
-//
-//				PreparedStatement insertUserModel = null;
-//				PreparedStatement insertPostModel   = null;
-//
-//				try {
-//					// populate UserModels table (do UserModels first, since UserModel_id is foreign key in PostModels table)
-//					insertUserModel = conn.prepareStatement("insert into UserModels (lastname, firstname) values (?, ?)");
-//					for (UserModel UserModel : UserModelList) {
-////						insertUserModel.setInt(1, UserModel.getUserModelId());	// auto-generated primary key, don't insert this
-//						insertUserModel.setString(1, UserModel.getLastname());
-//						insertUserModel.setString(2, UserModel.getFirstname());
-//						insertUserModel.addBatch();
-//					}
-//					insertUserModel.executeBatch();
-//					
-//					// populate PostModels table (do this after UserModels table,
-//					// since UserModel_id must exist in UserModels table before inserting PostModel)
-//					insertPostModel = conn.prepareStatement("insert into PostModels (UserModel_id, title, isbn, published) values (?, ?, ?, ?)");
-//					for (PostModel PostModel : PostModelList) {
-////						insertPostModel.setInt(1, PostModel.getPostModelId());		// auto-generated primary key, don't insert this
-//						insertPostModel.setInt(1, PostModel.getUserModelId());
-//						insertPostModel.setString(2, PostModel.getTitle());
-//						insertPostModel.setString(3, PostModel.getIsbn());
-//						insertPostModel.setInt(4,  PostModel.getPublished());
-//						insertPostModel.addBatch();
-//					}
-//					insertPostModel.executeBatch();
-//					
-//					return true;
-//				} finally {
-//					DBUtil.closeQuietly(insertPostModel);
-//					DBUtil.closeQuietly(insertUserModel);
-//				}
-//			}
-//		});
-//	}
 	
 	// The main method creates the database tables and loads the initial data.
 	public static void main(String[] args) throws IOException {

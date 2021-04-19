@@ -18,7 +18,8 @@
 	</h1>
 	
 	<br>
-	<p>This user does not have a bio yet	</p>
+	<p>This user does not have a bio yet</p>
+	<p>Bio: ${bio}</p>
 
 	<!-- Edit Profile -->
 	<a class="nav-item nav-link" type=button href=http://localhost:8081/project_database/editProfile><i class="fas fa-plus-square"></i> Edit Profile</a>

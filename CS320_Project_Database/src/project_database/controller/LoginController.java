@@ -94,6 +94,6 @@ public class LoginController {
 //		writer.close();
 		
 		InsertNewUser g = new InsertNewUser();
-		g.insertNewUser(model.getUsername(), model.getPassword());
+		g.insertNewUser(model.getUsername(), model.getPassword(), model.getBio());
 	}
 }
