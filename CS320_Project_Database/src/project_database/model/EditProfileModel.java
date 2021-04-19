@@ -2,6 +2,7 @@ package project_database.model;
 
 public class EditProfileModel {
 	private String name, bio, password;
+	int userID;
 	
 	public EditProfileModel() {
 	}
@@ -30,5 +31,12 @@ public class EditProfileModel {
 		return this.password;
 	}
 	
+	public void setUserID(int userID) {
+		this.userID = userID;
+	}
+	
+	public int getUserID() {
+		return this.userID;
+	}
 	
 }

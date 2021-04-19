@@ -1,7 +1,7 @@
 package project_database.model;
 
 public class UserModel {
-	private String username, password;
+	private String username, password, bio;
 	int userID;
 	
 	public UserModel() {
@@ -29,5 +29,13 @@ public class UserModel {
 	
 	public int getUserID() {
 		return this.userID;
+	}
+	
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+	
+	public String getBio() {
+		return this.bio;
 	}
 }
