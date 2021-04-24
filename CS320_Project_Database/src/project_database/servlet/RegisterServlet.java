@@ -49,43 +49,48 @@ public class RegisterServlet extends HttpServlet {
 			username = req.getParameter("username");
 			String password = req.getParameter("password");
 			String password2 = req.getParameter("password2");
+			System.out.println("Username get: " + username);
+			System.out.println("Password get: " + password);
+			System.out.println("Password2 get: " + password);
+			System.out.println("Username get len: " + username.length());
+			System.out.println("Password get len: " + password.length());
+			System.out.println("Password2 get len: " + password.length());
 			
-			
-			
-			// check for errors in the form data (error message is not yet implemented)
-			if (username == null || password == null || password2 == null) {
-				errorMessage = "Please enter the required fields";
-				System.out.println("Missing required fields");
+			if (username.length() < 3 || password.length() < 5 || password2.length() < 5) {
+				errorMessage = "Usernames must be atleast 3 characters long, and Passwords must be atleast 5 characters long";
+				System.out.println("Invalid Fields");
 				System.out.println(username);
 				System.out.println(password);
 				System.out.println(password2);
 				passedTests = false;
 			}
 			
+			System.out.println("Checking matching passwords...");
+			if(!password.equals(password2)) {
+				errorMessage = "Passwords do not match";
+				System.out.println("Passwords do not match");
+				passedTests = false;
+			}
+			
+			
 			// otherwise, data is good
 			// must create the controller each time, since it doesn't persist between POSTs
 			// the view does not alter data, only controller methods should be used for that
 			// thus, always call a controller method to operate on the data
-			else {
-				System.out.println("Checking matching passwords...");
+			if (passedTests) {
 				
-				if(!password.equals(password2)) {
-					errorMessage = "Passwords do not match";
-					System.out.println("Passwords do not match");
-					passedTests = false;
-				}else {
-					// send the values to the model
-					model.setPassword(password);
-					model.setUsername(username);
-					
-					System.out.println("Creating controller....");
-					LoginController controller = new LoginController();
-					message = "Account " + username + " successfully created, now time to login!";
-					System.out.println(message);
-					controller.setModel(model);
-					controller.createAccount(model);
-					
-				}
+				
+				// send the values to the model
+				model.setPassword(password);
+				model.setUsername(username);
+				
+				System.out.println("Creating controller....");
+				LoginController controller = new LoginController();
+				message = "Account " + username + " successfully created, now time to login!";
+				System.out.println(message);
+				controller.setModel(model);
+				controller.createAccount(model);
+				
 			}
 			
 		// This part is probably unnecessary but I am keeping it to help us write catch methods
