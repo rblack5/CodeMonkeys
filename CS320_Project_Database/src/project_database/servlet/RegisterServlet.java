@@ -1,6 +1,7 @@
 package project_database.servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import project_database.controller.LoginController;
+import project_database.controller.PostController;
 import project_database.database.FindMatchingUserByUsername;
+import project_database.database.ViewAllUsers;
+import project_database.model.PostModel;
 import project_database.model.UserModel;
 
 public class RegisterServlet extends HttpServlet {
@@ -42,6 +46,9 @@ public class RegisterServlet extends HttpServlet {
 		String password2 = "N/A";
 		String message = "";
 		String loggedInMessage = "";
+		
+		PostController postController = new PostController();
+		List <PostModel> posts = postController.getAllPosts();
 		
 		// Create the model
 		System.out.println("Creating model....");
@@ -76,6 +83,20 @@ public class RegisterServlet extends HttpServlet {
 				System.out.println("Passwords do not match");
 				passedTests = false;
 			}
+			
+			try {
+				FindMatchingUserByUsername g = new FindMatchingUserByUsername();
+				UserModel user = g.findMatchingUserByUsername(username);
+				if (user.getUsername().length() > 1) {
+					errorMessage = "Username already exists";
+					System.out.println("Username already exists");
+					passedTests = false;
+				}
+			} catch (Exception e) {
+				System.out.println("Username does not exist");
+			}
+			
+			
 			
 			
 			// otherwise, data is good
@@ -122,6 +143,7 @@ public class RegisterServlet extends HttpServlet {
 			// set the attribute named "register" to return the model
 			req.setAttribute("register", model);
 			req.setAttribute("message", message);
+			req.setAttribute("posts", posts);
 			// Forward to view to render the result HTML document
 			HttpSession session = req.getSession();
 			session.removeAttribute("registerUsername");
@@ -136,7 +158,7 @@ public class RegisterServlet extends HttpServlet {
 			// the session attribute so that we can use that userID throughout the site.
 			// Also need to convert it to a string so that it can be worked with easier.
 			FindMatchingUserByUsername g = new FindMatchingUserByUsername();
-			UserModel user = g.findMatchingUserByUserID(username);
+			UserModel user = g.findMatchingUserByUsername(username);
 			int ID = user.getUserID();
 			String StringID = String.valueOf(ID);
 			System.out.println("Register Servlet userID is now:" + StringID);

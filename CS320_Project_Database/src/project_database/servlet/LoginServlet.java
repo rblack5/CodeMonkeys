@@ -86,7 +86,7 @@ public class LoginServlet extends HttpServlet {
 					// the session attribute so that we can use that userID throughout the site.
 					// Also need to convert it to a string so that it can be worked with easier.
 					FindMatchingUserByUsername g = new FindMatchingUserByUsername();
-					UserModel user = g.findMatchingUserByUserID(model.getUsername());
+					UserModel user = g.findMatchingUserByUsername(model.getUsername());
 					int ID = user.getUserID();
 					String StringID = String.valueOf(ID);
 					System.out.println("Login servlet userID is now:" + StringID);

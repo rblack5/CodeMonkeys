@@ -43,7 +43,7 @@ public class FindMatchingUserByUsername {
 		}
 	}
 	
-	public UserModel findMatchingUserByUserID(String username) {
+	public UserModel findMatchingUserByUsername(String username) {
 		DerbyDatabase db = new DerbyDatabase();
 		UserModel user = db.findMatchingUserByUsername(username);
 		return user;
