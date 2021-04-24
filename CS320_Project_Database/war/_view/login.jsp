@@ -14,16 +14,21 @@
                 <c:if test="${! empty message}">
 					<div class="error mb-2" style="font-weight: bold;">${message}</div>
 				</c:if>
+				
+				<c:if test="${! empty errorMessage}">
+					<div class="error mb-2" style="color:Red;">${errorMessage}</div>
+				</c:if>
+				
                 <div class="label mb-2 mt-1">Username: </div>
                 <table>
 					<tr>
-						<td><input type="text" name="username" size="50" value="${loginModel.username}" placeholder="Username" /></td>
+						<td><input type="text" name="username" size="50" value="${loginUsername}" placeholder="Username" /></td>
 					</tr>
 				</table>
 				<div class="label mb-2 mt-3">Password:</div>
 				 <table>
 					<tr>
-						<td><input type="password" name="password" size="50" value="${loginModel.password}" placeholder="Password" /></td>
+						<td><input type="password" name="password" size="50" value="${loginPassword}" placeholder="Password" /></td>
 					</tr>
 				</table>
             </fieldset>

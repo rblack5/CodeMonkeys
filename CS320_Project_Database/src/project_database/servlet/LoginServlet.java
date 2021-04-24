@@ -35,8 +35,11 @@ public class LoginServlet extends HttpServlet {
 		
 
 		// holds the error message text, if there is any
-		String errorMessage = null;
+		String message = null;
+		String username = null;
+		String password = null;
 		String loggedInMessage = null;
+		Boolean passedLoginTest = true;
 		
 		PostController postController = new PostController();
 		List <PostModel> posts = postController.getAllPosts();
@@ -50,12 +53,12 @@ public class LoginServlet extends HttpServlet {
 		// decode POSTed form parameters
 		try {
 			// Obtain the email and password from the doGet
-			String username = req.getParameter("username");
-			String password = req.getParameter("password");
+			username = req.getParameter("username");
+			password = req.getParameter("password");
 			
 			// check for errors in the form data (error message is not yet implemented)
 			if (username.equals("") || password.equals("")) {
-				errorMessage = "Please enter the specified information";
+				message = "Please enter the specified information";
 			}
 			// otherwise, data is good
 			// must create the controller each time, since it doesn't persist between POSTs
@@ -70,7 +73,8 @@ public class LoginServlet extends HttpServlet {
 				model.setUsername(username);
 				
 				if(controller.checkLogIn(model) == false) {
-					errorMessage = "Incorrect account information, please try again.";
+					message = "Invalid account information";
+					passedLoginTest = false;
 				}
 				else {
 					// Login was successful, now we should create a session so that the rest
@@ -95,17 +99,21 @@ public class LoginServlet extends HttpServlet {
 			
 		// This part is probably unnecessary but I am keeping it to help us write catch methods
 		} catch (NumberFormatException e) {
-			errorMessage = "Invalid double";
+			message = "Invalid double";
 		}
 		
-		if (controller.checkLogIn(model) == false) {
+		if (passedLoginTest == false) {
 			// set the attribute named "login" to return the model
+			System.out.println("Login failed");
 			req.setAttribute("login", model);
 			
 			req.setAttribute("posts", posts);
 			
 			// this adds the errorMessage text and the result to the response
-			req.setAttribute("errorMessage", errorMessage);
+			// we are saving what the user wrote, so that they don't have to retype it again
+			req.setAttribute("errorMessage", message);
+			req.setAttribute("loginUsername", username);
+			req.setAttribute("loginPassword", password);
 			
 			// Forward to view to render the result HTML document
 			req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
@@ -116,6 +124,10 @@ public class LoginServlet extends HttpServlet {
 			req.setAttribute("posts", posts);
 			
 			req.setAttribute("loggedInMessage", loggedInMessage);
+			req.removeAttribute("errorMessage");
+			req.removeAttribute("loginMessage");
+			req.removeAttribute("loginPassword");
+			
 			req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
 		}
 	}
