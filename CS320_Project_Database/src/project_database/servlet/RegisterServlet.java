@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import project_database.controller.LoginController;
 import project_database.model.UserModel;
@@ -35,7 +36,9 @@ public class RegisterServlet extends HttpServlet {
 		// holds the error message text, if there is any
 		String errorMessage = null;
 		Boolean passedTests = true;
-		String username = "none";
+		String username = "N/A";
+		String password = "N/A";
+		String password2 = "N/A";
 		String message = "";
 		
 		// Create the model
@@ -47,8 +50,8 @@ public class RegisterServlet extends HttpServlet {
 		try {
 			// Obtain the email and password from the doGet
 			username = req.getParameter("username");
-			String password = req.getParameter("password");
-			String password2 = req.getParameter("password2");
+			password = req.getParameter("password");
+			password2 = req.getParameter("password2");
 			System.out.println("Username get: " + username);
 			System.out.println("Password get: " + password);
 			System.out.println("Password2 get: " + password);
@@ -78,8 +81,6 @@ public class RegisterServlet extends HttpServlet {
 			// the view does not alter data, only controller methods should be used for that
 			// thus, always call a controller method to operate on the data
 			if (passedTests) {
-				
-				
 				// send the values to the model
 				model.setPassword(password);
 				model.setUsername(username);
@@ -106,6 +107,11 @@ public class RegisterServlet extends HttpServlet {
 			// this adds the errorMessage text and the result to the response
 			req.setAttribute("errorMessage", errorMessage);
 			
+			HttpSession session = req.getSession();
+			session.setAttribute("registerUsername", username);
+			session.setAttribute("registerPassword", password);
+			session.setAttribute("registerPassword2", password2);
+			
 			// Forward to view to render the result HTML document
 			req.getRequestDispatcher("/_view/register.jsp").forward(req, resp);
 		}
@@ -114,6 +120,11 @@ public class RegisterServlet extends HttpServlet {
 			req.setAttribute("register", model);
 			req.setAttribute("message", message);
 			// Forward to view to render the result HTML document
+			HttpSession session = req.getSession();
+			session.removeAttribute("registerUsername");
+			session.removeAttribute("registerPassword");
+			session.removeAttribute("registerPassword2");
+			
 			req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
 		}
 	}
