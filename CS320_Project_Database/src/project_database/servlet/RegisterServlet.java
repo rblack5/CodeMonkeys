@@ -77,6 +77,15 @@ public class RegisterServlet extends HttpServlet {
 				passedTests = false;
 			}
 			
+			if (username.length() > 20 || password.length() > 20 || password2.length() > 20) {
+				errorMessage = "Usernames and passwords cannot be longer than 20 characters";
+				System.out.println("Invalid Fields");
+				System.out.println(username);
+				System.out.println(password);
+				System.out.println(password2);
+				passedTests = false;
+			}
+			
 			System.out.println("Checking matching passwords...");
 			if(!password.equals(password2)) {
 				errorMessage = "Passwords do not match";

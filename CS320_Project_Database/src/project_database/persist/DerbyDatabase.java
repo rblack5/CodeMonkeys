@@ -457,20 +457,23 @@ public class DerbyDatabase {
 							"create table Users (" +
 							"	userID integer primary key " +
 							"		generated always as identity (start with 1, increment by 1), " +									
-							"	username varchar(40)," +
-							"	password varchar(40)" +
-							"	bio varchar(40)," +
+							"	username varchar(20)," +
+							"	password varchar(20)," +
+							"	bio varchar(1000)," +
+							"   CONSTRAINT UC_USER UNIQUE (username) " +
 							")"
-					);	
+					);
+					// UC stands for unique constraint, its something SQL needs - usernames must be unique
 					stmt1.executeUpdate();
+					// "   UNIQUE (userID, username) " +
 					stmt2 = conn.prepareStatement(
 							"create table Posts (" +
 							"	postID integer primary key " +
 							"		generated always as identity (start with 1, increment by 1), " +
 							"	userID integer, " +
-							"	username varchar(40)," +
+							"	username varchar(20)," +
 							"	postTitle varchar(70)," +
-							"	postBody varchar(200)" +
+							"	postBody varchar(1000)" +
 							")"
 					);
 					stmt2.executeUpdate();
