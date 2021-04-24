@@ -1,4 +1,5 @@
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid" %>  
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
 <rapid:override name="content">
 	<%
@@ -17,18 +18,22 @@
 		<form action = "${pageContext.servletContext.contextPath}/create" method="post">
 			<fieldset class = "form-group">
                 <legend class="border-bottom mb-4">Create a Post</legend>
-			
+				
+				<c:if test="${! empty errorMessage}">
+					<div class="error mb-2" style="color:Red;">${errorMessage}</div>
+				</c:if>
+				
 				<div class="label mb-2 mt-1">Title: </div>
 				<table>
 					<tr>
-						<td><input type="text" name="title" placeholder="Title your Post" size="50" value="${PostModel.title}" /></td>
+						<td><input type="text" name="title" placeholder="Title your Post" size="50" value="${postTitle}" /></td>
 					</tr>
 				</table>
 				
 				<div class="label mb-2 mt-3">Body: </div>
 				<table>
 					<tr>
-						<td><textarea name="body" placeholder="Write your post here..." rows="4" cols="53" value="${PostModel.body}"></textarea></td>
+						<td><textarea name="body" placeholder="Write your post here..." rows="4" cols="53" value="${postBody}"></textarea></td>
 					</tr>
 				</table>
 				

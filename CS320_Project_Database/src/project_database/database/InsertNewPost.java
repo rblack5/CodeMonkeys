@@ -1,5 +1,6 @@
 package project_database.database;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -25,18 +26,22 @@ public class InsertNewPost {
 		int userID = keyboard.nextInt();
 		
 		// get the DB instance and execute transaction
-		
-		db.insertNewPost(userID, username, postTitle, postBody);
+		PostModel post;
+		post = db.insertNewPost(userID, username, postTitle, postBody);
 		
 		System.out.println("Success");
+		System.out.println("Post ID is: " + post.getPostID());
 		
 	}
 	
-	public void insertNewPost(int userID, String username, String postTitle, String postBody) {
+	public PostModel insertNewPost(int userID, String username, String postTitle, String postBody) {
 		DerbyDatabase db = new DerbyDatabase();
 		System.out.println("User id is ==> " + userID);
-		db.insertNewPost(userID, username, postTitle, postBody);
+		PostModel post;
+		post = db.insertNewPost(userID, username, postTitle, postBody);
 		System.out.println("Success");
+		System.out.println("Post ID is: " + post.getPostID());
+		return post;
 	}
 
 }

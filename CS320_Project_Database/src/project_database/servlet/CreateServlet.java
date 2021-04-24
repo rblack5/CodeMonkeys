@@ -36,15 +36,18 @@ public class CreateServlet extends HttpServlet {
 
 		// holds the error message text, if there is any
 		String errorMessage = null;
+		Boolean invalidInfo = false;
+		String title = "";
+		String body = "";
 		
 		// Create the model
 		PostModel model = new PostModel();
-		
+		PostModel post = null;
 		// decode POSTed form parameters
 		try {
 			// Obtain the email and password from the doGet
-			String title = req.getParameter("title");
-			String body = req.getParameter("body");
+			title = req.getParameter("title");
+			body = req.getParameter("body");
 			
 			System.out.println("Title after getParameter: " + title);
 			System.out.println("Body after getParameter: " + body);
@@ -52,7 +55,19 @@ public class CreateServlet extends HttpServlet {
 			// check for errors in the form data (error message is not yet implemented)
 			if (title == null || body == null) {
 				errorMessage = "Please enter required fields";
-			}else {
+				invalidInfo = true;
+				
+			}
+			else if (title.length() > 70 || body.length() > 1000) {
+				errorMessage = "Title cannot be longer than 70 characters, and the body cannot be longer than 1000 characters";
+				invalidInfo = true;
+			}
+			else if (title.length() < 1 || body.length() < 1) {
+				errorMessage = "Posts must have a title and body";
+				invalidInfo = true;
+			}
+			
+			else {
 				// otherwise, data is good
 				// must create the controller each time, since it doesn't persist between POSTs
 				// the view does not alter data, only controller methods should be used for that
@@ -77,7 +92,7 @@ public class CreateServlet extends HttpServlet {
 				System.out.println("model.getUsername =>" + model.getUsername());
 				
 				PostController controller = new PostController();
-				controller.createPost(model);
+				post = controller.createPost(model);
 			}
 			
 		// This part is probably unnecessary but I am keeping it to help us write catch methods
@@ -85,14 +100,26 @@ public class CreateServlet extends HttpServlet {
 			errorMessage = "Invalid double";
 		}
 		
-		
-		// set the attribute named "create" to return the model
-		req.setAttribute("create", model);
-		
-		// this adds the errorMessage text and the result to the response
-		req.setAttribute("errorMessage", errorMessage);
-		
-		// Forward to view to render the result HTML document
-		req.getRequestDispatcher("/_view/create.jsp").forward(req, resp);
+		if (invalidInfo) {
+			// set the attribute named "create" to return the model
+			req.setAttribute("create", model);
+			
+			// this adds the errorMessage text and the result to the response
+			req.setAttribute("errorMessage", errorMessage);
+			
+			// saving what the user put incase it failed
+			req.setAttribute("postTitle", title);
+			req.setAttribute("postBody", body);
+			
+			// Forward to view to render the result HTML document
+			req.getRequestDispatcher("/_view/create.jsp").forward(req, resp);
+		}
+		else {
+			req.setAttribute("post", post);
+			req.setAttribute("errorMessage", errorMessage);
+			req.removeAttribute("postTitle");
+			req.removeAttribute("postBody");
+			req.getRequestDispatcher("/_view/post.jsp").forward(req, resp);
+		}
 	}
 }

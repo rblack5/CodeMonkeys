@@ -8,6 +8,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,7 +68,7 @@ public class PostController {
 		return posts;
 	}
 	
-	public void createPost(PostModel model) throws IOException {
+	public PostModel createPost(PostModel model) throws IOException {
 //		List<PostModel> posts = importCSV();
 //		FileWriter writer = new FileWriter(pathToFile.toString(), true);
 //		
@@ -82,8 +83,10 @@ public class PostController {
 		
 //		FindMatchingUserByUserID h = new FindMatchingUserByUserID();
 //		UserModel user = h.findMatchingUserByUserID(model.getUserID());
+		PostModel post;
 		
-		g.insertNewPost(model.getUserID(), model.getUsername(), model.getTitle(), model.getBody());
+		post = g.insertNewPost(model.getUserID(), model.getUsername(), model.getTitle(), model.getBody());
+		return post;
 	}
 	
 	public PostModel findPost(int post_id) {
