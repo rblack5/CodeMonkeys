@@ -11,6 +11,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import project_database.database.*;
 import project_database.model.UserModel;
 
@@ -70,8 +72,11 @@ public class LoginController {
 		List<UserModel> users = g.getUserList();
 		
 		for(int i = 0; i < users.size(); i++) {		
-			if(users.get(i).getUsername().equals(model.getUsername()) && users.get(i).getPassword().equals(model.getPassword())) {
-				return true;
+			if(users.get(i).getUsername().equals(model.getUsername())) {
+				if (BCrypt.checkpw(model.getPassword(),users.get(i).getPassword())) {
+					System.out.println("It matches");
+					return true;
+				}
 			}
 		}
 		return false;

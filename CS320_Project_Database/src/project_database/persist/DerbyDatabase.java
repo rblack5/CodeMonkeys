@@ -493,11 +493,12 @@ public class DerbyDatabase {
 							"	userID integer primary key " +
 							"		generated always as identity (start with 1, increment by 1), " +									
 							"	username varchar(20)," +
-							"	password varchar(20)," +
+							"	password varchar(200)," +
 							"	bio varchar(1000)," +
 							"   CONSTRAINT UC_USER UNIQUE (username) " +
 							")"
 					);
+					// password is only set to length 200 because it gets hashed
 					// UC stands for unique constraint, its something SQL needs - usernames must be unique
 					stmt1.executeUpdate();
 					// "   UNIQUE (userID, username) " +

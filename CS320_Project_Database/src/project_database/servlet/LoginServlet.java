@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import project_database.database.*;
 import project_database.controller.LoginController;
 import project_database.controller.PostController;
@@ -69,6 +71,9 @@ public class LoginServlet extends HttpServlet {
 				// send the values to the model
 				// System.out.println(password);
 				
+				// Check that an unencrypted password matches one that has
+				// previously been hashed
+	
 				model.setPassword(password);
 				model.setUsername(username);
 				

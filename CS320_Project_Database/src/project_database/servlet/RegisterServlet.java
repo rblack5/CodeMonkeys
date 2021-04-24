@@ -1,13 +1,24 @@
 package project_database.servlet;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
+import java.util.Base64;
 import java.util.List;
+import java.util.Random;
+// import * as bcrypt from 'bcrypt';
 
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.mindrot.jbcrypt.BCrypt;
 
 import project_database.controller.LoginController;
 import project_database.controller.PostController;
@@ -114,7 +125,12 @@ public class RegisterServlet extends HttpServlet {
 			// thus, always call a controller method to operate on the data
 			if (passedTests) {
 				// send the values to the model
-				model.setPassword(password);
+
+				String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt(12));
+				
+				// System.out.println(hashedPassword);
+
+				model.setPassword(hashedPassword);
 				model.setUsername(username);
 				
 				System.out.println("Creating controller....");

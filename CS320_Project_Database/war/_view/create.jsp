@@ -45,7 +45,6 @@
 		</form>
 	</div>
 
-
 </rapid:override>  
 
 <%@ include file="base.jsp" %> 
