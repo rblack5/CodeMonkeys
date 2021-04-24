@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import project_database.controller.LoginController;
+import project_database.database.FindMatchingUserByUsername;
 import project_database.model.UserModel;
 
 public class RegisterServlet extends HttpServlet {
@@ -40,6 +41,7 @@ public class RegisterServlet extends HttpServlet {
 		String password = "N/A";
 		String password2 = "N/A";
 		String message = "";
+		String loggedInMessage = "";
 		
 		// Create the model
 		System.out.println("Creating model....");
@@ -87,8 +89,9 @@ public class RegisterServlet extends HttpServlet {
 				
 				System.out.println("Creating controller....");
 				LoginController controller = new LoginController();
-				message = "Account " + username + " successfully created, now time to login!";
-				System.out.println(message);
+				// message = "Account " + username + " successfully created, now time to login!";
+				message = "Welcome, " + username;
+				// System.out.println(message);
 				controller.setModel(model);
 				controller.createAccount(model);
 				
@@ -125,7 +128,21 @@ public class RegisterServlet extends HttpServlet {
 			session.removeAttribute("registerPassword");
 			session.removeAttribute("registerPassword2");
 			
-			req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
+			// Login was successful, now we should create a session so that the rest
+			// of the website knows that the person is logged in
+			session.setAttribute("username", username);
+			
+			// We are doing this to find what the userID of the user is, and setting
+			// the session attribute so that we can use that userID throughout the site.
+			// Also need to convert it to a string so that it can be worked with easier.
+			FindMatchingUserByUsername g = new FindMatchingUserByUsername();
+			UserModel user = g.findMatchingUserByUserID(username);
+			int ID = user.getUserID();
+			String StringID = String.valueOf(ID);
+			System.out.println("Register Servlet userID is now:" + StringID);
+			session.setAttribute("userID", StringID);
+			
+			req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
 		}
 	}
 	

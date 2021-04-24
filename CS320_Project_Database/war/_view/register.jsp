@@ -8,13 +8,14 @@
 	</head>
     
     <div class="content-section">
-		<c:if test="${! empty errorMessage}">
-			<div class="error" style="color:Red;">${errorMessage}</div>
-		</c:if>
-		
 		<form action = "${pageContext.servletContext.contextPath}/register" method="post">
 			<fieldset class = "form-group">
 				<legend class="border-bottom mb-4">Create Account</legend>
+				
+				<c:if test="${! empty errorMessage}">
+					<div class="error mb-3" style="color:Red;">${errorMessage}</div>
+				</c:if>
+				
 				<div class="label mb-2 mt-1">Username: </div>
 				 <table>
 					<tr>
