@@ -23,7 +23,8 @@ public class ViewAllPosts {
 		}
 		else { 
 			for (PostModel post : postList) {
-				System.out.println("PostID: " + post.getPostID() + " | PostAuthorID: " + post.getUserID() +  " | Title: " + post.getTitle() + " | Body: " + post.getBody());
+				System.out.println("PostID: " + post.getPostID() + " | PostAuthorID: " + post.getUserID() +  " | Title: " + post.getTitle() + " | Body: " + post.getBody()
+				+ " | DateCreated: " + post.getDateCreated());
 			}
 		}
 	}

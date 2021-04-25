@@ -17,16 +17,18 @@
 	    <div class="media-body">
 		    <div class="article-metadata">
 		        <a class="mr-2" href="{% url 'user-posts' object.author.username %}">${post.username}</a>
-
-		        <small class="text-muted">Post ID: ${post.postID} User ID: ${post.userID}</small>
+				
+		        <small class="text-muted">${post.dateCreated} <b>Post ID: ${post.postID} User ID: ${post.userID}</b></small>
 		        
-		        <!--  
+		     	<c:set var = "authorID" value = "${post.userID}"/>
+		        <c:set var = "userID" value = "${userID}"/>
+
+		        <c:if test="${authorID == userID}">
 		            <div>
 		                <a class = "btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
 		                <a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
 		            </div>
-		        -->
-		        
+		        </c:if>
 		    </div>
 	    
 		    <h2 class="article-title">${post.title}</h2>

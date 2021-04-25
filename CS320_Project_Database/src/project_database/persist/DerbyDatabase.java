@@ -277,7 +277,7 @@ public class DerbyDatabase {
 	}
 	
 	
-	public List<Pair<UserModel, PostModel>> insertNewUser(String username, String password, String bio) {
+	public List<Pair<UserModel, PostModel>> insertNewUser(String username, String password, String bio, String dateJoined) {
 		return executeTransaction(new Transaction<List<Pair<UserModel, PostModel>>>() {
 			
 			@SuppressWarnings("resource")
@@ -291,12 +291,14 @@ public class DerbyDatabase {
 					// Prepare the statement to insert the new PostModel into the PostModels table.
 				try {
 					stmt = conn.prepareStatement(
-							" INSERT INTO Users (username, password) "
-							+ "VALUES (?, ?) "		
+							" INSERT INTO Users (username, password, bio, dateJoined) "
+							+ "VALUES (?, ?, ?, ?) "		
 							);
 					
 					stmt.setString(1, username);
 					stmt.setString(2, password);
+					stmt.setString(3, bio);
+					stmt.setString(4, dateJoined);
 					
 					
 					
@@ -315,7 +317,7 @@ public class DerbyDatabase {
 		});
 	}
 	
-	public PostModel insertNewPost(int userID, String username, String postTitle, String postBody) {
+	public PostModel insertNewPost(int userID, String username, String postTitle, String postBody, String dateCreated) {
 		return executeTransaction(new Transaction<PostModel>() {
 			
 			@Override
@@ -330,14 +332,15 @@ public class DerbyDatabase {
 					// Prepare the statement to insert the new PostModel into the PostModels table.
 				try {
 					stmt = conn.prepareStatement(
-							" INSERT INTO Posts (userID, username, postTitle, postBody) "
-							+ "VALUES (?, ?, ?, ?) "		
+							" INSERT INTO Posts (userID, username, postTitle, postBody, dateCreated) "
+							+ "VALUES (?, ?, ?, ?, ?) "		
 							);
 					
 					stmt.setInt(1, userID);
 					stmt.setString(2, username);
 					stmt.setString(3, postTitle);
 					stmt.setString(4, postBody);
+					stmt.setString(5, dateCreated);
 
 					// Execute the query and insert the new PostModel into the PostModels table.
 					stmt.executeUpdate();
@@ -347,12 +350,14 @@ public class DerbyDatabase {
 							"select Posts.* " +
 							"  from Posts" +
 							" where Posts.userID = ? and Posts.username = ?" +
-							" and Posts.postTitle = ? and Posts.postBody = ? "
+							" and Posts.postTitle = ? and Posts.postBody = ? " +
+							" and Posts.dateCreated = ? "
 					);
 					stmt2.setInt(1, userID);
 					stmt2.setString(2, username);
 					stmt2.setString(3, postTitle);
 					stmt2.setString(4, postBody);
+					stmt2.setString(5, dateCreated);
 					PostModel result = new PostModel();
 					
 					resultSet = stmt2.executeQuery();
@@ -446,6 +451,8 @@ public class DerbyDatabase {
 		UserModel.setUserID(resultSet.getInt(index++));
 		UserModel.setUsername(resultSet.getString(index++));
 		UserModel.setPassword(resultSet.getString(index++));
+		UserModel.setBio(resultSet.getString(index++));
+		UserModel.setDateJoined(resultSet.getString(index++));
 	}
 	
 	private void loadPostModel(PostModel PostModel, ResultSet resultSet, int index) throws SQLException {
@@ -453,7 +460,8 @@ public class DerbyDatabase {
 		PostModel.setUserID(resultSet.getInt(index++));
 		PostModel.setUsername(resultSet.getString(index++));
 		PostModel.setTitle(resultSet.getString(index++));
-		PostModel.setBody(resultSet.getString(index++));	
+		PostModel.setBody(resultSet.getString(index++));
+		PostModel.setDateCreated(resultSet.getString(index++));
 	}
 	
 	public void dropAllTables() {
@@ -495,6 +503,7 @@ public class DerbyDatabase {
 							"	username varchar(20)," +
 							"	password varchar(200)," +
 							"	bio varchar(1000)," +
+							"   dateJoined varchar(20), " +
 							"   CONSTRAINT UC_USER UNIQUE (username) " +
 							")"
 					);
@@ -508,8 +517,9 @@ public class DerbyDatabase {
 							"		generated always as identity (start with 1, increment by 1), " +
 							"	userID integer, " +
 							"	username varchar(20)," +
-							"	postTitle varchar(70)," +
-							"	postBody varchar(1000)" +
+							"	postTitle varchar(100)," +
+							"	postBody varchar(1000)," +
+							"   dateCreated varchar(20) " +
 							")"
 					);
 					stmt2.executeUpdate();

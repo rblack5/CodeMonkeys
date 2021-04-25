@@ -15,8 +15,8 @@
 	
 		Boolean loggedIn = false;
 		session.setAttribute("username", null);
-		session.setAttribute("userID", null);
 		request.setAttribute("loggedIn", loggedIn);
+		session.setAttribute("userID", 0);
 		
 		request.getRequestDispatcher("/_view/login.jsp").forward(request, response);
 		

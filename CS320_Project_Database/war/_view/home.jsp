@@ -19,7 +19,7 @@
 	    <div class="media-body">
 	    <div class="article-metadata">
 	        <a class="mr-2" href="{% url 'user-posts' object.author.username %}">${post.username}</a>
-	        <small class="text-muted">Post ID: ${post.postID} User ID: ${post.userID}</small>
+	        <small class="text-muted">${post.dateCreated} <b>Post ID: ${post.postID} User ID: ${post.userID}</b></small>
 	    </div>
 	    <!--  User ID is => ${post.userID} -->
 	    <form action = "/project_database/post">

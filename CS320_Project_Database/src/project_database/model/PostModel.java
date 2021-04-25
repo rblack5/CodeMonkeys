@@ -1,9 +1,7 @@
 package project_database.model;
 
-import project_database.database.FindMatchingUserByUserID;
-
 public class PostModel {
-	private String title, body, username;
+	private String title, body, username, dateCreated;
 	int postID, userID;
 	
 	public PostModel() {
@@ -48,6 +46,14 @@ public class PostModel {
 	
 	public String getUsername() {
 		return this.username;
+	}
+	
+	public void setDateCreated(String dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+	
+	public String getDateCreated() {
+		return this.dateCreated;
 	}
 	
 }

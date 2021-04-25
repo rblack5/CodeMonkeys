@@ -9,6 +9,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,6 +80,9 @@ public class PostController {
 //		writer.write("\n");
 //		
 //		writer.close();
+		LocalDate dateCreated = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+		System.out.println(dateCreated.format(formatter));
 		
 		InsertNewPost g = new InsertNewPost();
 		
@@ -85,7 +90,7 @@ public class PostController {
 //		UserModel user = h.findMatchingUserByUserID(model.getUserID());
 		PostModel post;
 		
-		post = g.insertNewPost(model.getUserID(), model.getUsername(), model.getTitle(), model.getBody());
+		post = g.insertNewPost(model.getUserID(), model.getUsername(), model.getTitle(), model.getBody(), dateCreated.format(formatter));
 		return post;
 	}
 	

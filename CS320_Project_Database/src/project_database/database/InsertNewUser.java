@@ -21,20 +21,22 @@ public class InsertNewUser {
 		String password = keyboard.nextLine();
 		System.out.print("Enter a bio: ");
 		String bio = keyboard.nextLine();
+		System.out.print("Enter a date joined: ");
+		String dateJoined = keyboard.nextLine();
 //		System.out.print("Enter a userID: ");
 //		int userID = keyboard.nextInt();
 
 		
 		// get the DB instance and execute transaction
-		db.insertNewUser(username, password, bio);
+		db.insertNewUser(username, password, bio, dateJoined);
 		
 		System.out.println("Success");
 		
 	}
 	
-	public void insertNewUser(String username, String password, String bio) {
+	public void insertNewUser(String username, String password, String bio, String dateJoined) {
 		DerbyDatabase db = new DerbyDatabase();
-		db.insertNewUser(username, password, bio);
+		db.insertNewUser(username, password, bio, dateJoined);
 		System.out.println("Success");
 	}
 

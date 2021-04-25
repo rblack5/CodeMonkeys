@@ -1,7 +1,7 @@
 package project_database.model;
 
 public class UserModel {
-	private String username, password, bio;
+	private String username, password, bio, dateJoined;
 	int userID;
 	
 	public UserModel() {
@@ -37,5 +37,13 @@ public class UserModel {
 	
 	public String getBio() {
 		return this.bio;
+	}
+	
+	public void setDateJoined(String dateJoined) {
+		this.dateJoined = dateJoined;
+	}
+	
+	public String getDateJoined() {
+		return this.dateJoined;
 	}
 }

@@ -1,12 +1,9 @@
 package project_database.database;
 
-import java.sql.SQLException;
-import java.util.List;
+
 import java.util.Scanner;
 
-import project_database.model.Pair;
 import project_database.model.PostModel;
-import project_database.model.UserModel;
 import project_database.persist.DerbyDatabase;
 
 public class InsertNewPost {
@@ -24,21 +21,23 @@ public class InsertNewPost {
 		String postBody = keyboard.nextLine();
 		System.out.print("Enter a userID: ");
 		int userID = keyboard.nextInt();
+		System.out.print("Enter a date: ");
+		String date = keyboard.nextLine();
 		
 		// get the DB instance and execute transaction
 		PostModel post;
-		post = db.insertNewPost(userID, username, postTitle, postBody);
+		post = db.insertNewPost(userID, username, postTitle, postBody, date);
 		
 		System.out.println("Success");
 		System.out.println("Post ID is: " + post.getPostID());
-		
+		keyboard.close();
 	}
 	
-	public PostModel insertNewPost(int userID, String username, String postTitle, String postBody) {
+	public PostModel insertNewPost(int userID, String username, String postTitle, String postBody, String dateCreated) {
 		DerbyDatabase db = new DerbyDatabase();
 		System.out.println("User id is ==> " + userID);
 		PostModel post;
-		post = db.insertNewPost(userID, username, postTitle, postBody);
+		post = db.insertNewPost(userID, username, postTitle, postBody, dateCreated);
 		System.out.println("Success");
 		System.out.println("Post ID is: " + post.getPostID());
 		return post;

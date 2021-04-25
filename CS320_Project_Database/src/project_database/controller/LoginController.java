@@ -8,6 +8,8 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,21 +86,11 @@ public class LoginController {
 	}
 	
 	public void createAccount(UserModel model) throws IOException {
-//		Path pathToFile = Paths.get(FileSystems.getDefault().getPath("").toAbsolutePath().toString(), "users.csv");
-//		List <UserModel> users = importCSV();
-//		
-//		FileWriter writer = new FileWriter(pathToFile.toString(), true);
-//		
-//		String userInfo = "\"" + String.join(",", String.valueOf(users.size()),model.getUsername(), model.getPassword()) + "\"";
-//		
-//		System.out.println(userInfo);
-//		
-//		writer.write(userInfo);
-//		writer.write("\n");
-//		
-//		writer.close();
+		LocalDate dateCreated = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+		System.out.println(dateCreated.format(formatter));
 		
 		InsertNewUser g = new InsertNewUser();
-		g.insertNewUser(model.getUsername(), model.getPassword(), model.getBio());
+		g.insertNewUser(model.getUsername(), model.getPassword(), model.getBio(), dateCreated.format(formatter));
 	}
 }
