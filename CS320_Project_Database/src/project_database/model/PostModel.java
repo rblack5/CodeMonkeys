@@ -2,7 +2,7 @@ package project_database.model;
 
 public class PostModel {
 	private String title, body, username, dateCreated;
-	int postID, userID;
+	private int postID, userID;
 	
 	public PostModel() {
 		

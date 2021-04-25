@@ -277,7 +277,7 @@ public class DerbyDatabase {
 	}
 	
 	
-	public List<Pair<UserModel, PostModel>> insertNewUser(String username, String password, String bio, String dateJoined) {
+	public List<Pair<UserModel, PostModel>> insertNewUser(String username, String password, String bio, String dateJoined, Boolean adminStatus) {
 		return executeTransaction(new Transaction<List<Pair<UserModel, PostModel>>>() {
 			
 			@SuppressWarnings("resource")
@@ -291,14 +291,15 @@ public class DerbyDatabase {
 					// Prepare the statement to insert the new PostModel into the PostModels table.
 				try {
 					stmt = conn.prepareStatement(
-							" INSERT INTO Users (username, password, bio, dateJoined) "
-							+ "VALUES (?, ?, ?, ?) "		
+							" INSERT INTO Users (username, password, bio, dateJoined, adminStatus) "
+							+ "VALUES (?, ?, ?, ?, ?) "		
 							);
 					
 					stmt.setString(1, username);
 					stmt.setString(2, password);
 					stmt.setString(3, bio);
 					stmt.setString(4, dateJoined);
+					stmt.setBoolean(5, adminStatus);
 					
 					
 					
@@ -453,6 +454,7 @@ public class DerbyDatabase {
 		UserModel.setPassword(resultSet.getString(index++));
 		UserModel.setBio(resultSet.getString(index++));
 		UserModel.setDateJoined(resultSet.getString(index++));
+		UserModel.setAdminStatus(resultSet.getBoolean(index++));
 	}
 	
 	private void loadPostModel(PostModel PostModel, ResultSet resultSet, int index) throws SQLException {
@@ -504,6 +506,7 @@ public class DerbyDatabase {
 							"	password varchar(200)," +
 							"	bio varchar(1000)," +
 							"   dateJoined varchar(20), " +
+							"	adminStatus boolean, " +
 							"   CONSTRAINT UC_USER UNIQUE (username) " +
 							")"
 					);

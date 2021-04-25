@@ -2,7 +2,8 @@ package project_database.model;
 
 public class UserModel {
 	private String username, password, bio, dateJoined;
-	int userID;
+	private int userID;
+	private boolean adminStatus;
 	
 	public UserModel() {
 	}
@@ -45,5 +46,13 @@ public class UserModel {
 	
 	public String getDateJoined() {
 		return this.dateJoined;
+	}
+	
+	public void setAdminStatus(Boolean adminStatus) {
+		this.adminStatus = adminStatus;
+	}
+	
+	public Boolean getAdminStatus() {
+		return this.adminStatus;
 	}
 }

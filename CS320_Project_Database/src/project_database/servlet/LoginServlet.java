@@ -97,6 +97,7 @@ public class LoginServlet extends HttpServlet {
 					System.out.println("Login servlet userID is now:" + StringID);
 					session.setAttribute("userID", StringID);
 					session.setAttribute("intUserID", ID);
+					session.setAttribute("adminStatus", user.getAdminStatus());
 					
 					loggedInMessage = "Welcome, " + model.getUsername();
 				}
