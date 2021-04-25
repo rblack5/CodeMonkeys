@@ -22,8 +22,9 @@
 		        
 		     	<c:set var = "authorID" value = "${post.userID}"/>
 		        <c:set var = "userID" value = "${userID}"/>
+		        <c:set var = "adminStatus" value = "${adminStatus}"/>
 
-		        <c:if test="${authorID == userID}">
+		        <c:if test="${(authorID == userID) || (adminStatus == true)}">
 		            <div>
 		                <a class = "btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
 		                <a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
