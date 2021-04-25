@@ -23,7 +23,7 @@
 			<div class="label mb-2 mt-1">Username: </div>
 			<table>
 				<tr>
-					<td><input type="text" name="username" placeholder="Enter New Username" size="50" value="${UserModel.username}" /></td>
+					<td><input type="text" name="username" placeholder="Enter New Username" size="50" value="${username}" /></td>
 				</tr>
 			</table>
 			
