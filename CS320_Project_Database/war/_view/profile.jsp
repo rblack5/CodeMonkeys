@@ -14,12 +14,11 @@
 	<h1>
 	<tr>
 	<td class="nav-item nav-link" href="/project_database/profile"><i class="fas fa-user-circle"></i></td>
-	<td>${username}</td>
+	<td>${user.username}</td>
 	</h1>
 	
 	<br>
-	<p>This user does not have a bio yet</p>
-	<p>Bio: ${bio}</p>
+	<p>Bio: ${user.bio}</p>
 
 	<!-- Edit Profile -->
 	<a class="nav-item nav-link" type=button href=http://localhost:8081/project_database/editProfile><i class="fas fa-plus-square"></i> Edit Profile</a>

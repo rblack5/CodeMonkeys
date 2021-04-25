@@ -19,7 +19,10 @@
 	    	<img class ="rounded-circle article-img" src= "${pageContext.request.contextPath}/_view/images/default.jpg">
 	    	<div class="media-body">
 	    	<div class="article-metadata">
-	        	<a class="mr-2" href="/project_database/profile">${post.username}</a>
+	        	<a class="mr-2" href="/project_database/profile">
+					<input type = "hidden" id = "userID" name = "userID" value = "${post.userID}">
+		    		<input type = "submit" value = "${post.username}" style = "all: unset">
+				</a>
 	        	<small class="text-muted">${post.dateCreated} <b>Post ID: ${post.postID} User ID: ${post.userID}</b></small>
 	    	</div>
 		</form>
