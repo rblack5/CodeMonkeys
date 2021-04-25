@@ -14,13 +14,15 @@
 	
 	
 	<c:forEach items="${posts}" var="post">
-		<article class="media content-section">
-	    <img class ="rounded-circle article-img" src= "${pageContext.request.contextPath}/_view/images/default.jpg">
-	    <div class="media-body">
-	    <div class="article-metadata">
-	        <a class="mr-2" href="{% url 'user-posts' object.author.username %}">${post.username}</a>
-	        <small class="text-muted">${post.dateCreated} <b>Post ID: ${post.postID} User ID: ${post.userID}</b></small>
-	    </div>
+		<form action = "/project_database/profile">
+			<article class="media content-section">
+	    	<img class ="rounded-circle article-img" src= "${pageContext.request.contextPath}/_view/images/default.jpg">
+	    	<div class="media-body">
+	    	<div class="article-metadata">
+	        	<a class="mr-2" href="/project_database/profile">${post.username}</a>
+	        	<small class="text-muted">${post.dateCreated} <b>Post ID: ${post.postID} User ID: ${post.userID}</b></small>
+	    	</div>
+		</form>
 	    <!--  User ID is => ${post.userID} -->
 	    <form action = "/project_database/post">
 		    <div>
