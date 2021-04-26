@@ -6,9 +6,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.mindrot.jbcrypt.BCrypt;
 
 import project_database.controller.EditProfileController;
+import project_database.database.FindMatchingUserByUserID;
+import project_database.database.UpdateUser;
 import project_database.model.EditProfileModel;
+import project_database.model.UserModel;
 
 public class EditProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -28,6 +34,7 @@ public class EditProfileServlet extends HttpServlet {
 		
 		System.out.println("EditProfile Servlet: doPost");
 		
+		HttpSession session = req.getSession();
 
 		// holds the error message text, if there is any
 		String errorMessage = null;
@@ -38,21 +45,29 @@ public class EditProfileServlet extends HttpServlet {
 		// decode POSTed form parameters
 		try {
 			// Obtain the name,bio from the doGet
-			String name = req.getParameter("name");
+			String username = req.getParameter("username");
 			String bio = req.getParameter("bio");
 			String password = req.getParameter("password");
+			String userIDString = (String) session.getAttribute("userID");
+			int userID = Integer.parseInt(userIDString);
 
-			
-			// Send the values to the model
-			model.setName(name);
-			model.setBio(bio);
-			model.setPassword(password);
+			String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt(12));
 				
-			EditProfileController controller = new EditProfileController();
-			controller.setModel(model);
+			UpdateUser u = new UpdateUser();
+			FindMatchingUserByUserID f = new FindMatchingUserByUserID();
+			
+			u.updateUser(userID, username, hashedPassword, bio);
+			
+			UserModel user = f.findMatchingUserByUserID(userID);
+			
+			model.setBio(user.getBio());
+			model.setName(user.getUsername());
+			model.setPassword(user.getPassword());
+			
+			session.setAttribute("user", user);
 				
 			// Prints name,bio to the console
-			System.out.println("Name: " + name);
+			System.out.println("Name: " + username);
 			System.out.println("Bio: " + bio);
 			System.out.println("Password: " + password);
 			
@@ -60,8 +75,8 @@ public class EditProfileServlet extends HttpServlet {
 			errorMessage = "Invalid double";
 		}
 		
-		
-		req.setAttribute("editProfile", model);
+		// This breaks shit, be careful
+		//req.setAttribute("editProfile", model);
 		
 		// this adds the errorMessage text and the result to the response
 		req.setAttribute("errorMessage", errorMessage);

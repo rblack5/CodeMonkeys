@@ -318,6 +318,47 @@ public class DerbyDatabase {
 		});
 	}
 	
+	public List<Pair<UserModel, PostModel>> updateUser(int userID, String username, String password, String bio) {
+		return executeTransaction(new Transaction<List<Pair<UserModel, PostModel>>>() {
+			
+			@SuppressWarnings("resource")
+			@Override
+			public List<Pair<UserModel, PostModel>> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				String UserModel_id;
+				List<Pair<UserModel, PostModel>> result = new ArrayList<Pair<UserModel,PostModel>>();
+					
+					// Prepare the statement to insert the new PostModel into the PostModels table.
+				try {
+					stmt = conn.prepareStatement(
+							" UPDATE Users "
+							+ "SET username=?, password=?, bio=? "
+							+ "WHERE userID = ? "
+							);
+					
+					stmt.setString(1, username);
+					stmt.setString(2, password);
+					stmt.setString(3, bio);
+					stmt.setInt(4, userID);
+					
+					
+					
+					// Execute the query and insert the new PostModel into the PostModels table.
+					stmt.executeUpdate();
+					
+					return result;
+				}
+				finally {
+						DBUtil.closeQuietly(resultSet);
+						DBUtil.closeQuietly(stmt);
+						DBUtil.closeQuietly(conn);
+					}
+				
+			}
+		});
+	} 
+	
 	public PostModel insertNewPost(int userID, String username, String postTitle, String postBody, String dateCreated) {
 		return executeTransaction(new Transaction<PostModel>() {
 			
