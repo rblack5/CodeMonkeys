@@ -36,6 +36,14 @@ body {
     margin-bottom: 20px;
   }
   
+    .message-content-section {
+    background: #ffffff;
+    padding: 10px 20px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
+  }
+  
   .article-title {
     color: #444444;
   }
@@ -86,6 +94,13 @@ body {
   .greetings {
   	font-size: 5rem;
   	color: green;
+  	margin-bottom: 16px;
+  }
+  
+  .message {
+  	font-size: 1.6rem; 
+  	color: #fbfcfd; 
+  	font-weight: bold; 
   	margin-bottom: 16px;
   }
   

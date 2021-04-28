@@ -20,21 +20,45 @@ public class EditPostServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		System.out.println("EditProfile Servlet: doGet");
-		
+		Boolean wentThruNormal = true;
 		HttpSession session = req.getSession();
 		PostModel sessionPost = new PostModel();
 		sessionPost = (PostModel) session.getAttribute("currentPost");
 		
-//		if (sessionPost.getUsername() == null) {
-		req.getRequestDispatcher("/_view/editPost.jsp").forward(req, resp);
-//		}
-//		else {
-//			PostController postController = new PostController();
-//			List <PostModel> posts = postController.getAllPosts();
-//			
-//			req.setAttribute("posts", posts);
-//			req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
-//		}
+		Boolean sessionAdminStatus = (Boolean) session.getAttribute("adminStatus");
+
+		// FOR SESSIONS IT IS GET ATTRIBUTE, FOR REQUESTS IT IS GET PARAMETER!!!
+		String passedPostID = req.getParameter("postID");
+		System.out.println("Passed post ID: "+ passedPostID);
+		double x = 0;
+		System.out.println(x + " => Doing checks");
+		try {
+			String sessionUserID = (String) session.getAttribute("userID");
+			if (passedPostID == null)
+				x = 3 / 0; // cause an error by dividing by zero
+			int intSessionUserID = Integer.parseInt(sessionUserID);
+			
+			// keep this here because it fails if the person is not at least logged in 
+
+			// check if authors do not match, and if the person is not an admin
+			if ((intSessionUserID != sessionPost.getUserID()) && (sessionAdminStatus == false)) {
+				x = 3 / 0; // cause an error by dividing by zero
+			}
+		}
+		catch (Exception e) {
+			wentThruNormal = false;
+			PostController postController = new PostController();
+			List <PostModel> posts = postController.getAllPosts();
+			req.setAttribute("message", "You cannot edit a post if it is not yours!");
+			req.setAttribute("posts", posts);
+		}
+		
+		if (wentThruNormal) {
+			req.getRequestDispatcher("/_view/editPost.jsp").forward(req, resp);
+		}
+		else {
+			req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
+		}
 
 	}
 
