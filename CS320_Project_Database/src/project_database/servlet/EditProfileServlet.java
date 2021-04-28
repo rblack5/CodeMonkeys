@@ -65,6 +65,7 @@ public class EditProfileServlet extends HttpServlet {
 			model.setPassword(user.getPassword());
 			
 			session.setAttribute("user", user);
+			session.setAttribute("username", user.getUsername());
 				
 			// Prints name,bio to the console
 			System.out.println("Name: " + username);
