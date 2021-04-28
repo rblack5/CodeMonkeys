@@ -23,18 +23,21 @@
 		     	<c:set var = "authorID" value = "${post.userID}"/>
 		        <c:set var = "userID" value = "${userID}"/>
 		        <c:set var = "adminStatus" value = "${adminStatus}"/>
-
-		        <c:if test="${(authorID == userID) || (adminStatus == true)}">
-					<form action = "/project_database/editPost">
+				
+				<form action = "/project_database/editPost">
+				
+			        <c:if test="${(authorID == userID) || (adminStatus == true)}">
 						<div>
-							<a class = "btn btn-secondary btn-sm mt-1 mb-1" href="/project_database/editPost">
-								<input type = "hidden" id = "postID" name = "postID" value = "${postID}">
-								<input class="btn btn-secondary btn-sm mt-1 mb-1" type = "submit" value = "Update">
+							<a class = "btn btn-secondary btn-sm mt-1 mb-1">
+								<input type = "hidden" id = "postID" name = "postID" value = "${post}">
+								<input class="" type = "submit" value = "Update" style = "all: unset">
 							</a>
 							<a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
 						</div>
-					</form>	
-		        </c:if>
+			        </c:if>
+			        
+		        </form>	
+		        
 		    </div>
 	    
 		    <h2 class="article-title">${post.title}</h2>

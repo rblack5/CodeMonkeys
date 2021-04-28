@@ -17,7 +17,7 @@
     <div class="content-section">
 		<form action = "${pageContext.servletContext.contextPath}/editPost" method="post">
 			<fieldset class = "form-group">
-                <legend class="border-bottom mb-4">Create a Post</legend>
+                <legend class="border-bottom mb-4">Edit Post</legend>
 				
 				<c:if test="${! empty errorMessage}">
 					<div class="error mb-2" style="color:Red;">${errorMessage}</div>

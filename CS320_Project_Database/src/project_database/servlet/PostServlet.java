@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import project_database.controller.LoginController;
 import project_database.controller.PostController;
@@ -34,6 +35,10 @@ public class PostServlet extends HttpServlet {
 		PostModel post = controller.findPost(intPostID);
 		
 		req.setAttribute("post", post);
+		
+		// This is the easy way out
+		HttpSession session = req.getSession();
+		session.setAttribute("currentPost", post);
 		
 		req.getRequestDispatcher("/_view/post.jsp").forward(req, resp);
 		
