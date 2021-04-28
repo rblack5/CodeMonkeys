@@ -23,7 +23,8 @@
 			<div class="label mb-2 mt-1">Username: </div>
 			<table>
 				<tr>
-					<td><input type="text" name="username" placeholder="Enter New Username" size="50" value="${username}" maxlength="20"/></td>
+					<td><input type="text" name="username" placeholder="Enter New Username" size="50" value="${username}" maxlength="20" pattern=".{3,}" 
+							title="Must be at least 3 characters"/></td>
 				</tr>
 			</table>
 			
@@ -37,7 +38,8 @@
 			<div class="label mb-2 mt-3">Password: </div>
 			<table>
 				<tr>
-					<td><input type="text" name="password" placeholder="Enter New Password" size="50" value="${UserModel.password}" maxlength="20"/></td>
+					<td><input type="text" name="password" placeholder="Enter New Password" size="50" value="${UserModel.password}" maxlength="20" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" 
+							title="Must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and be at least 5 characters long"/></td>
 				</tr>
 			</table>
 
