@@ -28,10 +28,15 @@
 		        <c:set var = "adminStatus" value = "${adminStatus}"/>
 
 		        <c:if test="${(authorID == userID) || (adminStatus == true)}">
-		            <div>
-		                <a class = "btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
-		                <a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
-		            </div>
+					<form action = "/project_database/editPost">
+						<div>
+							<a class = "btn btn-secondary btn-sm mt-1 mb-1" href="/project_database/editPost">
+								<input type = "hidden" id = "postID" name = "postID" value = "${postID}">
+								<input class="btn btn-secondary btn-sm mt-1 mb-1" type = "submit" value = "Update">
+							</a>
+							<a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+						</div>
+					</form>	
 		        </c:if>
 		    </div>
 	    

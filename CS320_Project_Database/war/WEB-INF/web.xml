@@ -70,6 +70,11 @@
   	<servlet-name>PostServlet</servlet-name>
   	<servlet-class>project_database.servlet.PostServlet</servlet-class>
   </servlet>
+  
+  <servlet>
+  	<servlet-name>EditPostServlet</servlet-name>
+  	<servlet-class>project_database.servlet.EditPostServlet</servlet-class>
+  </servlet>
 
   <!-- AJAX servlets. -->
   <!--
@@ -148,6 +153,11 @@
   <servlet-mapping>
   	<servlet-name>PostServlet</servlet-name>
   	<url-pattern>/post</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>EditPostServlet</servlet-name>
+  	<url-pattern>/editPost</url-pattern>
   </servlet-mapping>
 
   <!--  AJAX servlet mappings. -->

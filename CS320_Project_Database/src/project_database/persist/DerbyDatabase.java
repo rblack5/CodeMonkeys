@@ -326,7 +326,6 @@ public class DerbyDatabase {
 			public List<Pair<UserModel, PostModel>> execute(Connection conn) throws SQLException {
 				PreparedStatement stmt = null;
 				ResultSet resultSet = null;
-				String UserModel_id;
 				List<Pair<UserModel, PostModel>> result = new ArrayList<Pair<UserModel,PostModel>>();
 					
 					// Prepare the statement to insert the new PostModel into the PostModels table.
@@ -429,6 +428,43 @@ public class DerbyDatabase {
 						DBUtil.closeQuietly(resultSet);
 						DBUtil.closeQuietly(stmt);
 						DBUtil.closeQuietly(stmt2);
+						DBUtil.closeQuietly(conn);
+					}
+				
+			}
+		});
+	}
+	
+	public List<Pair<UserModel, PostModel>> updatePost(int postID, String postTitle, String postBody) {
+		return executeTransaction(new Transaction<List<Pair<UserModel, PostModel>>>() {
+			
+			@SuppressWarnings("resource")
+			@Override
+			public List<Pair<UserModel, PostModel>> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				List<Pair<UserModel, PostModel>> result = new ArrayList<Pair<UserModel,PostModel>>();
+					
+					// Prepare the statement to insert the new PostModel into the PostModels table.
+				try {
+					stmt = conn.prepareStatement(
+							" UPDATE Posts "
+							+ "SET postTitle=?, postBody=? "
+							+ "WHERE postID =? "
+							);
+					
+					stmt.setString(1, postTitle);
+					stmt.setString(2, postBody);
+					stmt.setInt(3, postID);
+					
+					// Execute the query and insert the new PostModel into the PostModels table.
+					stmt.executeUpdate();
+					
+					return result;
+				}
+				finally {
+						DBUtil.closeQuietly(resultSet);
+						DBUtil.closeQuietly(stmt);
 						DBUtil.closeQuietly(conn);
 					}
 				
