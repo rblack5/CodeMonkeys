@@ -38,8 +38,8 @@ public class EditPostServlet extends HttpServlet {
 			System.out.println("UPDATED TITLE: " + postTitle);
 			String postBody = req.getParameter("body");
 			System.out.println("UPDATED BODY: " + postBody);
-			String postIDString = req.getParameter("postID");
-			System.out.println("POST ID: " + postIDString);
+			String postIDString = (String) req.getParameter("postID");
+			System.out.println("POST ID STRING: " + postIDString);
 			int postID = Integer.parseInt(postIDString);
 			System.out.println("POST ID: " + postID);
 			UpdatePost u = new UpdatePost();
