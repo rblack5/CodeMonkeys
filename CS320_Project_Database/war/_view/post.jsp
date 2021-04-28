@@ -10,13 +10,16 @@
 	<c:if test="${! empty message}">
 		<div class="" style = "font-size: 1.7rem; color: black; margin-bottom: 16px;"> ${message}</div>
 	</c:if>
-	
+	<form action = "/project_database/profile">
 	<article class="media content-section">
 	    <img class ="rounded-circle article-img" src= "${pageContext.request.contextPath}/_view/images/default.jpg">
 	    
 	    <div class="media-body">
 		    <div class="article-metadata">
-		        <a class="mr-2" href="{% url 'user-posts' object.author.username %}">${post.username}</a>
+		        <a class="mr-2" href="/project_database/profile">
+					<input type = "hidden" id = "userID" name = "userID" value = "${post.userID}">
+		    		<input type = "submit" value = "${post.username}" style = "all: unset">
+				</a>
 				
 		        <small class="text-muted">${post.dateCreated} <b>Post ID: ${post.postID} User ID: ${post.userID}</b></small>
 		        
@@ -44,7 +47,7 @@
 		    <p class="article-content">${post.body}</p>
 	    </div>
 	</article>
-	
+	</form>
 </rapid:override>  
 
 <%@ include file="base.jsp" %> 

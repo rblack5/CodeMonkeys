@@ -19,21 +19,21 @@
 				<div class="label mb-2 mt-1">Username: </div>
 				 <table>
 					<tr>
-						<td><input type="text" name="username" size="50" value="${registerUsername}" placeholder="Username" /></td>
+						<td><input type="text" name="username" size="50" value="${registerUsername}" placeholder="Username" maxlength="20"/></td>
 					</tr>
 				</table>
 				
 				<div class="label mb-2 mt-3">Password: </div>
 				 <table>
 					<tr>
-						<td><input type="password" name="password" size="50" value="${registerPassword}" placeholder="Password" /></td>
+						<td><input type="password" name="password" size="50" value="${registerPassword}" placeholder="Password" maxlength="20"/></td>
 					</tr>
 				</table>
 				
 				<div class="label mb-2 mt-3">Confirm Password: </div>
 				 <table>
 					<tr>
-						<td><input type="password" name="password2" size="50" value="${registerPassword2}" placeholder="Confirm Password" /></td>
+						<td><input type="password" name="password2" size="50" value="${registerPassword2}" placeholder="Confirm Password" maxlength="20"/></td>
 					</tr>
 				</table>
 				

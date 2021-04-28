@@ -22,13 +22,13 @@
                 <div class="label mb-2 mt-1">Username: </div>
                 <table>
 					<tr>
-						<td><input type="text" name="username" size="50" value="${loginUsername}" placeholder="Username" /></td>
+						<td><input type="text" name="username" size="50" value="${loginUsername}" placeholder="Username" maxlength="20"/></td>
 					</tr>
 				</table>
 				<div class="label mb-2 mt-3">Password:</div>
 				 <table>
 					<tr>
-						<td><input type="password" name="password" size="50" value="${loginPassword}" placeholder="Password" /></td>
+						<td><input type="password" name="password" size="50" value="${loginPassword}" placeholder="Password" maxlength="20"/></td>
 					</tr>
 				</table>
             </fieldset>
