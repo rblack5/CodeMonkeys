@@ -4,11 +4,11 @@
 <rapid:override name="content"> 
 
 	<c:if test="${! empty loggedInMessage}">
-		<div class="media message-content-section bg-steel p-3" style = "font-size: 1.6rem; color: #fbfcfd; font-weight: bold; margin-bottom: 20px;"> ${loggedInMessage}</div>
+		<div class="media message-content-section bg-steel p-3" style = "font-size: 1.6rem; background-color: #5f788a; color: #fbfcfd; font-weight: bold; margin-bottom: 20px;"> ${loggedInMessage}</div>
 	</c:if>
 	
 	<c:if test="${! empty message}">
-			<div class="media message-content-section bg-steel p-3" style = "font-size: 1.6rem; color: #fbfcfd; font-weight: bold; margin-bottom: 20px;"> ${message}</div>
+			<div class="media message-content-section bg-steel p-3" style = "font-size: 1.6rem; background-color: #5f788a; color: #fbfcfd; font-weight: bold; margin-bottom: 20px;"> ${message}</div>
 	</c:if>
 
 	
