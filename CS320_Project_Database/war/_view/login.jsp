@@ -7,7 +7,7 @@
 	<title> Login </title>
 	</head>
 	
-	<div class="content-section">
+	<div class="content-section" >
         <form action = "${pageContext.servletContext.contextPath}/login" method="post">
             <fieldset class = "form-group">
                 <legend class="border-bottom mb-4">Login</legend>
@@ -28,9 +28,28 @@
 				<div class="label mb-2 mt-3">Password:</div>
 				 <table>
 					<tr>
-						<td><input type="password" name="password" size="50" value="${loginPassword}" placeholder="Password" maxlength="20"/></td>
-					</tr>
+						<td><input type="password" name="password"  id="password"  size="50" value="${loginPassword}" placeholder="Password" maxlength="20"/>
+						<span id="eye" onClick="toggleEye()" >
+						<i class="fas fa-eye"></i>
+						</span>
+</td>
+</tr>
 				</table>
+
+<script>
+function toggleEye() {
+  	var pass = document.getElementById("password");
+  	if (pass.type == "password") {
+  	  pass.type = "text";
+	document.getElementById("eye").style.color = "blue";
+  	}else{
+  	  pass.type = "password";
+	document.getElementById("eye").style.color = "black";
+  	}
+}
+
+</script>
+					
             </fieldset>
             <div class="form-group mt-4">
                 <button class="btn btn-outline-info" type="submit" value="Login">Login</button>

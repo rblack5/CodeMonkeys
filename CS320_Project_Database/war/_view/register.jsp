@@ -27,19 +27,49 @@
 				<div class="label mb-2 mt-3">Password: </div>
 				 <table>
 					<tr>
-						<td><input type="password" name="password" size="50" value="${registerPassword}" placeholder="Password" maxlength="20" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" 
-							title="Must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and be at least 5 characters long"/></td>
+						<td><input type="password" name="password" id="password" size="50" value="${registerPassword}" placeholder="Password" maxlength="20" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" 
+						title="Must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and be at least 5 characters long"/>
+						<span id="eye" onClick="toggleEye()" >
+						<i class="fas fa-eye"></i>
+						</span>
+
+
+</td>
 					</tr>
 				</table>
 				
 				<div class="label mb-2 mt-3">Confirm Password: </div>
 				 <table>
 					<tr>
-						<td><input type="password" name="password2" size="50" value="${registerPassword2}" placeholder="Confirm Password" maxlength="20" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" 
-							title="Must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and be at least 5 characters long"/></td>
+						<td><input type="password" name="password2" id="password2" size="50" value="${registerPassword2}" placeholder="Confirm Password" maxlength="20" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" 
+						title="Must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and be at least 5 characters long"/>
+						
+</td>
 					</tr>
 				</table>
-				
+
+<script>
+
+
+function toggleEye() {
+  	var pass = document.getElementById("password");
+	var pass2 = document.getElementById("password2");
+  	if (pass.type == "password") {
+  	  pass.type = "text";
+	  pass2.type = "text";
+	document.getElementById("eye").style.color = "blue";
+  	}else{
+  	  pass.type = "password";
+	  pass2.type = "password";
+	document.getElementById("eye").style.color = "black";
+  	}
+}
+
+</script>
+
+
+
+
 			</fieldset>
 			
 			<div class="form-group mt-4">
