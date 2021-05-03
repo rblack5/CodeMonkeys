@@ -20,12 +20,7 @@ public class LoginTest {
 	}
 	
 	
-	@Test
-	public void testCheckLogIn() {
-		Boolean testCase = controller.checkLogIn(model);
-		
-		assertTrue(testCase);
-	}
+	
 	
 
 }

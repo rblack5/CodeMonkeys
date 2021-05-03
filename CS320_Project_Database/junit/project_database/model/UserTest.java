@@ -50,14 +50,5 @@ public class UserTest {
 		
 	}
 	
-	@Test
-	public void testCreateAccountCheckLogin() throws IOException {
-		model.setUsername("test");
-		model.setPassword("test");
-		
-		controller.setModel(model);
-		controller.createAccount(model);
-		
-		assert(controller.checkLogIn(model));
-	}
+	
 }

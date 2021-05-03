@@ -30,6 +30,18 @@ public class PostTest {
 	}
 	
 	@Test
+	public void testSetTitle2() {
+		model.setTitle("Title ");
+		assert(model.getTitle()=="Title ");
+		
+		model.setTitle("Title_-_'");
+		assert(model.getTitle()=="Title_-_'");
+		
+		model.setTitle("Title!$#()()");
+		assert(model.getTitle()=="Title!$#()()");
+	}
+	
+	@Test
 	public void testSetBody() {
 		model.setBody("TestBody");
 		assert(model.getBody()=="TestBody");
@@ -51,11 +63,5 @@ public class PostTest {
 		assert(model.getPostID() == 23);
 	}
 	
-	@Test
-	public void testImport() throws IOException {
-		PostModel post = controller.findPost(0);
-		
-		assert(post.getTitle().equals("ExamplePost"));
-		assert(post.getPostID() == 0);
-	}
+	
 }
