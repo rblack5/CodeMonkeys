@@ -38,8 +38,13 @@
 								<input type = "hidden" id = "postAuthorID" name = "postAuthorID" value = "${post.userID}">
 								<input class="" type = "submit" value = "Update" style = "all: unset; color: white !important;">
 							</a>
-						 </form>	
-						<a class = "ml-2 btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+						 </form>
+						<form action = "/project_database/deletePost">
+							<a class = "ml-2 btn btn-danger btn-sm mt-1 mb-1">
+								<input type = "hidden" id = "postID" name = "postID" value = "${post.postID}">
+								<input class="" type = "submit" value = "Delete" style = "all: unset; color: white !important;">
+							</a>
+						</form>
 					</div>
 		        </c:if>
 		        

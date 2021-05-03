@@ -435,6 +435,45 @@ public class DerbyDatabase {
 		});
 	}
 	
+	public PostModel deletePost(int postID) {
+		return executeTransaction(new Transaction<PostModel>() {
+			
+			@Override
+			public PostModel execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				PreparedStatement stmt2 = null;
+				ResultSet resultSet = null;
+				
+				PostModel post = new PostModel();
+					
+					// Prepare the statement to insert the new PostModel into the PostModels table.
+				try {
+					stmt = conn.prepareStatement(
+							" DELETE FROM Posts "
+							+ "WHERE postID = ? "		
+							);
+					
+					stmt.setInt(1, postID);
+
+					// Execute the query and insert the new PostModel into the PostModels table.
+					stmt.executeUpdate();
+					
+					return post;
+				}
+					
+				finally {
+						DBUtil.closeQuietly(resultSet);
+						DBUtil.closeQuietly(stmt);
+						DBUtil.closeQuietly(stmt2);
+						DBUtil.closeQuietly(conn);
+					}
+				
+			}
+		});
+	}
+	
+	
+	
 	public List<Pair<UserModel, PostModel>> updatePost(int postID, String postTitle, String postBody) {
 		return executeTransaction(new Transaction<List<Pair<UserModel, PostModel>>>() {
 			

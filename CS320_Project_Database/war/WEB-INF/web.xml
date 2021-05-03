@@ -75,6 +75,11 @@
   	<servlet-name>EditPostServlet</servlet-name>
   	<servlet-class>project_database.servlet.EditPostServlet</servlet-class>
   </servlet>
+  
+  <servlet>
+  	<servlet-name>DeletePostServlet</servlet-name>
+  	<servlet-class>project_database.servlet.DeletePostServlet</servlet-class>
+  </servlet>
 
   <!-- AJAX servlets. -->
   <!--
@@ -158,6 +163,11 @@
   <servlet-mapping>
   	<servlet-name>EditPostServlet</servlet-name>
   	<url-pattern>/editPost</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>DeletePostServlet</servlet-name>
+  	<url-pattern>/deletePost</url-pattern>
   </servlet-mapping>
 
   <!--  AJAX servlet mappings. -->
