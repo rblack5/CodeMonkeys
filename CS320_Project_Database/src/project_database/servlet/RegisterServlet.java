@@ -188,6 +188,7 @@ public class RegisterServlet extends HttpServlet {
 			String StringID = String.valueOf(ID);
 			System.out.println("Register Servlet userID is now:" + StringID);
 			session.setAttribute("userID", StringID);
+			session.setAttribute("user", user);
 			
 			req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
 		}
