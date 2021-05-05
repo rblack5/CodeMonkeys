@@ -21,9 +21,9 @@
 				    	<div class="article-metadata">
 				        	<a class="mr-2" href="/project_database/profile">
 								<input type = "hidden" id = "userID" name = "userID" value = "${post.userID}">
-					    		<input type = "submit" value = "${post.username}" style = "all: unset">
+					    		<input type = "submit" value = "${post.username}" style = "all: unset; cursor:pointer; color:blue; text-decoration:underline;">
 							</a>
-				        	<small class="text-muted">${post.dateCreated} <b>Post ID: ${post.postID} User ID: ${post.userID}</b></small>
+				        	<small class="text-muted">${post.dateCreated}</small>
 				    	</div>
 				</form>
 				

@@ -15,6 +15,9 @@
 	
 		Boolean loggedIn = false;
 		session.setAttribute("username", null);
+		session.setAttribute("user", null);
+		session.removeAttribute("intUserID");
+		session.setAttribute("adminStatus", "false");
 		request.setAttribute("loggedIn", loggedIn);
 		session.setAttribute("userID", 0);
 		

@@ -19,11 +19,12 @@
 		    	<form action = "/project_database/profile">
 			        <a class="mr-2" href="/project_database/profile">
 						<input type = "hidden" id = "userID" name = "userID" value = "${post.userID}">
-			    		<input type = "submit" value = "${post.username}" style = "all: unset">
+			    		<input type = "submit" value = "${post.username}" style = "all: unset; cursor:pointer; color:blue; text-decoration:underline;">
 					</a>
+					<small class="text-muted">${post.dateCreated}</small>
 				</form>
 				
-		        <small class="text-muted">${post.dateCreated} <b>Post ID: ${post.postID} User ID: ${post.userID}</b></small>
+		        
 		        
 		     	<c:set var = "authorID" value = "${post.userID}"/>
 		        <c:set var = "userID" value = "${userID}"/>
