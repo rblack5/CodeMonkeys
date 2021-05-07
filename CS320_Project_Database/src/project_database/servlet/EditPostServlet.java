@@ -19,13 +19,14 @@ public class EditPostServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		System.out.println("EditProfile Servlet: doGet");
+		System.out.println("EditPost Servlet: doGet");
 		Boolean wentThruNormal = true;
 		HttpSession session = req.getSession();
 		PostModel sessionPost = new PostModel();
 		sessionPost = (PostModel) session.getAttribute("currentPost");
 		
-		Boolean sessionAdminStatus = (Boolean) session.getAttribute("adminStatus");
+		Object sessionAdminStatus = session.getAttribute("adminStatus");
+		System.out.println("SessionAdminStatus is: " + sessionAdminStatus);
 
 		// FOR SESSIONS IT IS GET ATTRIBUTE, FOR REQUESTS IT IS GET PARAMETER!!!
 		String passedPostID = req.getParameter("postID");
@@ -41,7 +42,7 @@ public class EditPostServlet extends HttpServlet {
 			// keep this here because it fails if the person is not at least logged in 
 
 			// check if authors do not match, and if the person is not an admin
-			if ((intSessionUserID != sessionPost.getUserID()) && (sessionAdminStatus == false)) {
+			if ((intSessionUserID != sessionPost.getUserID()) && (sessionAdminStatus.equals("null") || sessionAdminStatus.equals("false"))) {
 				x = 3 / 0; // cause an error by dividing by zero
 			}
 		}
