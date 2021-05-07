@@ -29,6 +29,9 @@ public class SearchServlet extends HttpServlet {
 		List<PostModel> posts = db.searchPosts(searcher);
 		
 		req.setAttribute("posts", posts);
+		if (posts.isEmpty()) {
+			req.setAttribute("message", "No posts matched your search!");
+		}
 		
 		// This is the easy way out
 		// HttpSession session = req.getSession();
