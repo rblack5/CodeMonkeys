@@ -10,7 +10,13 @@
 	<c:if test="${! empty message}">
 			<div class="media message-content-section bg-steel p-3" style = "font-size: 1.6rem; background-color: #5f788a; color: #fbfcfd; font-weight: bold; margin-bottom: 20px;"> ${message}</div>
 	</c:if>
-
+	
+	<form action = "/project_database/search">
+	    	<div class="article-metadata">
+				<input type = "text" name = "search" value = "" placeholder="Enter text here!">
+	    		<input type = "submit" value = "Search!" style = "all: unset; cursor:pointer; color:green; text-decoration:underline;">
+	    	</div>
+	</form>
 	
 	
 	<c:forEach items="${posts}" var="post">

@@ -85,6 +85,11 @@
   	<servlet-name>DeleteUserServlet</servlet-name>
   	<servlet-class>project_database.servlet.DeleteUserServlet</servlet-class>
   </servlet>
+  
+  <servlet>
+  	<servlet-name>SearchServlet</servlet-name>
+  	<servlet-class>project_database.servlet.SearchServlet</servlet-class>
+  </servlet>
 
   <!-- AJAX servlets. -->
   <!--
@@ -179,6 +184,11 @@
   	<servlet-name>DeleteUserServlet</servlet-name>
   	<url-pattern>/deleteUser</url-pattern>
   </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>SearchServlet</servlet-name>
+  	<url-pattern>/search</url-pattern>
+  </servlet-mapping>
 
   <!--  AJAX servlet mappings. -->
    <!--
@@ -191,10 +201,6 @@
     <servlet-name>NextGuessAjaxServlet</servlet-name>
     <url-pattern>/ajax/nextGuess</url-pattern>
   </servlet-mapping>
-
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-  </welcome-file-list>
    -->
   
 </web-app>
