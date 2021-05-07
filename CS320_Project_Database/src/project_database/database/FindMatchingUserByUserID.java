@@ -17,30 +17,13 @@ public class FindMatchingUserByUserID {
 		// Create the default IDatabase instance
 		// InitDatabase.init(keyboard);
 		
-		System.out.print("Enter the post title: ");
-		String postTitle = keyboard.nextLine();
-		
-		System.out.print("Enter the post ID: ");
-		String postID = keyboard.nextLine();
-		
-		// get the DB instance and execute transaction
-		// IDatabase db = DatabaseProvider.getInstance();
+		System.out.print("Enter the userID: ");
+		int userID = keyboard.nextInt();
 		
 		DerbyDatabase db = new DerbyDatabase();
-		
-		List<Pair<UserModel, PostModel>> userPostList = db.findUserModelAndPostModelByTitle(postTitle, postID);
-		
-		// check if anything was returned and output the list
-		if (userPostList.isEmpty()) {
-			System.out.println("No posts found with title  <" + postTitle + "> and ID of <" + postID + ">");
-		}
-		else { 
-			for (Pair<UserModel, PostModel>  userPost : userPostList) {
-				UserModel user = userPost.getLeft();
-				PostModel post = userPost.getRight();
-				System.out.println(user.getUsername() + "," + user.getUserID() + "," + post.getTitle() + "," + post.getPostID());
-			}
-		}
+		UserModel user = db.findMatchingUserByUserID(userID);
+		System.out.println("UserID: " + user.getUserID() + " | Username: " + user.getUsername() +  " | Password: " + user.getPassword() +  " | Bio: " + user.getBio()
+		 + " | DateJoined: " + user.getDateJoined()  + " | AdminStatus: " + user.getAdminStatus());
 	}
 	
 	public UserModel findMatchingUserByUserID(int userID) {

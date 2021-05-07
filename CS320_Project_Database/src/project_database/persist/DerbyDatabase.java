@@ -174,6 +174,53 @@ public class DerbyDatabase {
 		});
 	}
 	
+	public List<PostModel> searchPosts(String searcher) {
+		return executeTransaction(new Transaction<List<PostModel>>() {
+			@Override
+			public List<PostModel> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+					// retrieve all attributes from both PostModels and UserModels tables
+					stmt = conn.prepareStatement(
+							"select Posts.* " +
+							"  from Posts" +
+							" where Posts.postTitle LIKE ? "
+					);
+					stmt.setString(1, "%" + searcher + "%");
+					List<PostModel> result = new ArrayList<PostModel>();
+					
+					resultSet = stmt.executeQuery();
+
+					// for testing that a result was returned
+					Boolean found = false;
+					
+					while (resultSet.next()) {
+						found = true;
+						
+						// create new PostModel object
+						// retrieve attributes from resultSet starting at index 4
+						PostModel PostModel = new PostModel();
+						loadPostModel(PostModel, resultSet, 1);
+						
+						result.add(PostModel);
+					}
+					
+					// check if the title was found
+					if (!found) {
+						System.out.println("No posts found.");
+					}
+					
+					return result;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
+	
 	public UserModel findMatchingUserByUserID(int userID) {
 		return executeTransaction(new Transaction<UserModel>() {
 			@Override
