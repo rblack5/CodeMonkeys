@@ -63,20 +63,20 @@
 				</table>
 
 				<br>
-				<div class="label mb-2 mt-3">Theme: </div>
+				<div class="label mb-2 mt-3">Post Appearance: </div>
 				<table>
 						<tr>
 							<td>
 								<div>
 									<div class = "row w-100 m-0 p-0">
 										<div class = "pr-3"> Light
-											<input type="radio" id = "check1" name="check" value = "light" />
+											<input type="radio" id = "check1" name="postTheme" value = "light" checked/>
 										</div>
 										<div class = "pr-3"> Dark
-											<input type="radio" id = "check2" name="check" value = "dark"/>
+											<input type="radio" id = "check2" name="postTheme" value = "dark"/>
 										</div>
 										<div class = "pr-3"> Fire
-											<input type="radio" id = "check3" name="check" value = "fire" />
+											<input type="radio" id = "check3" name="postTheme" value = "fire" />
 										</div>
 									</div>
 								</div>
@@ -85,16 +85,51 @@
 
 				</table>
 		
-		
-				<div class="form-group mt-4">
+
+				
+				<div class="label mb-2 mt-3">Personal Theme: </div>
+
+				<table>
+					<tr>
+						<td>
+							<div>
+								<div class = "row w-100 m-0 p-0">
+									<div class = "pr-3"> Light
+										<input type="radio" id = "check1" name="accountTheme" value = "light" checked/>
+									</div>
+									
+									<div class = "pr-3"> Dark
+										<input type="radio" id = "check2" name="accountTheme" value = "dark"/>
+									
+								</div>
+							</div>
+						</td>
+					</tr>
+
+				</table>
+
+
+				<br><br>
+				<span class="form-group mt-4">
 					<button class="btn btn-outline-info" type="Submit" value="Save Changes">Save Changes</button>
-				</div>
-						
-
-
+				</span>
 					
+				<span class="form-group mt-4">
+					<button class="btn btn-outline-info" type="button" value="Discard Changes" onclick="discardConfirmation()" >Discard Changes
+					</button>
+				</span>
+
+			
 	
 	<script>
+
+	function discardConfirmation() {
+		if(confirm("Changes are not saved.\nAre you sure want to continue?") == true){
+		window.location.href="http://localhost:8081/project_database/profile";
+		}
+	}
+
+
 	function toggleEye() {
 	  	var pass = document.getElementById("password");
 		var pass2 = document.getElementById("password2");
