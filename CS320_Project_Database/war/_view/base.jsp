@@ -24,7 +24,13 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
         <!-- Styles for Page Link -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/_view/styles/mainDark.css" type="text/css">
+	<c:if test="${empty loggedIn }">
+            <link rel="stylesheet" href="${pageContext.request.contextPath}/_view/styles/mainDark.css" type="text/css">
+        </c:if>
+
+         <c:if test="${!empty loggedIn }">
+             <link rel="stylesheet" href="${pageContext.request.contextPath}/_view/styles/main.css" type="text/css">
+         </c:if>
 		<!-- Icon Library -->
 	<script src="https://kit.fontawesome.com/15a68e8958.js" crossorigin="anonymous"></script>
 	<script src="jquery-3.5.1.min.js"></script>

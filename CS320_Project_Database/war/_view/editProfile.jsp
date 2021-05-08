@@ -102,6 +102,7 @@
 										<input type="radio" id = "check2" name="accountTheme" value = "dark"/>
 									
 								</div>
+								</div>
 							</div>
 						</td>
 					</tr>
