@@ -29,12 +29,7 @@ public class DeletePostServlet extends HttpServlet {
 		
 		d.deletePost(postIDInt);
 		
-		PostController controller = new PostController();
-		List <PostModel> posts = controller.getAllPosts();
-
-		req.setAttribute("posts", posts);
-		
-		req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
+		resp.sendRedirect("/project_database/home");
 	}
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)

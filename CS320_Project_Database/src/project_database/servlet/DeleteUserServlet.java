@@ -33,21 +33,17 @@ public class DeleteUserServlet extends HttpServlet {
 		
 		d.deleteUser(intUserID);
 		
-		if(currentUser.getUserID() == intUserID) {
-		session.setAttribute("LoggedIn", false);
-		session.setAttribute("user", null);
-		session.setAttribute("userID", null);
-		session.setAttribute("intUserID", null);
-		session.setAttribute("adminStatus", false);
-		
-		req.getRequestDispatcher("/_view/logout.jsp").forward(req, resp);
+		if (currentUser.getUserID() == intUserID) {
+			session.setAttribute("LoggedIn", false);
+			session.setAttribute("user", null);
+			session.setAttribute("userID", null);
+			session.setAttribute("intUserID", null);
+			session.setAttribute("adminStatus", false);
+			
+			req.getRequestDispatcher("/_view/logout.jsp").forward(req, resp);
 		}
 		else {
-		PostController controller = new PostController();
-		List <PostModel> posts = controller.getAllPosts();
-		
-		req.setAttribute("posts", posts);
-		req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
+			resp.sendRedirect("/project_database/home");
 		}
 	}
 	

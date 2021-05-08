@@ -99,8 +99,9 @@ public class LoginServlet extends HttpServlet {
 					session.setAttribute("userID", StringID);
 					session.setAttribute("intUserID", ID);
 					session.setAttribute("adminStatus", user.getAdminStatus());
-					
+
 					loggedInMessage = "Welcome, " + model.getUsername();
+					session.setAttribute("loggedInMessage", loggedInMessage);
 				}
 				
 			}
@@ -129,14 +130,15 @@ public class LoginServlet extends HttpServlet {
 		else {
 			req.setAttribute("login", model);
 			
-			req.setAttribute("posts", posts);
+			// req.setAttribute("posts", posts);
 			
-			req.setAttribute("loggedInMessage", loggedInMessage);
+			// req.setAttribute("loggedInMessage", loggedInMessage);
 			req.removeAttribute("errorMessage");
 			req.removeAttribute("loginMessage");
 			req.removeAttribute("loginPassword");
 			
-			req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
+
+			resp.sendRedirect("/project_database/home");
 		}
 	}
 	

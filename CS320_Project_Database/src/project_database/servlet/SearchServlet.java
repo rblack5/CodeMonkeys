@@ -34,10 +34,15 @@ public class SearchServlet extends HttpServlet {
 		}
 		
 		// This is the easy way out
-		// HttpSession session = req.getSession();
-		// session.setAttribute("currentPost", post);
+		HttpSession session = req.getSession();
+		session.setAttribute("posts", posts);
 		
-		req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
+		// doesnt work (below) - only way to get the posts variable across is with sessions
+		// resp.setHeader("posts", posts);
+		resp.sendRedirect("/project_database/home");
+		
+		// req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
+		
 		
 	}
 	@Override

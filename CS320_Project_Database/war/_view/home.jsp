@@ -51,8 +51,32 @@
 
 			</div>
 		</article>	
-
 	</c:forEach>
+	
+	<div class = "row w-100 m-0 pb-5">
+		<c:if test="${! empty pageNumberMinus}">
+			<form action = "/project_database/home">
+				<div class = "pr-3">
+					<a class = "btn btn-success btn-md mt-1 mb-0">
+						<input type = "hidden" id = "page" name = "page" value = "${pageNumberMinus}">
+					    <input type = "submit" value = "Prev Page" style = "all: unset; cursor:pointer; color:white;">
+					</a>
+				</div>
+			</form>
+		</c:if>
+		
+		<c:if test="${! empty pageNumberPlus}">
+			<form action = "/project_database/home">
+				<div class = "">
+					<a class = "btn btn-success btn-md mt-1 mb-0">
+						<input type = "hidden" id = "page" name = "page" value = "${pageNumberPlus}">
+					    <input type = "submit" value = "Next Page" style = "all: unset; cursor:pointer; color:white;">
+					</a>
+				</div>
+			</form>
+		</c:if>
+		
+	</div>
  
     
 </rapid:override>  

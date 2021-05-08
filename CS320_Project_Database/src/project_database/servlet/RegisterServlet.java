@@ -58,9 +58,6 @@ public class RegisterServlet extends HttpServlet {
 		String message = "";
 		String loggedInMessage = "";
 		
-		PostController postController = new PostController();
-		List <PostModel> posts = postController.getAllPosts();
-		
 		// Create the model
 		System.out.println("Creating model....");
 		
@@ -160,21 +157,18 @@ public class RegisterServlet extends HttpServlet {
 			session.setAttribute("registerUsername", username);
 			session.setAttribute("registerPassword", password);
 			session.setAttribute("registerPassword2", password2);
-			
 			// Forward to view to render the result HTML document
 			req.getRequestDispatcher("/_view/register.jsp").forward(req, resp);
 		}
 		else if (passedTests) {
 			// set the attribute named "register" to return the model
-			req.setAttribute("register", model);
-			req.setAttribute("message", message);
-			req.setAttribute("posts", posts);
+			req.setAttribute("register", model);	
 			// Forward to view to render the result HTML document
 			HttpSession session = req.getSession();
 			session.removeAttribute("registerUsername");
 			session.removeAttribute("registerPassword");
 			session.removeAttribute("registerPassword2");
-			
+			session.setAttribute("loggedInMessage", message);
 			// Login was successful, now we should create a session so that the rest
 			// of the website knows that the person is logged in
 			session.setAttribute("username", username);
@@ -190,7 +184,7 @@ public class RegisterServlet extends HttpServlet {
 			session.setAttribute("userID", StringID);
 			session.setAttribute("user", user);
 			
-			req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
+			resp.sendRedirect("/project_database/home");
 		}
 	}
 	
