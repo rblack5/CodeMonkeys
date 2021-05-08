@@ -1,4 +1,5 @@
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid" %>  
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
 <rapid:override name="content">
 	<%
@@ -18,6 +19,11 @@
 			<fieldset class = "form-group">
 	                <legend class="border-bottom mb-4">Edit Profile</legend>
 				
+			<c:if test="${! empty errorMessage}">
+				<div class="error mb-3" style="color:Red;">${errorMessage}</div>
+			</c:if>
+
+
 				<div class="label mb-2 mt-1">Username: </div>
 				<table>
 					<tr>
@@ -46,7 +52,18 @@
 					</tr>
 				</table>
 	
-	
+
+				<div class="label mb-2 mt-3">Confirm Password: </div>
+				<table>
+					<tr>
+						<td><input type="password" name="password2" id="password2" size="50" value="${registerPassword2}" placeholder="Confirm Password" maxlength="20" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" 
+						title="Must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and be at least 5 characters long"/>
+						</td>
+					</tr>
+				</table>
+
+				<br>
+				<div class="label mb-2 mt-3">Theme: </div>
 				<table>
 						<tr>
 							<td>
@@ -80,11 +97,14 @@
 	<script>
 	function toggleEye() {
 	  	var pass = document.getElementById("password");
+		var pass2 = document.getElementById("password2");
 	  	if (pass.type == "password") {
 	  	  pass.type = "text";
+		  pass2.type = "text";
 		document.getElementById("eye").style.color = "blue";
 	  	}else{
 	  	  pass.type = "password";
+		  pass2.type = "password";
 		document.getElementById("eye").style.color = "black";
 	  	}
 	}

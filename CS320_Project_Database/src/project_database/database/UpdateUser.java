@@ -35,7 +35,7 @@ public class UpdateUser {
 		System.out.println("Success");
 		
 	}
-	public void updateUser(int userID, String username, String password, String bio, String postTheme) {
+	public void updateUser(int userID, String username, String password, String password2, String bio, String postTheme) {
 		DerbyDatabase db = new DerbyDatabase();
 		UserModel original = db.findMatchingUserByUserID(userID);
 		
