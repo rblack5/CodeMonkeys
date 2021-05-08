@@ -24,20 +24,26 @@ public class InsertNewPost {
 		System.out.print("Enter a date: ");
 		String date = keyboard.nextLine();
 		
+		String textStyle = "all: unset;";
+		String backgroundStyle = "";
+		String linkStyle = "all: unset; color:blue; cursor:pointer; text-decoration:underline;";
+		String titleStyle = "color: #444444;";
 		// get the DB instance and execute transaction
 		PostModel post;
-		post = db.insertNewPost(userID, username, postTitle, postBody, date);
+		post = db.insertNewPost(userID, username, postTitle, postBody, textStyle, backgroundStyle, linkStyle, titleStyle, date);
 		
 		System.out.println("Success");
 		System.out.println("Post ID is: " + post.getPostID());
 		keyboard.close();
 	}
 	
-	public PostModel insertNewPost(int userID, String username, String postTitle, String postBody, String dateCreated) {
+	public PostModel insertNewPost(int userID, String username, String postTitle, String postBody, String textStyle, String backgroundStyle, String linkStyle, 
+			String titleStyle, String dateCreated) {
 		DerbyDatabase db = new DerbyDatabase();
 		System.out.println("User id is ==> " + userID);
 		PostModel post;
-		post = db.insertNewPost(userID, username, postTitle, postBody, dateCreated);
+		
+		post = db.insertNewPost(userID, username, postTitle, postBody, textStyle, backgroundStyle, linkStyle, titleStyle, dateCreated);
 		System.out.println("Success");
 		System.out.println("Post ID is: " + post.getPostID());
 		return post;

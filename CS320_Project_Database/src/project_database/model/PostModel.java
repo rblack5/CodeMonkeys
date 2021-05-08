@@ -1,7 +1,7 @@
 package project_database.model;
 
 public class PostModel {
-	private String title, body, username, dateCreated;
+	private String title, body, username, dateCreated, textStyle, backgroundStyle, linkStyle, titleStyle;
 	private int postID, userID;
 	
 	public PostModel() {
@@ -47,6 +47,39 @@ public class PostModel {
 	public String getUsername() {
 		return this.username;
 	}
+	
+	public void setTextStyle(String textStyle) {
+		this.textStyle = textStyle;
+	}
+	
+	public String getTextStyle() {
+		return this.textStyle;
+	}
+	
+	public void setBackgroundStyle(String backgroundStyle) {
+		this.backgroundStyle = backgroundStyle;
+	}
+	
+	public String getBackgroundStyle() {
+		return this.backgroundStyle;
+	}
+	
+	public void setLinkStyle(String linkStyle) {
+		this.linkStyle = linkStyle;
+	}
+	
+	public String getLinkStyle() {
+		return this.linkStyle;
+	}
+	
+	public void setTitleStyle(String titleStyle) {
+		this.titleStyle = titleStyle;
+	}
+	
+	public String getTitleStyle() {
+		return this.titleStyle;
+	}
+	
 	
 	public void setDateCreated(String dateCreated) {
 		this.dateCreated = dateCreated;

@@ -24,7 +24,7 @@ public class ViewAllUsers {
 		else { 
 			for (UserModel user : userList) {
 				System.out.println("UserID: " + user.getUserID() + " | Username: " + user.getUsername() +  " | Password: " + user.getPassword() +  " | Bio: " + user.getBio()
-				 + " | DateJoined: " + user.getDateJoined()  + " | AdminStatus: " + user.getAdminStatus());
+				 + " | PostTheme: " + user.getPostTheme() + " | DateJoined: " + user.getDateJoined()  + " | AdminStatus: " + user.getAdminStatus());
 			}
 		}
 	}

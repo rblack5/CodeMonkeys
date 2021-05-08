@@ -10,10 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import project_database.controller.LoginController;
-import project_database.controller.PostController;
 import project_database.model.PostModel;
-import project_database.model.UserModel;
 import project_database.persist.DerbyDatabase;
 
 public class SortServlet extends HttpServlet {

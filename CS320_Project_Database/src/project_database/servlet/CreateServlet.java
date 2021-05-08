@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import project_database.controller.PostController;
 import project_database.model.PostModel;
+import project_database.model.UserModel;
 
 public class CreateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -85,6 +86,22 @@ public class CreateServlet extends HttpServlet {
 				System.out.println("userID is: " + userID);
 				
 				int realUserID = Integer.parseInt(userID);
+				
+				UserModel user = new UserModel();
+				user = (UserModel) session.getAttribute("user");
+				
+				if (user.getPostTheme().equals("light")) {
+					model.setTextStyle("all: unset;");
+					model.setBackgroundStyle("");
+					model.setLinkStyle("all: unset; color:blue; cursor:pointer; text-decoration:underline;");
+					model.setTitleStyle("font-size: 2.15em; font-weight: bolder; color: #444444;");
+				}
+				else if (user.getPostTheme().equals("dark")) {
+					model.setTextStyle("all: unset; color:white;");
+					model.setBackgroundStyle("background-color: #000000;");
+					model.setLinkStyle("all: unset; color:white; cursor:pointer; text-decoration:underline;");
+					model.setTitleStyle("font-size: 2.15em; font-weight: bolder; color:white;");
+				}
 				
 				model.setUserID(realUserID);
 				

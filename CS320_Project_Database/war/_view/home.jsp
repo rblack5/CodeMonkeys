@@ -50,16 +50,17 @@
 	
 	
 	<c:forEach items="${posts}" var="post">
-		<article class="media content-section">
+		<article class="media content-section" style = "${post.backgroundStyle}">
 	    	<img class ="rounded-circle article-img" src= "${pageContext.request.contextPath}/_view/images/default.jpg">
 	    	<div class="media-body">
 				<form action = "/project_database/profile">
 				    	<div class="article-metadata">
 				        	<a class="mr-2" href="/project_database/profile">
+
 								<input type = "hidden" id = "userID" name = "userID" value = "${post.userID}">
-					    		<input type = "submit" value = "${post.username}" style = "all: unset; cursor:pointer; color:blue; text-decoration:underline;">
+					    		<input type = "submit" value = "${post.username}" style = "${post.linkStyle}">
 							</a>
-				        	<small class="text-muted">${post.dateCreated}</small>
+				        	<small class="" style = "${post.textStyle}">${post.dateCreated}</small>
 				    	</div>
 				</form>
 				
@@ -69,7 +70,7 @@
 				    	<h2>
 					    	<a class="article-title" href="/project_database/post">
 					    		<input type = "hidden" id = "postID" name = "postID" value = "${post.postID}">
-				    			<input class="article-title" type = "submit" value = "${post.title}" style = "all: unset">
+				    			<input class="article-title" type = "submit" value = "${post.title}" style = "${post.textStyle}"> <!--  Variable can go here -->
 						    </a>
 						</h2>
 					</div>

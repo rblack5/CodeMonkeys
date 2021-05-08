@@ -11,7 +11,7 @@
 		<div class="" style = "font-size: 1.7rem; color: black; margin-bottom: 16px;"> ${message}</div>
 	</c:if>
 
-	<article class="media content-section">
+	<article class="media content-section" style = "${post.backgroundStyle}">
 	    <img class ="rounded-circle article-img" src= "${pageContext.request.contextPath}/_view/images/default.jpg">
 	    
 	    <div class="media-body">
@@ -19,9 +19,9 @@
 		    	<form action = "/project_database/profile">
 			        <a class="mr-2" href="/project_database/profile">
 						<input type = "hidden" id = "userID" name = "userID" value = "${post.userID}">
-			    		<input type = "submit" value = "${post.username}" style = "all: unset; cursor:pointer; color:blue; text-decoration:underline;">
+			    		<input type = "submit" value = "${post.username}" style = "${post.linkStyle}">
 					</a>
-					<small class="text-muted">${post.dateCreated}</small>
+					<small class="" style = "${post.textStyle}">${post.dateCreated}</small>
 				</form>
 				
 		        
@@ -53,8 +53,8 @@
 		        
 		    </div>
 	    
-		    <h2 class="article-title">${post.title}</h2>
-		    <p class="article-content">${post.body}</p>
+		    <div style = "${post.titleStyle}">${post.title}</div>
+		    <p class="article-content" style = "${post.textStyle}">${post.body}</p>
 	    </div>
 	</article>
 

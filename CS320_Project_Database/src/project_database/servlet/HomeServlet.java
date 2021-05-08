@@ -100,6 +100,8 @@ public class HomeServlet extends HttpServlet {
 		if (page-1 >= 0)
 			session.setAttribute("pageNumberMinus", page-1);
 		
+		req.setAttribute("textStyle", "all: unset; color: #511f11 !important;");
+		
 		req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
 	}
 	

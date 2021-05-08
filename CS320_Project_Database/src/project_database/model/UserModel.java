@@ -1,7 +1,7 @@
 package project_database.model;
 
 public class UserModel {
-	private String username, password, bio, dateJoined;
+	private String username, password, bio, dateJoined, postTheme;
 	private int userID;
 	private boolean adminStatus;
 	
@@ -46,6 +46,14 @@ public class UserModel {
 	
 	public String getDateJoined() {
 		return this.dateJoined;
+	}
+	
+	public void setPostTheme(String theme) {
+		this.postTheme = theme;
+	}
+	
+	public String getPostTheme() {
+		return this.postTheme;
 	}
 	
 	public void setAdminStatus(Boolean adminStatus) {

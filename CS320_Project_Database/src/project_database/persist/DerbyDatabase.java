@@ -324,7 +324,7 @@ public class DerbyDatabase {
 	}
 	
 	
-	public List<Pair<UserModel, PostModel>> insertNewUser(String username, String password, String bio, String dateJoined, Boolean adminStatus) {
+	public List<Pair<UserModel, PostModel>> insertNewUser(String username, String password, String bio, String dateJoined, String postTheme, Boolean adminStatus) {
 		return executeTransaction(new Transaction<List<Pair<UserModel, PostModel>>>() {
 			
 			@SuppressWarnings("resource")
@@ -338,15 +338,16 @@ public class DerbyDatabase {
 					// Prepare the statement to insert the new PostModel into the PostModels table.
 				try {
 					stmt = conn.prepareStatement(
-							" INSERT INTO Users (username, password, bio, dateJoined, adminStatus) "
-							+ "VALUES (?, ?, ?, ?, ?) "		
+							" INSERT INTO Users (username, password, bio, dateJoined, postTheme, adminStatus) "
+							+ "VALUES (?, ?, ?, ?, ?, ?) "		
 							);
 					
 					stmt.setString(1, username);
 					stmt.setString(2, password);
 					stmt.setString(3, bio);
 					stmt.setString(4, dateJoined);
-					stmt.setBoolean(5, adminStatus);
+					stmt.setString(5, postTheme);
+					stmt.setBoolean(6, adminStatus);
 					
 					
 					
@@ -451,7 +452,8 @@ public class DerbyDatabase {
 		});
 	}
 	
-	public PostModel insertNewPost(int userID, String username, String postTitle, String postBody, String dateCreated) {
+	public PostModel insertNewPost(int userID, String username, String postTitle, String postBody, String textStyle, String backgroundStyle, String linkStyle, 
+			String titleStyle, String dateCreated) {
 		return executeTransaction(new Transaction<PostModel>() {
 			
 			@Override
@@ -466,15 +468,19 @@ public class DerbyDatabase {
 					// Prepare the statement to insert the new PostModel into the PostModels table.
 				try {
 					stmt = conn.prepareStatement(
-							" INSERT INTO Posts (userID, username, postTitle, postBody, dateCreated) "
-							+ "VALUES (?, ?, ?, ?, ?) "		
+							" INSERT INTO Posts (userID, username, postTitle, postBody, textStyle, backgroundStyle, linkStyle, titleStyle, dateCreated) "
+							+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) "		
 							);
 					
 					stmt.setInt(1, userID);
 					stmt.setString(2, username);
 					stmt.setString(3, postTitle);
 					stmt.setString(4, postBody);
-					stmt.setString(5, dateCreated);
+					stmt.setString(5, textStyle);
+					stmt.setString(6, backgroundStyle);
+					stmt.setString(7, linkStyle);
+					stmt.setString(8, titleStyle);
+					stmt.setString(9, dateCreated);
 
 					// Execute the query and insert the new PostModel into the PostModels table.
 					stmt.executeUpdate();
@@ -663,6 +669,7 @@ public class DerbyDatabase {
 		UserModel.setPassword(resultSet.getString(index++));
 		UserModel.setBio(resultSet.getString(index++));
 		UserModel.setDateJoined(resultSet.getString(index++));
+		UserModel.setPostTheme(resultSet.getString(index++));
 		UserModel.setAdminStatus(resultSet.getBoolean(index++));
 	}
 	
@@ -672,6 +679,10 @@ public class DerbyDatabase {
 		PostModel.setUsername(resultSet.getString(index++));
 		PostModel.setTitle(resultSet.getString(index++));
 		PostModel.setBody(resultSet.getString(index++));
+		PostModel.setTextStyle(resultSet.getString(index++));
+		PostModel.setBackgroundStyle(resultSet.getString(index++));
+		PostModel.setLinkStyle(resultSet.getString(index++));
+		PostModel.setTitleStyle(resultSet.getString(index++));
 		PostModel.setDateCreated(resultSet.getString(index++));
 	}
 	
@@ -715,6 +726,7 @@ public class DerbyDatabase {
 							"	password varchar(200)," +
 							"	bio varchar(1000)," +
 							"   dateJoined varchar(20), " +
+							"   postTheme varchar(100), " +
 							"	adminStatus boolean, " +
 							"   CONSTRAINT UC_USER UNIQUE (username) " +
 							")"
@@ -731,6 +743,10 @@ public class DerbyDatabase {
 							"	username varchar(20)," +
 							"	postTitle varchar(100)," +
 							"	postBody varchar(1000)," +
+							"	textStyle varchar(100)," +
+							"	backgroundStyle varchar(100)," +
+							"	linkStyle varchar(100)," +
+							"	titleStyle varchar(100)," +
 							"   dateCreated varchar(20) " +
 							")"
 					);

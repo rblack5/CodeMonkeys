@@ -90,7 +90,8 @@ public class PostController {
 //		UserModel user = h.findMatchingUserByUserID(model.getUserID());
 		PostModel post;
 		
-		post = g.insertNewPost(model.getUserID(), model.getUsername(), model.getTitle(), model.getBody(), dateCreated.format(formatter));
+		post = g.insertNewPost(model.getUserID(), model.getUsername(), model.getTitle(), model.getBody(), model.getTextStyle(), model.getBackgroundStyle(), 
+				model.getLinkStyle(), model.getTitleStyle(), dateCreated.format(formatter));
 		return post;
 	}
 	
