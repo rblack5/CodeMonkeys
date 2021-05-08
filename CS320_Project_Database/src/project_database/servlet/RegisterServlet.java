@@ -35,7 +35,8 @@ public class RegisterServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		System.out.println("Register Servlet: doGet");
-		
+		HttpSession session = req.getSession();
+		session.removeAttribute("posts");
 		req.getRequestDispatcher("/_view/register.jsp").forward(req, resp);
 	}
 	
@@ -47,8 +48,7 @@ public class RegisterServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		System.out.println("Register Servlet: doPost");
-		
-
+		HttpSession session = req.getSession();
 		// holds the error message text, if there is any
 		String errorMessage = null;
 		Boolean passedTests = true;
@@ -153,7 +153,6 @@ public class RegisterServlet extends HttpServlet {
 			// this adds the errorMessage text and the result to the response
 			req.setAttribute("errorMessage", errorMessage);
 			
-			HttpSession session = req.getSession();
 			session.setAttribute("registerUsername", username);
 			session.setAttribute("registerPassword", password);
 			session.setAttribute("registerPassword2", password2);
@@ -164,7 +163,6 @@ public class RegisterServlet extends HttpServlet {
 			// set the attribute named "register" to return the model
 			req.setAttribute("register", model);	
 			// Forward to view to render the result HTML document
-			HttpSession session = req.getSession();
 			session.removeAttribute("registerUsername");
 			session.removeAttribute("registerPassword");
 			session.removeAttribute("registerPassword2");

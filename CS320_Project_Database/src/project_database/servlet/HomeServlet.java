@@ -86,7 +86,7 @@ public class HomeServlet extends HttpServlet {
 		}
 		
 		// cleaning things up
-		session.removeAttribute("posts");
+		// session.removeAttribute("posts");
 		session.removeAttribute("pageNumberPlus");
 		session.removeAttribute("pageNumberMinus");
 		session.removeAttribute("loggedInMessage");

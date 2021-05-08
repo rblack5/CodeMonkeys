@@ -19,6 +19,8 @@ public class CreateServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		System.out.println("Create Servlet: doGet");
+		HttpSession session = req.getSession();
+		session.removeAttribute("posts");
 		
 		req.getRequestDispatcher("/_view/create.jsp").forward(req, resp);
 	}

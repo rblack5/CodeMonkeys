@@ -25,6 +25,8 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// test
 		System.out.println("Login Servlet: doGet");
+		HttpSession session = req.getSession();
+		session.removeAttribute("posts");
 		
 		req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
 	}
@@ -34,8 +36,7 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		System.out.println("Login Servlet: doPost");
-		
-
+		HttpSession session = req.getSession();
 		// holds the error message text, if there is any
 		String message = null;
 		String username = null;
@@ -84,7 +85,6 @@ public class LoginServlet extends HttpServlet {
 				else {
 					// Login was successful, now we should create a session so that the rest
 					// of the website knows that the person is logged in
-					HttpSession session = req.getSession();
 					session.setAttribute("username", model.getUsername());
 					
 					// We are doing this to find what the userID of the user is, and setting

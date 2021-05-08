@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import project_database.controller.ProfileController;
 import project_database.model.PostModel;
@@ -19,6 +20,8 @@ public class ProfileServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		System.out.println("Profile Servlet: doGet");
+		HttpSession session = req.getSession();
+		session.removeAttribute("posts");
 		
 		if(req.getParameter("userID") != null) {
 		String userID = req.getParameter("userID");
