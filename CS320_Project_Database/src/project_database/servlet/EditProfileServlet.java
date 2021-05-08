@@ -48,6 +48,7 @@ public class EditProfileServlet extends HttpServlet {
 			String username = req.getParameter("username");
 			String bio = req.getParameter("bio");
 			String password = req.getParameter("password");
+			String password2 = req.getParameter("password2");
 			String postTheme = req.getParameter("check");
 			
 			String userIDString = (String) session.getAttribute("userID");
@@ -56,13 +57,14 @@ public class EditProfileServlet extends HttpServlet {
 			UpdateUser u = new UpdateUser();
 			FindMatchingUserByUserID f = new FindMatchingUserByUserID();
 			
-			u.updateUser(userID, username, password, bio, postTheme);
+			u.updateUser(userID, username, password, password2, bio, postTheme);
 			
 			UserModel user = f.findMatchingUserByUserID(userID);
 			
 			model.setBio(user.getBio());
 			model.setName(user.getUsername());
 			model.setPassword(user.getPassword());
+			
 			
 			session.setAttribute("user", user);
 			session.setAttribute("username", user.getUsername());
@@ -71,7 +73,17 @@ public class EditProfileServlet extends HttpServlet {
 			System.out.println("Name: " + username);
 			System.out.println("Bio: " + bio);
 			System.out.println("Password: " + password);
+			System.out.println("Password2: " + password2);
 			System.out.println("Theme: " + postTheme);
+			
+			
+			System.out.println("Checking matching passwords...");
+			if(!password.equals(password2)) {
+				errorMessage = "Passwords do not match";
+				System.out.println("Passwords do not match");
+				//passedTests = false;
+			}
+			
 			
 		} catch (NumberFormatException e) {
 			errorMessage = "Invalid double";

@@ -1,4 +1,5 @@
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid" %>  
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
 <rapid:override name="content">
 	<%
@@ -18,6 +19,11 @@
 			<fieldset class = "form-group">
 	                <legend class="border-bottom mb-4">Edit Profile</legend>
 				
+			<c:if test="${! empty errorMessage}">
+				<div class="error mb-3" style="color:Red;">${errorMessage}</div>
+			</c:if>
+
+
 				<div class="label mb-2 mt-1">Username: </div>
 				<table>
 					<tr>
@@ -34,6 +40,7 @@
 				</table>
 				
 				<div class="label mb-2 mt-3">Password: </div>
+				
 				<table>
 					<tr>
 						<td><input type="password" name="password" id="password" placeholder="Enter New Password" size="50" value="${UserModel.password}" maxlength="20" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" 
@@ -41,41 +48,63 @@
 						<span id="eye" onClick="toggleEye()" >
 							<i class="fas fa-eye"></i>
 							</span>
+						</td>
+					</tr>
+				</table>
 	
-					<table>
-							<tr>
-								<td>
-									<div>
-										<div class = "row w-100 m-0 p-0">
-											<div class = "pr-3"> Light
-												<input type="radio" id = "check1" name="check" value = "light" />
-											</div>
-											<div class = "pr-3"> Dark
-												<input type="radio" id = "check2" name="check" value = "dark"/>
-											</div>
-											<div class = "pr-3"> Fire
-												<input type="radio" id = "check3" name="check" value = "fire" />
-											</div>
+
+				<div class="label mb-2 mt-3">Confirm Password: </div>
+				<table>
+					<tr>
+						<td><input type="password" name="password2" id="password2" size="50" value="${registerPassword2}" placeholder="Confirm Password" maxlength="20" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" 
+						title="Must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and be at least 5 characters long"/>
+						</td>
+					</tr>
+				</table>
+
+				<br>
+				<div class="label mb-2 mt-3">Theme: </div>
+				<table>
+						<tr>
+							<td>
+								<div>
+									<div class = "row w-100 m-0 p-0">
+										<div class = "pr-3"> Light
+											<input type="radio" id = "check1" name="check" value = "light" />
+										</div>
+										<div class = "pr-3"> Dark
+											<input type="radio" id = "check2" name="check" value = "dark"/>
+										</div>
+										<div class = "pr-3"> Fire
+											<input type="radio" id = "check3" name="check" value = "fire" />
 										</div>
 									</div>
-								</td>
-							</tr>
-					</table>
-		
-						<div class="form-group mt-4">
-							<button class="btn btn-outline-info" type="Submit" value="Save Changes">Save Changes</button>
-						</div>
+								</div>
+							</td>
+						</tr>
+
 				</table>
+		
+		
+				<div class="form-group mt-4">
+					<button class="btn btn-outline-info" type="Submit" value="Save Changes">Save Changes</button>
+				</div>
+						
+
+
 					
 	
 	<script>
 	function toggleEye() {
 	  	var pass = document.getElementById("password");
+		var pass2 = document.getElementById("password2");
 	  	if (pass.type == "password") {
 	  	  pass.type = "text";
+		  pass2.type = "text";
 		document.getElementById("eye").style.color = "blue";
 	  	}else{
 	  	  pass.type = "password";
+		  pass2.type = "password";
 		document.getElementById("eye").style.color = "black";
 	  	}
 	}
