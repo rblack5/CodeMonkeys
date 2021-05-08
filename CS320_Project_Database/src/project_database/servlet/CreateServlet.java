@@ -94,13 +94,13 @@ public class CreateServlet extends HttpServlet {
 					model.setTextStyle("all: unset;");
 					model.setBackgroundStyle("");
 					model.setLinkStyle("all: unset; color:blue; cursor:pointer; text-decoration:underline;");
-					model.setTitleStyle("font-size: 2.15em; font-weight: bolder; color: #444444;");
+					model.setTitleStyle("font-size: 2.20em; font-weight: bolder; color: #444444;");
 				}
 				else if (user.getPostTheme().equals("dark")) {
 					model.setTextStyle("all: unset; color:white;");
 					model.setBackgroundStyle("background-color: #000000;");
 					model.setLinkStyle("all: unset; color:white; cursor:pointer; text-decoration:underline;");
-					model.setTitleStyle("font-size: 2.15em; font-weight: bolder; color:white;");
+					model.setTitleStyle("font-size: 2.20em; font-weight: bolder; color:white;");
 				}
 				
 				model.setUserID(realUserID);

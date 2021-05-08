@@ -27,6 +27,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/_view/styles/main.css" type="text/css">
 		<!-- Icon Library -->
 	<script src="https://kit.fontawesome.com/15a68e8958.js" crossorigin="anonymous"></script>
+	<script src="jquery-3.5.1.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     </head>

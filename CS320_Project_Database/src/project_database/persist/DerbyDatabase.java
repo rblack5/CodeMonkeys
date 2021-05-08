@@ -366,7 +366,7 @@ public class DerbyDatabase {
 		});
 	}
 	
-	public List<Pair<UserModel, PostModel>> updateUser(int userID, String username, String password, String bio) {
+	public List<Pair<UserModel, PostModel>> updateUser(int userID, String username, String password, String bio, String postTheme) {
 		return executeTransaction(new Transaction<List<Pair<UserModel, PostModel>>>() {
 			
 			@SuppressWarnings("resource")
@@ -380,14 +380,15 @@ public class DerbyDatabase {
 				try {
 					stmt = conn.prepareStatement(
 							" UPDATE Users "
-							+ "SET username=?, password=?, bio=? "
+							+ "SET username=?, password=?, bio=?, postTheme=? "
 							+ "WHERE userID = ? "
 							);
 					
 					stmt.setString(1, username);
 					stmt.setString(2, password);
 					stmt.setString(3, bio);
-					stmt.setInt(4, userID);
+					stmt.setString(4, postTheme);
+					stmt.setInt(5, userID);
 					
 					
 					

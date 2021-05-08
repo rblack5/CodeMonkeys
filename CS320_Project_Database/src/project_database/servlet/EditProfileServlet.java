@@ -48,15 +48,15 @@ public class EditProfileServlet extends HttpServlet {
 			String username = req.getParameter("username");
 			String bio = req.getParameter("bio");
 			String password = req.getParameter("password");
+			String postTheme = req.getParameter("check");
+			
 			String userIDString = (String) session.getAttribute("userID");
 			int userID = Integer.parseInt(userIDString);
-
-			String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt(12));
 				
 			UpdateUser u = new UpdateUser();
 			FindMatchingUserByUserID f = new FindMatchingUserByUserID();
 			
-			u.updateUser(userID, username, hashedPassword, bio);
+			u.updateUser(userID, username, password, bio, postTheme);
 			
 			UserModel user = f.findMatchingUserByUserID(userID);
 			
@@ -71,6 +71,7 @@ public class EditProfileServlet extends HttpServlet {
 			System.out.println("Name: " + username);
 			System.out.println("Bio: " + bio);
 			System.out.println("Password: " + password);
+			System.out.println("Theme: " + postTheme);
 			
 		} catch (NumberFormatException e) {
 			errorMessage = "Invalid double";
