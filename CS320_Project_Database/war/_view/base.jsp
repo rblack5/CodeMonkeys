@@ -42,7 +42,22 @@
          </c:if>
 
 
+		 <!-- THIS CODE IS NOT OURS! This is an API from FullCalendar https://fullcalendar.io/ -->
+		<meta charset='utf-8' />
+    	<link href='${pageContext.request.contextPath}/_view/fullcalendar/lib/main.css' rel='stylesheet' />
+    	<script src='${pageContext.request.contextPath}/_view/fullcalendar/lib/main.js'></script>
+    	<script>
 
+      	document.addEventListener('DOMContentLoaded', function() {
+        	var calendarEl = document.getElementById('calendar');
+        	var calendar = new FullCalendar.Calendar(calendarEl, {
+          	initialView: 'dayGridMonth'
+        	});
+        	calendar.render();
+      	});
+
+    	</script>
+		<!-- END OF FULLCALENDAR SCRIPT-->
 
 
 
@@ -114,16 +129,9 @@
 	            </div>
 
 	            <div class="col-md-4">
-	                <div class="content-section">
-		                <h3>Student Database</h3>
-		                <p class='text-muted'>Filler</p>
-	                    <ul class="list-group">
-		                    <li class="list-group-item list-group-item-light">Student Database</li>
-		                    <li class="list-group-item list-group-item-light">etc...</li>
-		                    <li class="list-group-item list-group-item-light">etc...</li>
-		                    <li class="list-group-item list-group-item-light">etc...</li>
-	                    </ul>
-	                </div>
+	                <div>
+						<div id='calendar'></div>
+					</div>
 	            </div>
             </div>
         </main>
