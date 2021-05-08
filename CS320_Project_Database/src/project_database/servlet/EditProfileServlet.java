@@ -50,6 +50,7 @@ public class EditProfileServlet extends HttpServlet {
 			String password = req.getParameter("password");
 			String password2 = req.getParameter("password2");
 			String postTheme = req.getParameter("postTheme");
+			String accountTheme = req.getParameter("accountTheme");
 			
 			String userIDString = (String) session.getAttribute("userID");
 			int userID = Integer.parseInt(userIDString);
@@ -57,7 +58,7 @@ public class EditProfileServlet extends HttpServlet {
 			UpdateUser u = new UpdateUser();
 			FindMatchingUserByUserID f = new FindMatchingUserByUserID();
 			
-			u.updateUser(userID, username, password, password2, bio, postTheme);
+			u.updateUser(userID, username, password, password2, bio, postTheme, accountTheme);
 			
 			UserModel user = f.findMatchingUserByUserID(userID);
 			
