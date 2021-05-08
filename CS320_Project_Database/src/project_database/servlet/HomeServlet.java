@@ -2,6 +2,7 @@ package project_database.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -35,9 +36,11 @@ public class HomeServlet extends HttpServlet {
 		
 		if (session.getAttribute("posts") == null) {
 			posts = controller.getAllPosts();
+			Collections.reverse(posts);
 		}
 		else {
 			posts = (List<PostModel>) session.getAttribute("posts");
+			Collections.reverse(posts);
 			if (posts.isEmpty()) {
 				req.setAttribute("message", "No posts matched your search!");
 			}

@@ -11,16 +11,42 @@
 			<div class="media message-content-section bg-steel p-3" style = "font-size: 1.6rem; background-color: #5f788a; color: #fbfcfd; font-weight: bold; margin-bottom: 20px;"> ${message}</div>
 	</c:if>
 	
-	<form action = "/project_database/search">
-	    	<div class = "row w-100 m-1 pb-0">
-				<input autocomplete="off" type = "text" name = "search" value = "" placeholder="Search..." size="50" maxlength="100" class = "media content-section">
-				<div class = "pl-3">
-					<a class = "btn btn-success btn-md mt-1 mb-0">
-		    			<input type = "submit" value = "Search!" style = "all: unset; cursor:pointer; color:white;">
+	<div class = "row w-100 m-0 p-0">
+		<form action = "/project_database/search">
+		    	<div class = "row w-100 m-1 pb-0">
+					<input autocomplete="off" type = "text" name = "search" value = "" placeholder="Search..." size="50" maxlength="100" class = "media content-section">
+					<div class = "pl-3">
+						<a class = "btn btn-success btn-md mt-1 mb-0">
+			    			<input type = "submit" value = "Search" style = "all: unset; cursor:pointer; color:white;">
+			    		</a>
+			    	</div>
+		    	</div>
+		</form>
+		
+		<form action = "/project_database/sort">
+			<div class = "row w-100 m-1 pb-0">
+				<div class = "pl-2">
+					<a class = "btn btn-info btn-md mt-1 mb-0">
+						<input type = "hidden" name = "sort" value = "newest">
+		    			<input type = "submit" value = "Newest" style = "all: unset; cursor:pointer; color:white;">
 		    		</a>
 		    	</div>
-	    	</div>
-	</form>
+		    </div>
+		</form>
+		
+		<form action = "/project_database/sort">
+			<div class = "row w-100 m-1 pb-0">
+				<div class = "pl-2">
+					<a class = "btn btn-secondary btn-md mt-1 mb-0">
+						<input type = "hidden" name = "sort" value = "oldest">
+		    			<input type = "submit" value = "Oldest" style = "all: unset; cursor:pointer; color:white;">
+		    		</a>
+		    	</div>
+		    </div>
+		</form>
+		
+		
+	</div>
 	
 	
 	<c:forEach items="${posts}" var="post">
@@ -57,7 +83,7 @@
 		<c:if test="${! empty pageNumberMinus}">
 			<form action = "/project_database/home">
 				<div class = "pr-3">
-					<a class = "btn btn-success btn-md mt-1 mb-0">
+					<a class = "btn btn-danger btn-md mt-1 mb-0">
 						<input type = "hidden" id = "page" name = "page" value = "${pageNumberMinus}">
 					    <input type = "submit" value = "Prev Page" style = "all: unset; cursor:pointer; color:white;">
 					</a>
