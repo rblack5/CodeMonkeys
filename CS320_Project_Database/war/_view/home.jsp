@@ -13,7 +13,7 @@
 	
 	<form action = "/project_database/search">
 	    	<div class = "row w-100 m-1 pb-0">
-				<input type = "text" name = "search" value = "" placeholder="Search..." size="50" maxlength="100" class = "media content-section">
+				<input autocomplete="off" type = "text" name = "search" value = "" placeholder="Search..." size="50" maxlength="100" class = "media content-section">
 				<div class = "pl-3">
 					<a class = "btn btn-success btn-md mt-1 mb-0">
 		    			<input type = "submit" value = "Search!" style = "all: unset; cursor:pointer; color:white;">
