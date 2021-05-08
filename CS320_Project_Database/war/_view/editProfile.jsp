@@ -34,6 +34,7 @@
 				</table>
 				
 				<div class="label mb-2 mt-3">Password: </div>
+				
 				<table>
 					<tr>
 						<td><input type="password" name="password" id="password" placeholder="Enter New Password" size="50" value="${UserModel.password}" maxlength="20" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" 
@@ -41,31 +42,39 @@
 						<span id="eye" onClick="toggleEye()" >
 							<i class="fas fa-eye"></i>
 							</span>
+						</td>
+					</tr>
+				</table>
 	
-					<table>
-							<tr>
-								<td>
-									<div>
-										<div class = "row w-100 m-0 p-0">
-											<div class = "pr-3"> Light
-												<input type="radio" id = "check1" name="check" value = "light" />
-											</div>
-											<div class = "pr-3"> Dark
-												<input type="radio" id = "check2" name="check" value = "dark"/>
-											</div>
-											<div class = "pr-3"> Fire
-												<input type="radio" id = "check3" name="check" value = "fire" />
-											</div>
+	
+				<table>
+						<tr>
+							<td>
+								<div>
+									<div class = "row w-100 m-0 p-0">
+										<div class = "pr-3"> Light
+											<input type="radio" id = "check1" name="check" value = "light" />
+										</div>
+										<div class = "pr-3"> Dark
+											<input type="radio" id = "check2" name="check" value = "dark"/>
+										</div>
+										<div class = "pr-3"> Fire
+											<input type="radio" id = "check3" name="check" value = "fire" />
 										</div>
 									</div>
-								</td>
-							</tr>
-					</table>
-		
-						<div class="form-group mt-4">
-							<button class="btn btn-outline-info" type="Submit" value="Save Changes">Save Changes</button>
-						</div>
+								</div>
+							</td>
+						</tr>
+
 				</table>
+		
+		
+				<div class="form-group mt-4">
+					<button class="btn btn-outline-info" type="Submit" value="Save Changes">Save Changes</button>
+				</div>
+						
+
+
 					
 	
 	<script>
