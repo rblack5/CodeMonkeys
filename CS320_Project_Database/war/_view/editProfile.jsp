@@ -42,6 +42,21 @@
 						<i class="fas fa-eye"></i>
 						</span>
 
+			<table>
+				<tr>
+					<td>
+						<div>
+							<div class = "row w-100 m-0 p-0">
+								<div class = "pr-3"> Light
+									<input type="radio" id = "check1" name="check" value = "light" />
+								</div>
+								<div class = "pr-3"> Dark
+									<input type="radio" id = "check2" name="check" value = "dark"/>
+								</div>
+								<div class = "pr-3"> Fire
+									<input type="radio" id = "check3" name="check" value = "fire" />
+								</div>
+							</div>
 
 </td>
 				</tr>
