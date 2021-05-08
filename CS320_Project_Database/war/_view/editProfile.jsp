@@ -56,8 +56,8 @@
 								<div class = "pr-3"> Dark
 									<input type="radio" id = "check2" name="check" value = "dark"/>
 								</div>
-								<div class = "pr-3"> Gold
-									<input type="radio" id = "check3" name="check" value = "gold" />
+								<div class = "pr-3"> Fire
+									<input type="radio" id = "check3" name="check" value = "fire" />
 								</div>
 							</div>
 
