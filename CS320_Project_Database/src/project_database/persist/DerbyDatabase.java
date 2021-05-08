@@ -366,7 +366,7 @@ public class DerbyDatabase {
 		});
 	}
 	
-	public List<Pair<UserModel, PostModel>> updateUser(int userID, String username, String password, String bio, String postTheme) {
+	public List<Pair<UserModel, PostModel>> updateUser(int userID, String username, String password, String bio, String postTheme, String accountTheme) {
 		return executeTransaction(new Transaction<List<Pair<UserModel, PostModel>>>() {
 			
 			@SuppressWarnings("resource")
@@ -380,7 +380,7 @@ public class DerbyDatabase {
 				try {
 					stmt = conn.prepareStatement(
 							" UPDATE Users "
-							+ "SET username=?, password=?, bio=?, postTheme=? "
+							+ "SET username=?, password=?, bio=?, postTheme=?, accountTheme=?"
 							+ "WHERE userID = ? "
 							);
 					
@@ -388,7 +388,8 @@ public class DerbyDatabase {
 					stmt.setString(2, password);
 					stmt.setString(3, bio);
 					stmt.setString(4, postTheme);
-					stmt.setInt(5, userID);
+					stmt.setString(5, accountTheme);
+					stmt.setInt(6, userID);
 					
 					
 					
@@ -671,6 +672,7 @@ public class DerbyDatabase {
 		UserModel.setBio(resultSet.getString(index++));
 		UserModel.setDateJoined(resultSet.getString(index++));
 		UserModel.setPostTheme(resultSet.getString(index++));
+		UserModel.setAccountTheme(resultSet.getString(index++));
 		UserModel.setAdminStatus(resultSet.getBoolean(index++));
 	}
 	
@@ -728,6 +730,7 @@ public class DerbyDatabase {
 							"	bio varchar(1000)," +
 							"   dateJoined varchar(20), " +
 							"   postTheme varchar(100), " +
+							"   accountTheme varchar(100), " +
 							"	adminStatus boolean, " +
 							"   CONSTRAINT UC_USER UNIQUE (username) " +
 							")"

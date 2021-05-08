@@ -47,11 +47,12 @@ public class InsertNewUser {
 		
 	}
 	
-	public void insertNewUser(String username, String password, String bio, String dateJoined, String accountTheme) {
+	public void insertNewUser(String username, String password, String bio, String dateJoined) {
 		DerbyDatabase db = new DerbyDatabase();
 		Boolean adminStatus = false;
+		bio = "This user does not have a bio yet!";
 		String postTheme = "light";
-		//String accountTheme = "light";
+		String accountTheme = "light";
 		db.insertNewUser(username, password, bio, dateJoined, postTheme, adminStatus, accountTheme);
 		System.out.println("Success");
 	}
