@@ -54,10 +54,19 @@ function toggleEye() {
             <div class="form-group mt-4">
                 <button class="btn btn-outline-info" type="submit" value="Login">Login</button>
                 <small class="text-muted ml-2">
-                    <a href="{% url 'password_reset' %}">Forgot Password?</a>
+                    <a href=http://localhost:8081/project_database/register onclick="forgotPassAlert()">Forgot Password?</a>
                 </small>
             </div>
         </form>
+
+
+	<script>
+	function forgotPassAlert() {
+		alert("That sucks, too bad :( \n\n\nContact rgartrell@ycp.edu for help");
+	}
+	</script>
+
+
         <div class="border-top pt-3">
             <small class="text-muted">
                 Need An Account?<a class = "ml-2" href=http://localhost:8081/project_database/register><span class="link">Click here</span></a> to register. 
