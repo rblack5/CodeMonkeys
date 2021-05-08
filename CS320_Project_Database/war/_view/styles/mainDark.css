@@ -45,11 +45,11 @@ body {
   }
   
 input[type=text] {
-  width: 100%;
+  
   padding: 12px 20px;
   
   box-sizing: border-box;
-  border: none;
+  border: 1px solid #dddddd;
   background-color: #334144;
   color: white;
 }

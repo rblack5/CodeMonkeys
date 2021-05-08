@@ -43,7 +43,7 @@
 				
 				<table>
 					<tr>
-						<td><input type="password" name="password" id="password" placeholder="Enter New Password" size="50" value="${UserModel.password}" maxlength="20" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" 
+						<td><input type="password" name="password" id="password" placeholder="Enter New Password" size="40" value="${UserModel.password}" maxlength="20" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" 
 								title="Must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and be at least 5 characters long"/>
 						<span id="eye" onClick="toggleEye()" >
 							<i class="fas fa-eye"></i>
@@ -56,7 +56,7 @@
 				<div class="label mb-2 mt-3">Confirm Password: </div>
 				<table>
 					<tr>
-						<td><input type="password" name="password2" id="password2" size="50" value="${registerPassword2}" placeholder="Confirm Password" maxlength="20" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" 
+						<td><input type="password" name="password2" id="password2" size="40" value="${registerPassword2}" placeholder="Confirm Password" maxlength="20" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" 
 						title="Must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and be at least 5 characters long"/>
 						</td>
 					</tr>
