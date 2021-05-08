@@ -70,7 +70,7 @@
 								<div>
 									<div class = "row w-100 m-0 p-0">
 										<div class = "pr-3"> Light
-											<input type="radio" id = "check1" name="postTheme" value = "light" checked/>
+											<input type="radio" id = "check1" name="postTheme" value = "light"/>
 										</div>
 										<div class = "pr-3"> Dark
 											<input type="radio" id = "check2" name="postTheme" value = "dark"/>
@@ -95,7 +95,7 @@
 							<div>
 								<div class = "row w-100 m-0 p-0">
 									<div class = "pr-3"> Light
-										<input type="radio" id = "check1" name="accountTheme" value = "light" checked/>
+										<input type="radio" id = "check1" name="accountTheme" value = "light"/>
 									</div>
 									
 									<div class = "pr-3"> Dark
