@@ -40,7 +40,7 @@ public class HomeServlet extends HttpServlet {
 		}
 		else {
 			posts = (List<PostModel>) session.getAttribute("posts");
-			Collections.reverse(posts);
+
 			if (posts.isEmpty()) {
 				req.setAttribute("message", "No posts matched your search!");
 			}

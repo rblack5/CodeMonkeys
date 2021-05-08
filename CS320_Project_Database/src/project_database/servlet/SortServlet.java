@@ -26,7 +26,7 @@ public class SortServlet extends HttpServlet {
 		DerbyDatabase db = new DerbyDatabase();
 		List<PostModel> posts = db.viewAllPosts();
 		
-		if (sorter.equals("oldest"))
+		if (sorter.equals("newest"))
 			Collections.reverse(posts);
 		
 		req.setAttribute("posts", posts);
