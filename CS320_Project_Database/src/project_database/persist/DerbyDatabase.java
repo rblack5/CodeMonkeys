@@ -324,7 +324,7 @@ public class DerbyDatabase {
 	}
 	
 	
-	public List<Pair<UserModel, PostModel>> insertNewUser(String username, String password, String bio, String dateJoined, String postTheme, Boolean adminStatus) {
+	public List<Pair<UserModel, PostModel>> insertNewUser(String username, String password, String bio, String dateJoined, String postTheme, Boolean adminStatus, String accountTheme) {
 		return executeTransaction(new Transaction<List<Pair<UserModel, PostModel>>>() {
 			
 			@SuppressWarnings("resource")
@@ -338,8 +338,8 @@ public class DerbyDatabase {
 					// Prepare the statement to insert the new PostModel into the PostModels table.
 				try {
 					stmt = conn.prepareStatement(
-							" INSERT INTO Users (username, password, bio, dateJoined, postTheme, adminStatus) "
-							+ "VALUES (?, ?, ?, ?, ?, ?) "		
+							" INSERT INTO Users (username, password, bio, dateJoined, postTheme, adminStatus, accountTheme) "
+							+ "VALUES (?, ?, ?, ?, ?, ?, ?) "		
 							);
 					
 					stmt.setString(1, username);
@@ -348,7 +348,7 @@ public class DerbyDatabase {
 					stmt.setString(4, dateJoined);
 					stmt.setString(5, postTheme);
 					stmt.setBoolean(6, adminStatus);
-					
+					stmt.setString(7, accountTheme);
 					
 					
 					// Execute the query and insert the new PostModel into the PostModels table.

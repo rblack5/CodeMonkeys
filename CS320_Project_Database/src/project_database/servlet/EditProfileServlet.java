@@ -49,7 +49,7 @@ public class EditProfileServlet extends HttpServlet {
 			String bio = req.getParameter("bio");
 			String password = req.getParameter("password");
 			String password2 = req.getParameter("password2");
-			String postTheme = req.getParameter("check");
+			String postTheme = req.getParameter("postTheme");
 			
 			String userIDString = (String) session.getAttribute("userID");
 			int userID = Integer.parseInt(userIDString);

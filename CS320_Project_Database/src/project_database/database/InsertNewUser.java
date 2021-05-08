@@ -31,6 +31,8 @@ public class InsertNewUser {
 		String dateJoined = keyboard.nextLine();
 		System.out.print("Admin Status? Y/N ");
 		String response = keyboard.nextLine();
+		System.out.print("Enter an account theme (light, dark): ");
+		String accountTheme = keyboard.nextLine();
 //		System.out.print("Enter a userID: ");
 //		int userID = keyboard.nextInt();
 		if (response.equals("y") || response.equals("Y")) {
@@ -39,17 +41,18 @@ public class InsertNewUser {
 		
 		String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt(12));
 		// get the DB instance and execute transaction
-		db.insertNewUser(username, hashedPassword, bio, dateJoined, postTheme, adminStatus);
+		db.insertNewUser(username, hashedPassword, bio, dateJoined, postTheme, adminStatus, accountTheme);
 		
 		System.out.println("Success");
 		
 	}
 	
-	public void insertNewUser(String username, String password, String bio, String dateJoined) {
+	public void insertNewUser(String username, String password, String bio, String dateJoined, String accountTheme) {
 		DerbyDatabase db = new DerbyDatabase();
 		Boolean adminStatus = false;
 		String postTheme = "light";
-		db.insertNewUser(username, password, bio, dateJoined, postTheme, adminStatus);
+		//String accountTheme = "light";
+		db.insertNewUser(username, password, bio, dateJoined, postTheme, adminStatus, accountTheme);
 		System.out.println("Success");
 	}
 
