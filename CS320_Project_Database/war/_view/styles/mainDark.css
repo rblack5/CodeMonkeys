@@ -1,6 +1,6 @@
 body {
     background: #334144;
-    color: #334144;
+    color: #80b7be;
     margin-top: 5rem;
   }
   
@@ -21,7 +21,7 @@ body {
   }
   
   .site-header .navbar-nav .nav-link:hover {
-    color: #ffffff;
+    color: #80b7be;
   }
   
   .site-header .navbar-nav .nav-link.active {
@@ -29,21 +29,61 @@ body {
   }
   
   .content-section {
-    background: #ffffff;
+    background: #222C2D;
     padding: 10px 20px;
-    border: 1px solid #dddddd;
+    border: 1px solid #131313;
     border-radius: 3px;
     margin-bottom: 20px;
   }
   
     .message-content-section {
-    background: #ffffff;
+    background: #2F3D3E;
     padding: 10px 20px;
     border: 1px solid #dddddd;
     border-radius: 3px;
     margin-bottom: 20px;
   }
   
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  
+  box-sizing: border-box;
+  border: none;
+  background-color: #334144;
+  color: white;
+}
+
+textarea {
+  width: 100%;
+  padding: 12px 20px;
+  
+  box-sizing: border-box;
+  border: none;
+  background-color: #334144;
+  color: white;
+}
+
+input[type=password] {
+  
+  padding: 12px 20px;
+  
+  box-sizing: border-box;
+  border: none;
+  background-color: #334144;
+  color: white;
+}
+
+list-group{
+  width: 100%;
+  padding: 12px 20px;
+  
+  box-sizing: border-box;
+  border: none;
+  background-color: #334144;
+  color: white;
+}
+
   .article-title {
     color: #444444;
   }
