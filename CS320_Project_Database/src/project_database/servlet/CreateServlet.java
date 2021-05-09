@@ -91,7 +91,7 @@ public class CreateServlet extends HttpServlet {
 				user = (UserModel) session.getAttribute("user");
 				
 				if (user.getPostTheme().equals("light")) {
-					model.setTextStyle("all: unset;");
+					model.setTextStyle("all: unset; color: #444444;");
 					model.setBackgroundStyle("background-color: #ffffff;");
 					model.setLinkStyle("all: unset; color:blue; cursor:pointer; text-decoration:underline;");
 					model.setTitleStyle("font-size: 2.20em; font-weight: bolder; color: #444444;");
