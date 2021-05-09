@@ -8,7 +8,7 @@
 	</head>
 	
 	<div class="content-section" >
-        <form action = "${pageContext.servletContext.contextPath}/login" method="post">
+        <form autocomplete="off" action = "${pageContext.servletContext.contextPath}/login" method="post">
             	<fieldset class = "form-group">
                 <legend class="border-bottom mb-4">Login</legend>
                 <c:if test="${! empty message}">
@@ -22,13 +22,13 @@
                 <div class="label mb-2 mt-1">Username: </div>
                 <table>
 					<tr>
-						<td><input type="text" name="username" size="50" value="${loginUsername}" placeholder="Username" maxlength="20"/></td>
+						<td><input autocomplete="off" type="text" name="username" size="50" value="${loginUsername}" placeholder="Username" maxlength="20"/></td>
 					</tr>
 				</table>
 				<div class="label mb-2 mt-3">Password:</div>
 				 <table>
 					<tr>
-						<td><input type="password" name="password"  id="password"  size="50" value="${loginPassword}" placeholder="Password" maxlength="20"/>
+						<td><input autocomplete="off" type="password" name="password"  id="password"  size="50" value="${loginPassword}" placeholder="Password" maxlength="20"/>
 						<span id="eye" onClick="toggleEye()" >
 						<i class="fas fa-eye"></i>
 						</span>
