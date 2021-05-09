@@ -1,3 +1,5 @@
+//Light Mode
+
 body {
     background: #fafafa;
     color: #333333;
@@ -160,4 +162,3 @@ list-group{
   input[type=submit] {
   background-color: lightblue;
   }
-
