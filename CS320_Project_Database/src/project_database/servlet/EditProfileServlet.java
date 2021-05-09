@@ -47,7 +47,7 @@ public class EditProfileServlet extends HttpServlet {
 			// Obtain the name,bio from the doGet
 			String username = req.getParameter("username");
 			String bio = req.getParameter("bio");
-			String password = req.getParameter("password");
+			String password = req.getParameter("password1");
 			String password2 = req.getParameter("password2");
 			String postTheme = req.getParameter("postTheme");
 			String accountTheme = req.getParameter("accountTheme");

@@ -43,7 +43,7 @@
 				
 				<table>
 					<tr>
-						<td><input autocomplete="off" type="password" name="password" id="password" placeholder="Enter New Password" size="40" value="${UserModel.password}" maxlength="20" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" 
+						<td><input autocomplete="off" type="password" name="password1" id="password1" placeholder="Enter New Password" size="40" value="" maxlength="20" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" 
 								title="Must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and be at least 5 characters long"/>
 						<span id="eye" onClick="toggleEye()" >
 							<i class="fas fa-eye"></i>
@@ -132,7 +132,7 @@
 
 
 	function toggleEye() {
-	  	var pass = document.getElementById("password");
+	  	var pass = document.getElementById("password1");
 		var pass2 = document.getElementById("password2");
 	  	if (pass.type == "password") {
 	  	  pass.type = "text";
