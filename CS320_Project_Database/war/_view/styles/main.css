@@ -1,4 +1,4 @@
-//Light Mode
+
 
 body {
     background: #fafafa;
@@ -53,8 +53,6 @@ input[type=text] {
   
   box-sizing: border-box;
   border: 1px solid #dddddd;
-  //background-color: #334144;
-  //color: white;
 }
 
 input[id=search]{
@@ -62,9 +60,6 @@ input[id=search]{
   
   box-sizing: border-box;
   border: 1px solid #dddddd;
-  //background-color: #334144;
-  //color: white;
-
 }
 
 textarea {
@@ -73,8 +68,6 @@ textarea {
   
   box-sizing: border-box;
   border:1px solid #dddddd;
-  //background-color: #334144;
-  //color: white;
 }
 
 input[type=password] {
@@ -83,8 +76,6 @@ input[type=password] {
   
   box-sizing: border-box;
   border: 1px solid #dddddd;
-  //background-color: #334144;
-  //color: white;
 }
 
 list-group{
@@ -93,8 +84,6 @@ list-group{
   
   box-sizing: border-box;
   border: none;
-  //background-color: #334144;
-  //color: white;
 }
 
 
