@@ -81,18 +81,7 @@
   	<servlet-class>project_database.servlet.SortServlet</servlet-class>
   </servlet>
 
-  <!-- AJAX servlets. -->
-  <!--
-  <servlet>
-    <servlet-name>AddNumbersAjaxServlet</servlet-name>
-    <servlet-class>project_database.servlet.ajax.AddNumbersAjaxServlet</servlet-class>
-  </servlet>
-  
-  <servlet>
-    <servlet-name>NextGuessAjaxServlet</servlet-name>
-    <servlet-class>project_database.servlet.ajax.NextGuessAjaxServlet</servlet-class>
-  </servlet>
-  -->
+
 
   <!-- Servlet mappings -->
   <servlet-mapping>
@@ -169,19 +158,5 @@
   	<servlet-name>SortServlet</servlet-name>
   	<url-pattern>/sort</url-pattern>
   </servlet-mapping>
-
-  <!--  AJAX servlet mappings. -->
-   <!--
-  <servlet-mapping>
-    <servlet-name>AddNumbersAjaxServlet</servlet-name>
-    <url-pattern>/ajax/addNumbers</url-pattern>
-  </servlet-mapping>
-  
-  <servlet-mapping>
-    <servlet-name>NextGuessAjaxServlet</servlet-name>
-    <url-pattern>/ajax/nextGuess</url-pattern>
-  </servlet-mapping>
-   -->
-  
   
 </web-app>
