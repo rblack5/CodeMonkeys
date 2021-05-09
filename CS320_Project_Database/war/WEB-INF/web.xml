@@ -52,21 +52,6 @@
   </servlet>
   
   <servlet>
-    <servlet-name>AddNumbersServlet</servlet-name>
-    <servlet-class>project_database.servlet.AddNumbersServlet</servlet-class>
-  </servlet>
-  
-  <servlet>
-    <servlet-name>GuessingGameServlet</servlet-name>
-    <servlet-class>project_database.servlet.GuessingGameServlet</servlet-class>
-  </servlet>
-  
-  <servlet>
-  	<servlet-name>MultiplyNumbersServlet</servlet-name>
-  	<servlet-class>project_database.servlet.MultiplyNumbersServlet</servlet-class>
-  </servlet>
-  
-  <servlet>
   	<servlet-name>PostServlet</servlet-name>
   	<servlet-class>project_database.servlet.PostServlet</servlet-class>
   </servlet>
@@ -154,22 +139,7 @@
     <servlet-name>RegisterServlet</servlet-name>
     <url-pattern>/register</url-pattern>
   </servlet-mapping>
-  
-  <servlet-mapping>
-    <servlet-name>AddNumbersServlet</servlet-name>
-    <url-pattern>/addNumbers</url-pattern>
-  </servlet-mapping>
-  
-  <servlet-mapping>
-    <servlet-name>GuessingGameServlet</servlet-name>
-    <url-pattern>/guessingGame</url-pattern>
-  </servlet-mapping>
-  
-  <servlet-mapping>
-  	<servlet-name>MultiplyNumbersServlet</servlet-name>
-  	<url-pattern>/multiplyNumbers</url-pattern>
-  </servlet-mapping>
-  
+   
   <servlet-mapping>
   	<servlet-name>PostServlet</servlet-name>
   	<url-pattern>/post</url-pattern>
@@ -212,5 +182,6 @@
     <url-pattern>/ajax/nextGuess</url-pattern>
   </servlet-mapping>
    -->
+  
   
 </web-app>
