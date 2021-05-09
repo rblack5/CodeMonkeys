@@ -108,6 +108,7 @@ public class CreateServlet extends HttpServlet {
 					model.setLinkStyle("all: unset; color:black; cursor:pointer; text-decoration:underline;");
 					model.setTitleStyle("font-size: 2.20em; font-weight: bolder; color:black;");
 				}
+				
 				model.setUserID(realUserID);
 				
 				model.setUsername(username);
