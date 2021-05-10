@@ -1,6 +1,7 @@
 package project_database.persist;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -747,6 +748,7 @@ public class DerbyDatabase {
 							"   postTheme varchar(100), " +
 							"   accountTheme varchar(100), " +
 							"	adminStatus boolean, " +
+							"	userImage blob," +
 							"   CONSTRAINT UC_USER UNIQUE (username) " +
 							")"
 					);
@@ -766,7 +768,8 @@ public class DerbyDatabase {
 							"	backgroundStyle varchar(100)," +
 							"	linkStyle varchar(100)," +
 							"	titleStyle varchar(100)," +
-							"   dateCreated varchar(20) " +
+							"   dateCreated varchar(20), " +
+							"	userImage blob" +
 							")"
 					);
 					stmt2.executeUpdate();

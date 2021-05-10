@@ -1,5 +1,6 @@
 package project_database.database;
 
+import java.io.InputStream;
 import java.util.Scanner;
 
 import org.mindrot.jbcrypt.BCrypt;

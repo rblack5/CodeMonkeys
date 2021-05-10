@@ -61,8 +61,6 @@
 						</td>
 					</tr>
 				</table>
-
-				<br>
 				<div class="label mb-2 mt-3">Post Appearance: </div>
 				<table>
 						<tr>
@@ -151,6 +149,14 @@
 	
 		<!-- 	<a class="nav-item nav-link" type=button href=http://localhost:8081/project_database/profile></i> Return to Profile</a>  -->
 	
+		</form>
+
+		<form action = "${pageContext.servletContext.contextPath}/uploadImage" method="post" enctype="multipart/form-data">
+			<div class="label mb-2 mt-3"> Profile Image: </div>
+				<tr>
+					<td><input type="file" name="userImage" size="50"/></td>
+				</tr>
+				<button class="btn btn-outline-info" type="Submit" value="Save Image">Save Image</button>
 		</form>
 	</div>
 

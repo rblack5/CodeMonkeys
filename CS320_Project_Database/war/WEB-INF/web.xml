@@ -80,6 +80,11 @@
   	<servlet-name>SortServlet</servlet-name>
   	<servlet-class>project_database.servlet.SortServlet</servlet-class>
   </servlet>
+  
+  <servlet>
+  	<servlet-name>UploadImageServlet</servlet-name>
+  	<servlet-class>project_database.servlet.UploadImageServlet</servlet-class>
+  </servlet>
 
 
 
@@ -157,6 +162,11 @@
     <servlet-mapping>
   	<servlet-name>SortServlet</servlet-name>
   	<url-pattern>/sort</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>UploadImageServlet</servlet-name>
+  	<url-pattern>/uploadImage</url-pattern>
   </servlet-mapping>
   
 </web-app>
