@@ -22,19 +22,29 @@ public class ProfileServlet extends HttpServlet {
 		System.out.println("Profile Servlet: doGet");
 		HttpSession session = req.getSession();
 		session.removeAttribute("posts");
+				
+		if (req.getParameter("userID") != null) {
+			String userID = req.getParameter("userID");
+				
+			ProfileController controller = new ProfileController();
+			
+			if (userID.equals(session.getAttribute("userID"))) {
+				System.out.println("User ID's match");
+				req.setAttribute("userMatch", true);
+			}
+			
+			int intUserID;
+			intUserID = Integer.parseInt(userID);
+			System.out.println(intUserID + " ==> userID string as an Int");
+			
+			UserModel user = controller.findUser(intUserID);
+			
+			req.setAttribute("user", user);
+		}
 		
-		if(req.getParameter("userID") != null) {
-		String userID = req.getParameter("userID");
-		
-		ProfileController controller = new ProfileController();
-		
-		int intUserID;
-		intUserID = Integer.parseInt(userID);
-		System.out.println(intUserID + " ==> userID string as an Int");
-		
-		UserModel user = controller.findUser(intUserID);
-		
-		req.setAttribute("user", user);
+		if (req.getParameter("userID") == null) {
+			System.out.println("User ID's match");
+			req.setAttribute("userMatch", true);
 		}
 		
 		req.getRequestDispatcher("/_view/profile.jsp").forward(req, resp);
