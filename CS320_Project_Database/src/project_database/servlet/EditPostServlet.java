@@ -72,7 +72,7 @@ public class EditPostServlet extends HttpServlet {
 		PostModel sessionPost = new PostModel();
 		String postBody = "";
 		String postTitle = "";
-		
+		Boolean invalidInfo = false;
 		sessionPost = (PostModel) session.getAttribute("currentPost");
 
 		// holds the error message text, if there is any
@@ -89,9 +89,38 @@ public class EditPostServlet extends HttpServlet {
 			System.out.println("UPDATED TITLE: " + postTitle);
 			postBody = req.getParameter("body");
 			System.out.println("UPDATED BODY: " + postBody);
+			
+			if (postTitle.contains("\"")) {
+				errorMessage = "No quotes allowed in title!";
+				System.out.println("Invalid Fields");
+				invalidInfo = true;
+			}
+			
+			if (postBody.contains("\"")) {
+				errorMessage = "No quotes allowed in body!";
+				System.out.println("Invalid Fields");
+				invalidInfo = true;
+			}
 
-			UpdatePost u = new UpdatePost();
-			u.updatePost(postID, postTitle, postBody);
+			// check for errors in the form data (error message is not yet implemented)
+			if (postTitle == null || postBody == null) {
+				errorMessage = "Please enter required fields";
+				invalidInfo = true;
+				
+			}
+			else if (postTitle.length() > 70 || postBody.length() > 1000) {
+				errorMessage = "Title cannot be longer than 70 characters, and the body cannot be longer than 1000 characters";
+				invalidInfo = true;
+			}
+			else if (postTitle.length() < 1 || postBody.length() < 1) {
+				errorMessage = "Posts must have a title and body";
+				invalidInfo = true;
+			}
+			
+			if (!invalidInfo) {
+				UpdatePost u = new UpdatePost();
+				u.updatePost(postID, postTitle, postBody);
+			}
 			
 			// session.removeAttribute("currentPost");
 			
@@ -99,19 +128,35 @@ public class EditPostServlet extends HttpServlet {
 			errorMessage = "Invalid Error";
 		}
 		
-		PostModel newModel = new PostModel();
-		newModel = sessionPost;
-		newModel.setBody(postBody);
-		newModel.setTitle(postTitle);
-		req.setAttribute("post", sessionPost);
-		
-		// This breaks shit, be careful
-		//req.setAttribute("editProfile", model);
-		
-		// this adds the errorMessage text and the result to the response
-		req.setAttribute("errorMessage", errorMessage);
-		
-		// Forward to view to render the result HTML document
-		req.getRequestDispatcher("/_view/post.jsp").forward(req, resp);
+		if (!invalidInfo) {
+			PostModel newModel = new PostModel();
+			newModel = sessionPost;
+			newModel.setBody(postBody);
+			newModel.setTitle(postTitle);
+			req.setAttribute("post", sessionPost);
+			
+			// This breaks shit, be careful
+			//req.setAttribute("editProfile", model);
+			
+			// this adds the errorMessage text and the result to the response
+			req.setAttribute("errorMessage", errorMessage);
+			
+			// Forward to view to render the result HTML document
+			req.getRequestDispatcher("/_view/post.jsp").forward(req, resp);
+		}
+		else {
+			// set the attribute named "create" to return the model
+			// req.setAttribute("create", model);
+			
+			// this adds the errorMessage text and the result to the response
+			req.setAttribute("errorMessage", errorMessage);
+			
+			// saving what the user put incase it failed
+			req.setAttribute("postTitle", postTitle);
+			req.setAttribute("postBody", postBody);
+			
+			// Forward to view to render the result HTML document
+			req.getRequestDispatcher("/_view/editPost.jsp").forward(req, resp);
+		}
 	}
 }

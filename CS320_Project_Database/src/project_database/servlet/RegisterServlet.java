@@ -76,6 +76,24 @@ public class RegisterServlet extends HttpServlet {
 			System.out.println("Password get len: " + password.length());
 			System.out.println("Password2 get len: " + password.length());
 			
+			if (username.contains("\"") || username.contains("\'")) {
+				errorMessage = "No quotes or apostrophes allowed in the username!";
+				System.out.println("Invalid Fields");
+				System.out.println(username);
+				System.out.println(password);
+				System.out.println(password2);
+				passedTests = false;
+			}
+			
+			if (password.contains("\"") || password.contains("\'")) {
+				errorMessage = "No quotes or apostrophes allowed in passwords!";
+				System.out.println("Invalid Fields");
+				System.out.println(username);
+				System.out.println(password);
+				System.out.println(password2);
+				passedTests = false;
+			}
+			
 			if (username.length() < 3 || password.length() < 5 || password2.length() < 5) {
 				errorMessage = "Usernames must be atleast 3 characters long, and Passwords must be atleast 5 characters long";
 				System.out.println("Invalid Fields");

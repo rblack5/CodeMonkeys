@@ -54,6 +54,18 @@ public class CreateServlet extends HttpServlet {
 			
 			System.out.println("Title after getParameter: " + title);
 			System.out.println("Body after getParameter: " + body);
+			
+			if (title.contains("\"")) {
+				errorMessage = "No quotes allowed in title!";
+				System.out.println("Invalid Fields");
+				invalidInfo = true;
+			}
+			
+			if (body.contains("\"")) {
+				errorMessage = "No quotes allowed in body!";
+				System.out.println("Invalid Fields");
+				invalidInfo = true;
+			}
 
 			// check for errors in the form data (error message is not yet implemented)
 			if (title == null || body == null) {
@@ -61,16 +73,18 @@ public class CreateServlet extends HttpServlet {
 				invalidInfo = true;
 				
 			}
-			else if (title.length() > 70 || body.length() > 1000) {
+			
+			if (title.length() > 70 || body.length() > 1000) {
 				errorMessage = "Title cannot be longer than 70 characters, and the body cannot be longer than 1000 characters";
 				invalidInfo = true;
 			}
-			else if (title.length() < 1 || body.length() < 1) {
+			
+			if (title.length() < 1 || body.length() < 1) {
 				errorMessage = "Posts must have a title and body";
 				invalidInfo = true;
 			}
 			
-			else {
+			if (!invalidInfo) {
 				// otherwise, data is good
 				// must create the controller each time, since it doesn't persist between POSTs
 				// the view does not alter data, only controller methods should be used for that

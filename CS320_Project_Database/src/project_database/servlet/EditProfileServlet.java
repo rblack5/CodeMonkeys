@@ -59,6 +59,30 @@ public class EditProfileServlet extends HttpServlet {
 			String userIDString = (String) session.getAttribute("userID");
 			int userID = Integer.parseInt(userIDString);
 			
+			if (username.contains("\"") || username.contains("\'")) {
+				errorMessage = "No quotes or apostrophes allowed in the username!";
+				System.out.println("Invalid Fields");
+				System.out.println(username);
+				System.out.println(password);
+				System.out.println(password2);
+				passedTests = false;
+			}
+			
+			if (password.contains("\"") || password.contains("\'")) {
+				errorMessage = "No quotes or apostrophes allowed in passwords!";
+				System.out.println("Invalid Fields");
+				System.out.println(username);
+				System.out.println(password);
+				System.out.println(password2);
+				passedTests = false;
+			}
+			
+			if (bio.contains("\"")) {
+				errorMessage = "No quotes or allowed in bio!";
+				System.out.println("Invalid Fields");
+				passedTests = false;
+			}
+			
 			if (username.length() < 3) {
 				errorMessage = "Usernames must be atleast 3 characters long, and Passwords must be atleast 5 characters long";
 				System.out.println("Invalid Fields");
