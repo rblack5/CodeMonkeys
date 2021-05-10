@@ -628,6 +628,55 @@ public class DerbyDatabase {
 		});
 	}
 	
+	public List<Pair<UserModel, PostModel>> updateImage(int userID, InputStream userImage) {
+		return executeTransaction(new Transaction<List<Pair<UserModel, PostModel>>>() {
+			
+			@SuppressWarnings("resource")
+			@Override
+			public List<Pair<UserModel, PostModel>> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				PreparedStatement stmt2 = null;
+				ResultSet resultSet = null;
+				List<Pair<UserModel, PostModel>> result = new ArrayList<Pair<UserModel,PostModel>>();
+					
+					// Prepare the statement to insert the new PostModel into the PostModels table.
+				try {
+					stmt = conn.prepareStatement(
+							" UPDATE Users "
+							+ "SET userImage=? "
+							+ "WHERE userID =? "
+							);
+					
+					stmt.setBlob(1, userImage);
+					stmt.setInt(2, userID);
+					
+					// Execute the query and insert the new PostModel into the PostModels table.
+					stmt.executeUpdate();
+					
+					stmt2 = conn.prepareStatement(
+							" UPDATE Posts "
+							+ "SET userImage=? "
+							+ "WHERE userID =? "
+							);
+					
+					stmt2.setBlob(1, userImage);
+					stmt2.setInt(2, userID);
+					
+					// Execute the query and insert the new PostModel into the PostModels table.
+					stmt2.executeUpdate();
+					
+					return result;
+				}
+				finally {
+						DBUtil.closeQuietly(resultSet);
+						DBUtil.closeQuietly(stmt);
+						DBUtil.closeQuietly(conn);
+					}
+				
+			}
+		});
+	}
+	
 	public<ResultType> ResultType executeTransaction(Transaction<ResultType> txn) {
 		try {
 			return doExecuteTransaction(txn);
@@ -690,6 +739,7 @@ public class DerbyDatabase {
 		UserModel.setPostTheme(resultSet.getString(index++));
 		UserModel.setAccountTheme(resultSet.getString(index++));
 		UserModel.setAdminStatus(resultSet.getBoolean(index++));
+		UserModel.setUserImage(resultSet.getBlob(index++));
 	}
 	
 	private void loadPostModel(PostModel PostModel, ResultSet resultSet, int index) throws SQLException {

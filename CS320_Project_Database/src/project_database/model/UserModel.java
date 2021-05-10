@@ -1,9 +1,13 @@
 package project_database.model;
 
+import java.io.InputStream;
+import java.sql.Blob;
+
 public class UserModel {
 	private String username, password, bio, dateJoined, postTheme, accountTheme;
 	private int userID;
 	private boolean adminStatus;
+	private Blob userImage;
 	
 	public UserModel() {
 	}
@@ -70,5 +74,13 @@ public class UserModel {
 	
 	public Boolean getAdminStatus() {
 		return this.adminStatus;
+	}
+	
+	public void setUserImage(Blob blob) {
+		this.userImage = blob;
+	}
+	
+	public Blob getUserImage() {
+		return this.userImage;
 	}
 }
