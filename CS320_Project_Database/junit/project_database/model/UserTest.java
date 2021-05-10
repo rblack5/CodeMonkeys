@@ -5,11 +5,15 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Random;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import project_database.controller.LoginController;
+import project_database.database.InsertNewUser;
+import project_database.database.ViewAllUsers;
 
 public class UserTest {
 	private UserModel model;
@@ -322,6 +326,23 @@ public class UserTest {
 		model.setAdminStatus(false);
 		assertFalse(model.getAdminStatus());
 		
+	}
+	
+	@Test
+	public void testCreateUser() {
+		ViewAllUsers v = new ViewAllUsers();
+		List<UserModel> userList = v.getUserList();
+		int previousNumUsers = userList.size();
+		
+		Random rand = new Random();
+		int randNum = rand.nextInt(100000);
+		String name = "test" + String.valueOf(randNum);
+		InsertNewUser g = new InsertNewUser();
+		g.insertNewUser(name, "Pass12345", "test bio", "2/2/2010");
+		userList = v.getUserList();
+		int newNumUsers = userList.size();
+		
+		assertTrue(newNumUsers == previousNumUsers+1);
 	}
 	
 }
