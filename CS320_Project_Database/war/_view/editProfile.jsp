@@ -50,6 +50,26 @@
 							</span>
 						</td>
 					</tr>
+
+<script>
+function toggleEye() {
+	  	var pass = document.getElementById("code1");
+		var pass2 = document.getElementById("password2");
+	  	if (pass.type == "password") {
+	  	  pass.type = "text";
+		  pass2.type = "text";
+		document.getElementById("eye").style.color = "blue";
+	  	}else{
+	  	  pass.type = "password";
+		  pass2.type = "password";
+		document.getElementById("eye").style.color = "black";
+	  	}
+}
+</script>
+
+
+
+
 				</table>
 	
 
@@ -211,19 +231,7 @@
 	}
 
 
-	function toggleEye() {
-	  	var pass = document.getElementById("password1");
-		var pass2 = document.getElementById("password2");
-	  	if (pass.type == "password") {
-	  	  pass.type = "text";
-		  pass2.type = "text";
-		document.getElementById("eye").style.color = "blue";
-	  	}else{
-	  	  pass.type = "password";
-		  pass2.type = "password";
-		document.getElementById("eye").style.color = "black";
-	  	}
-	}
+	
 	
 	</script>
 	
