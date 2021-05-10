@@ -1,6 +1,8 @@
 package project_database.servlet;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,12 +15,14 @@ import javax.servlet.http.HttpSession;
 
 import project_database.controller.PostController;
 import project_database.database.FindMatchingCommentsWithPostID;
+import project_database.database.InsertNewComment;
+import project_database.database.InsertNewPost;
 import project_database.model.CommentModel;
 import project_database.model.PostModel;
 import project_database.model.UserModel;
 import project_database.persist.DerbyDatabase;
 
-public class CreateServlet extends HttpServlet {
+public class CreateCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@Override
@@ -40,9 +44,11 @@ public class CreateServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		System.out.println("Create Servlet: doPost");
+		System.out.println("Create Comment Servlet: doPost");
 		
 		HttpSession session = req.getSession();
+		
+		PostModel currentPost = (PostModel) session.getAttribute("currentPost");
 		DerbyDatabase db = new DerbyDatabase();
 		
 		// holds the error message text, if there is any
@@ -52,23 +58,15 @@ public class CreateServlet extends HttpServlet {
 		String body = "";
 		
 		// Create the model
-		PostModel model = new PostModel();
-		PostModel post = null;
+		CommentModel model = new CommentModel();
+		CommentModel comment = null;
 		// decode POSTed form parameters
 		try {
 			// Obtain the email and password from the doGet
-			title = req.getParameter("title");
 			body = req.getParameter("body");
 			
-			System.out.println("Title after getParameter: " + title);
 			System.out.println("Body after getParameter: " + body);
-			
-			if (title.contains("\"")) {
-				errorMessage = "No quotes allowed in title!";
-				System.out.println("Invalid Fields");
-				invalidInfo = true;
-			}
-			
+						
 			if (body.contains("\"")) {
 				errorMessage = "No quotes allowed in body!";
 				System.out.println("Invalid Fields");
@@ -76,19 +74,18 @@ public class CreateServlet extends HttpServlet {
 			}
 
 			// check for errors in the form data (error message is not yet implemented)
-			if (title == null || body == null) {
+			if (body == null) {
 				errorMessage = "Please enter required fields";
-				invalidInfo = true;
-				
+				invalidInfo = true;		
 			}
 			
-			if (title.length() > 70 || body.length() > 3000) {
-				errorMessage = "Title cannot be longer than 70 characters, and the body cannot be longer than 3000 characters";
+			if (body.length() > 3000) {
+				errorMessage = "The body cannot be longer than 3000 characters";
 				invalidInfo = true;
 			}
 			
-			if (title.length() < 1 || body.length() < 1) {
-				errorMessage = "Posts must have a title and body";
+			if (body.length() < 1) {
+				errorMessage = "Comments must have a body";
 				invalidInfo = true;
 			}
 			
@@ -99,7 +96,6 @@ public class CreateServlet extends HttpServlet {
 				// thus, always call a controller method to operate on the data
 			
 				// Send the values to the model
-				model.setTitle(title);
 				model.setBody(body);
 				String username = (String) session.getAttribute("username");
 				System.out.println("username is: " + username);
@@ -145,12 +141,49 @@ public class CreateServlet extends HttpServlet {
 				System.out.println("model.getUserID =>" + model.getUserID());
 				System.out.println("model.getUsername =>" + model.getUsername());
 				
-				PostController controller = new PostController();
-				post = controller.createPost(model);
+				LocalDate dateCreated = LocalDate.now();
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+				System.out.println(dateCreated.format(formatter));
 				
+				if (user.getPostTheme().equals("light")) {
+					model.setTextStyle("all: unset; color: #444444; white-space: pre-wrap;");
+					model.setBackgroundStyle("background-color: #ffffff;");
+					model.setLinkStyle("all: unset; color:blue; cursor:pointer; text-decoration:underline;");
+					model.setTitleStyle("font-size: 2.20em; font-weight: bolder; color: #444444;");
+				}
+				else if (user.getPostTheme().equals("dark")) {
+					model.setTextStyle("all: unset; color:white; white-space: pre-wrap;");
+					model.setBackgroundStyle("background-color: #222C2D;");
+					model.setLinkStyle("all: unset; color:white; cursor:pointer; text-decoration:underline;");
+					model.setTitleStyle("font-size: 2.20em; font-weight: bolder; color:white;");
+				}
+				else if (user.getPostTheme().equals("fire")) {
+					model.setTextStyle("all: unset; color:black; white-space: pre-wrap;");
+					model.setBackgroundStyle("background-image: linear-gradient(orange, red);");
+					model.setLinkStyle("all: unset; color:black; cursor:pointer; text-decoration:underline;");
+					model.setTitleStyle("font-size: 2.20em; font-weight: bolder; color:black;");
+				}
+				else if (user.getPostTheme().equals("gold")) {
+					model.setTextStyle("all: unset; color: #000080; white-space: pre-wrap;");
+					//#FFD700
+					// url('${pageContext.request.contextPath}/_view/images/default.jpg');
+					model.setBackgroundStyle("background-image: url('https://media.discordapp.net/attachments/805890300677062666/841213062875054080/283561966e2b7c98f4534e14d847f473.png?width=1202&height=676');");
+					model.setLinkStyle("all: unset; color:#000080; cursor:pointer; text-decoration:underline;");
+					model.setTitleStyle("font-size: 2.20em; font-weight: bolder; color:#000080;");
+				}
+				
+				InsertNewComment g = new InsertNewComment();
+				
+				g.insertNewComment(realUserID, currentPost.getPostID(), username, body, model.getTextStyle(), model.getBackgroundStyle(), model.getLinkStyle(),
+						model.getTitleStyle(), dateCreated.format(formatter));
+//				PostController controller = new PostController();
+//				post = controller.createPost(model);
+//				
 				UserModel updatedUser = db.findMatchingUserByUserID(realUserID);
 				
 				db.updateImage(realUserID, updatedUser.getUserImage());
+				
+				
 				
 			}
 			
@@ -170,27 +203,32 @@ public class CreateServlet extends HttpServlet {
 			req.setAttribute("postTitle", title);
 			req.setAttribute("postBody", body);
 			
-			session.setAttribute("createTitle", title);
-			session.setAttribute("createBody", body);
-			
-			// Forward to view to render the result HTML document
-			req.getRequestDispatcher("/_view/create.jsp").forward(req, resp);
-		}
-		else if (!invalidInfo){
-			req.setAttribute("post", post);
-			req.setAttribute("errorMessage", errorMessage);
-			req.removeAttribute("postTitle");
-			req.removeAttribute("postBody");
-			
-			session.removeAttribute("createTitle");
-			session.removeAttribute("createBody");
-			
-			session.setAttribute("currentPost", post);
+			session.setAttribute("createCommentBody", body);
+			req.setAttribute("post", currentPost);
 			
 			List<CommentModel> commentList = new ArrayList<CommentModel>();
 
 			FindMatchingCommentsWithPostID g = new FindMatchingCommentsWithPostID();
-			commentList = g.findMatchingCommentsWithPostID(post.getPostID());
+			commentList = g.findMatchingCommentsWithPostID(currentPost.getPostID());
+			Collections.reverse(commentList);
+			session.setAttribute("currentCommentList", commentList);
+			// Forward to view to render the result HTML document
+			req.getRequestDispatcher("/_view/post.jsp").forward(req, resp);
+		}
+		else if (!invalidInfo){
+			req.setAttribute("post", currentPost);
+			req.setAttribute("errorMessage", errorMessage);
+			req.removeAttribute("postTitle");
+			req.removeAttribute("postBody");
+			
+			session.removeAttribute("createCommentBody");
+			
+			session.setAttribute("currentPost", currentPost);
+			
+			List<CommentModel> commentList = new ArrayList<CommentModel>();
+
+			FindMatchingCommentsWithPostID g = new FindMatchingCommentsWithPostID();
+			commentList = g.findMatchingCommentsWithPostID(currentPost.getPostID());
 			Collections.reverse(commentList);
 			session.setAttribute("currentCommentList", commentList);
 			

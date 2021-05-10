@@ -85,6 +85,11 @@
   	<servlet-name>UploadImageServlet</servlet-name>
   	<servlet-class>project_database.servlet.UploadImageServlet</servlet-class>
   </servlet>
+  
+  <servlet>
+  	<servlet-name>CreateCommentServlet</servlet-name>
+  	<servlet-class>project_database.servlet.CreateCommentServlet</servlet-class>
+  </servlet>
 
 
 
@@ -167,6 +172,11 @@
   <servlet-mapping>
   	<servlet-name>UploadImageServlet</servlet-name>
   	<url-pattern>/uploadImage</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>CreateCommentServlet</servlet-name>
+  	<url-pattern>/createComment</url-pattern>
   </servlet-mapping>
   
 </web-app>

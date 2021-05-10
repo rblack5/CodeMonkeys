@@ -17,6 +17,7 @@
 		session.setAttribute("username", null);
 		session.setAttribute("user", null);
 		session.removeAttribute("intUserID");
+		session.removeAttribute("userID");
 		session.setAttribute("adminStatus", "false");
 		request.setAttribute("loggedIn", loggedIn);
 		session.setAttribute("userID", 0);

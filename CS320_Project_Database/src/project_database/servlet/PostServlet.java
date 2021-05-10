@@ -1,6 +1,9 @@
 package project_database.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import project_database.controller.LoginController;
 import project_database.controller.PostController;
+import project_database.database.FindMatchingCommentsWithPostID;
+import project_database.model.CommentModel;
 import project_database.model.PostModel;
 import project_database.model.UserModel;
 
@@ -21,6 +26,7 @@ public class PostServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		System.out.println("Post Servlet: doGet");
+		HttpSession session = req.getSession();
 		
 		String postID = req.getParameter("postID");
 		System.out.println(postID);
@@ -36,8 +42,15 @@ public class PostServlet extends HttpServlet {
 		
 		req.setAttribute("post", post);
 		
+		List<CommentModel> commentList = new ArrayList<CommentModel>();
+
+		
+		FindMatchingCommentsWithPostID g = new FindMatchingCommentsWithPostID();
+		commentList = g.findMatchingCommentsWithPostID(intPostID);
+		Collections.reverse(commentList);
+		session.setAttribute("currentCommentList", commentList);
 		// This is the easy way out
-		HttpSession session = req.getSession();
+
 		session.setAttribute("currentPost", post);
 
 		
