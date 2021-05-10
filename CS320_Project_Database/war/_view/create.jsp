@@ -26,7 +26,7 @@
 				<div class="label mb-2 mt-1">Title: </div>
 				<table>
 					<tr>
-						<td><input type="text" name="title" placeholder="Title your Post" size="50" value="${createTitle}"/></td>
+						<td><input type="text" name="title" placeholder="Title your Post" autocomplete="off" size="50" value="${createTitle}"/></td>
 					</tr>
 				</table>
 				
