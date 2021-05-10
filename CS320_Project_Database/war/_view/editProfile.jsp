@@ -27,7 +27,7 @@
 				<div class="label mb-2 mt-1">Change Username: </div>
 				<table>
 					<tr>
-						<td><input type="text" name="username" placeholder="Enter New Username" size="50" value="${username}" maxlength="20" pattern=".{3,}" 
+						<td><input type="text" name="username" placeholder="Enter New Username" size="50" value="${editProfileName}" maxlength="20" pattern=".{3,}" 
 								title="Must be at least 3 characters"/></td>
 					</tr>
 				</table>
@@ -35,7 +35,7 @@
 				<div class="label mb-2 mt-3">Create Your Bio: </div>
 				<table>
 					<tr>
-						<td><textarea name="bio" placeholder="Write your bio here..." rows="4" cols="53">${user.bio}</textarea></td>
+						<td><textarea name="bio" placeholder="Write your bio here..." rows="4" cols="53">${editProfileBio}</textarea></td>
 					</tr>
 				</table>
 				
@@ -43,7 +43,7 @@
 				
 				<table>
 					<tr>
-						<td><input autocomplete="off" type="password" name="password1" id="password1" placeholder="Enter New Password" size="40" value="" maxlength="20" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" 
+						<td><input autocomplete="off" type="password" name="code1" id="code1" placeholder="Enter New Password" size="40" value="" maxlength="20" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" 
 								title="Must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and be at least 5 characters long"/>
 						<span id="eye" onClick="toggleEye()" >
 							<i class="fas fa-eye"></i>

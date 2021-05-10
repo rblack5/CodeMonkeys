@@ -27,6 +27,12 @@ public class EditProfileServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		System.out.println("EditProfile Servlet: doGet");
+		HttpSession session = req.getSession();
+		String name = (String) session.getAttribute("username");
+		UserModel user = (UserModel) session.getAttribute("user");
+		
+		session.setAttribute("editProfileName", name);
+		session.setAttribute("editProfileBio", user.getBio());
 		
 		req.getRequestDispatcher("/_view/editProfile.jsp").forward(req, resp);
 	}
@@ -45,13 +51,15 @@ public class EditProfileServlet extends HttpServlet {
 		
 		// Create the model
 		EditProfileModel model = new EditProfileModel();
+		String username = "";
+		String bio = "";
 		
 		// decode POSTed form parameters
 		try {
 			// Obtain the name,bio from the doGet
-			String username = req.getParameter("username");
-			String bio = req.getParameter("bio");
-			String password = req.getParameter("password1");
+			username = req.getParameter("username");
+			bio = req.getParameter("bio");
+			String password = req.getParameter("code1");
 			String password2 = req.getParameter("password2");
 			String postTheme = req.getParameter("postTheme");
 			String accountTheme = req.getParameter("accountTheme");
@@ -100,6 +108,19 @@ public class EditProfileServlet extends HttpServlet {
 				System.out.println(password2);
 				passedTests = false;
 			}
+			
+			if (bio.length() > 3000) {
+				errorMessage = "A bio cannot be longer than 3000 characters";
+				System.out.println("Invalid Fields");
+				passedTests = false;
+			}
+			
+			if (bio.length() < 1) {
+				errorMessage = "A bio must be atleast 1 character";
+				System.out.println("Invalid Fields");
+				passedTests = false;
+			}
+			
 			
 			System.out.println("Checking matching passwords...");
 			if (!password.equals(password2)) {
@@ -156,10 +177,16 @@ public class EditProfileServlet extends HttpServlet {
 			// this adds the errorMessage text and the result to the response
 			req.setAttribute("errorMessage", errorMessage);
 			
+			session.setAttribute("editProfileName", username);
+			session.setAttribute("editProfileBio", bio);
+			
 			// Forward to view to render the result HTML document
 			req.getRequestDispatcher("/_view/editProfile.jsp").forward(req, resp);
 		}
 		else {
+			session.removeAttribute("editProfileName");
+			session.removeAttribute("editProfileBio");
+			
 			resp.sendRedirect("/project_database/profile");
 		}
 	}
