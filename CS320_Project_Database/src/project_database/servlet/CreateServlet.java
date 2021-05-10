@@ -36,7 +36,7 @@ public class CreateServlet extends HttpServlet {
 		
 		System.out.println("Create Servlet: doPost");
 		
-
+		HttpSession session = req.getSession();
 		// holds the error message text, if there is any
 		String errorMessage = null;
 		Boolean invalidInfo = false;
@@ -93,7 +93,6 @@ public class CreateServlet extends HttpServlet {
 				// Send the values to the model
 				model.setTitle(title);
 				model.setBody(body);
-				HttpSession session = req.getSession();
 				String username = (String) session.getAttribute("username");
 				System.out.println("username is: " + username);
 				String userID = (String) session.getAttribute("userID");
@@ -158,6 +157,7 @@ public class CreateServlet extends HttpServlet {
 			req.setAttribute("errorMessage", errorMessage);
 			req.removeAttribute("postTitle");
 			req.removeAttribute("postBody");
+			session.setAttribute("currentPost", post);
 			req.getRequestDispatcher("/_view/post.jsp").forward(req, resp);
 		}
 	}

@@ -34,11 +34,15 @@ public class EditPostServlet extends HttpServlet {
 		double x = 0;
 		System.out.println(x + " => Doing checks");
 		try {
+			System.out.println("here1");
 			String sessionUserID = (String) session.getAttribute("userID");
+			System.out.println("here2");
 			if (passedPostID == null)
 				x = 3 / 0; // cause an error by dividing by zero
 			int intSessionUserID = Integer.parseInt(sessionUserID);
-			
+			System.out.println("here3");
+			System.out.println("intSessionUserID: " + intSessionUserID);
+			System.out.println("sessionPostUserID " + sessionPost.getUserID());
 			// keep this here because it fails if the person is not at least logged in 
 
 			// check if authors do not match, and if the person is not an admin
