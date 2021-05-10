@@ -48,13 +48,18 @@
     	<script src='${pageContext.request.contextPath}/_view/fullcalendar/lib/main.js'></script>
     	<script>
 
-      	document.addEventListener('DOMContentLoaded', function() {
-        	var calendarEl = document.getElementById('calendar');
-        	var calendar = new FullCalendar.Calendar(calendarEl, {
-          	initialView: 'dayGridMonth'
-        	});
-        	calendar.render();
-      	});
+    	document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+              initialView: 'dayGridMonth',
+            height: 500,
+            titleFormat: { // will produce something like "Tuesday, September 18, 2018"
+                month: 'short',
+                year: 'numeric',
+  			}
+            });
+            calendar.render();
+          });
 
     	</script>
 		<!-- END OF FULLCALENDAR SCRIPT-->
