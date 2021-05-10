@@ -373,6 +373,7 @@ public class DerbyDatabase {
 			@Override
 			public List<Pair<UserModel, PostModel>> execute(Connection conn) throws SQLException {
 				PreparedStatement stmt = null;
+				PreparedStatement stmt2 = null;
 				ResultSet resultSet = null;
 				List<Pair<UserModel, PostModel>> result = new ArrayList<Pair<UserModel,PostModel>>();
 					
@@ -395,6 +396,20 @@ public class DerbyDatabase {
 					
 					// Execute the query and insert the new PostModel into the PostModels table.
 					stmt.executeUpdate();
+					
+					stmt2 = conn.prepareStatement(
+							" UPDATE Posts "
+							+ "SET username=?"
+							+ "WHERE userID = ? "
+							);
+					
+					stmt2.setString(1, username);
+					stmt2.setInt(2, userID);
+					
+					
+					
+					// Execute the query and insert the new PostModel into the PostModels table.
+					stmt2.executeUpdate();
 					
 					return result;
 				}
