@@ -815,7 +815,7 @@ public class DerbyDatabase {
 							"	postTitle varchar(100)," +
 							"	postBody varchar(3000)," +
 							"	textStyle varchar(100)," +
-							"	backgroundStyle varchar(100)," +
+							"	backgroundStyle varchar(10000)," +
 							"	linkStyle varchar(100)," +
 							"	titleStyle varchar(100)," +
 							"   dateCreated varchar(20), " +

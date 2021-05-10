@@ -35,7 +35,7 @@
 				<div class="label mb-2 mt-3">Create Your Bio: </div>
 				<table>
 					<tr>
-						<td><textarea name="bio" placeholder="Write your bio here..." rows="4" cols="53" value="${UserModel.bio}"></textarea></td>
+						<td><textarea name="bio" placeholder="Write your bio here..." rows="4" cols="53">${user.bio}</textarea></td>
 					</tr>
 				</table>
 				
@@ -62,20 +62,91 @@
 					</tr>
 				</table>
 				<div class="label mb-2 mt-3">Post Appearance: </div>
+				
+				<c:set var = "accountTheme" value = "${user.accountTheme}"/>
+				<c:set var = "postTheme" value = "${user.postTheme}"/>
+				<c:set var = "adminStatus" value = "${user.adminStatus}"/>
+				
+				<c:set var = "light" value = "light"/>
+				<c:set var = "dark" value = "dark"/>
+				<c:set var = "fire" value = "fire"/>
+				<c:set var = "gold" value = "gold"/>
+       
 				<table>
 						<tr>
 							<td>
 								<div>
 									<div class = "row w-100 m-0 p-0">
-										<div class = "pr-3"> Light
-											<input type="radio" id = "check1" name="postTheme" value = "light"/>
-										</div>
-										<div class = "pr-3"> Dark
-											<input type="radio" id = "check2" name="postTheme" value = "dark"/>
-										</div>
-										<div class = "pr-3"> Fire
-											<input type="radio" id = "check3" name="postTheme" value = "fire" />
-										</div>
+										<c:if test="${postTheme == light}">
+											<div class = "pr-3"> Light
+												<input type="radio" id = "check1" name="postTheme" value = "light" checked/>
+											</div>
+											<div class = "pr-3"> Dark
+												<input type="radio" id = "check2" name="postTheme" value = "dark"/>
+											</div>
+											<div class = "pr-3"> Fire
+												<input type="radio" id = "check3" name="postTheme" value = "fire" />
+											</div>
+											<c:if test="${adminStatus == true}">
+												<div class = "pr-3"> Gold
+													<input type="radio" id = "check4" name="postTheme" value = "gold" />
+												</div>
+											</c:if>
+										</c:if>
+										
+										<c:if test="${postTheme == dark}">
+											<div class = "pr-3"> Light
+												<input type="radio" id = "check1" name="postTheme" value = "light"/>
+											</div>
+											<div class = "pr-3"> Dark
+												<input type="radio" id = "check2" name="postTheme" value = "dark" checked/>
+											</div>
+											<div class = "pr-3"> Fire
+												<input type="radio" id = "check3" name="postTheme" value = "fire" />
+											</div>
+											<c:if test="${adminStatus == true}">
+												<div class = "pr-3"> Gold
+													<input type="radio" id = "check4" name="postTheme" value = "gold" />
+												</div>
+											</c:if>
+											
+										</c:if>
+										
+										<c:if test="${postTheme == fire}">
+											<div class = "pr-3"> Light
+												<input type="radio" id = "check1" name="postTheme" value = "light"/>
+											</div>
+											<div class = "pr-3"> Dark
+												<input type="radio" id = "check2" name="postTheme" value = "dark"/>
+											</div>
+											<div class = "pr-3"> Fire
+												<input type="radio" id = "check3" name="postTheme" value = "fire" checked/>
+											</div>
+											<c:if test="${adminStatus == true}">
+												<div class = "pr-3"> Gold
+													<input type="radio" id = "check4" name="postTheme" value = "gold" />
+												</div>
+											</c:if>
+										</c:if>
+										
+										<c:if test="${postTheme == gold}">
+											<div class = "pr-3"> Light
+												<input type="radio" id = "check1" name="postTheme" value = "light"/>
+											</div>
+											<div class = "pr-3"> Dark
+												<input type="radio" id = "check2" name="postTheme" value = "dark"/>
+											</div>
+											<div class = "pr-3"> Fire
+												<input type="radio" id = "check3" name="postTheme" value = "fire"/>
+											</div>
+											<c:if test="${adminStatus == true}">
+												<div class = "pr-3"> Gold
+													<input type="radio" id = "check4" name="postTheme" value = "gold" checked/>
+												</div>
+											</c:if>
+										</c:if>
+										
+										
 									</div>
 								</div>
 							</td>
@@ -92,15 +163,26 @@
 						<td>
 							<div>
 								<div class = "row w-100 m-0 p-0">
-									<div class = "pr-3"> Light
-										<input type="radio" id = "check1" name="accountTheme" value = "light"/>
-									</div>
+									<c:if test="${accountTheme == light}">
+										<div class = "pr-3"> Light
+											<input type="radio" id = "check1" name="accountTheme" value = "light" checked/>
+										</div>
+										
+										<div class = "pr-3"> Dark
+											<input type="radio" id = "check2" name="accountTheme" value = "dark"/>
+										</div>
+									</c:if>
 									
-									<div class = "pr-3"> Dark
-										<input type="radio" id = "check2" name="accountTheme" value = "dark"/>
-									
-								</div>
-								</div>
+									<c:if test="${accountTheme == dark}">
+										<div class = "pr-3"> Light
+											<input type="radio" id = "check1" name="accountTheme" value = "light"/>
+										</div>
+										
+										<div class = "pr-3"> Dark
+											<input type="radio" id = "check2" name="accountTheme" value = "dark" checked/>
+										</div>
+									</c:if>
+								</div>							
 							</div>
 						</td>
 					</tr>

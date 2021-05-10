@@ -104,22 +104,30 @@ public class CreateServlet extends HttpServlet {
 				user = (UserModel) session.getAttribute("user");
 				
 				if (user.getPostTheme().equals("light")) {
-					model.setTextStyle("all: unset; color: #444444;");
+					model.setTextStyle("all: unset; color: #444444; white-space: pre-wrap;");
 					model.setBackgroundStyle("background-color: #ffffff;");
 					model.setLinkStyle("all: unset; color:blue; cursor:pointer; text-decoration:underline;");
 					model.setTitleStyle("font-size: 2.20em; font-weight: bolder; color: #444444;");
 				}
 				else if (user.getPostTheme().equals("dark")) {
-					model.setTextStyle("all: unset; color:white;");
+					model.setTextStyle("all: unset; color:white; white-space: pre-wrap;");
 					model.setBackgroundStyle("background-color: #222C2D;");
 					model.setLinkStyle("all: unset; color:white; cursor:pointer; text-decoration:underline;");
 					model.setTitleStyle("font-size: 2.20em; font-weight: bolder; color:white;");
 				}
 				else if (user.getPostTheme().equals("fire")) {
-					model.setTextStyle("all: unset; color:black;");
+					model.setTextStyle("all: unset; color:black; white-space: pre-wrap;");
 					model.setBackgroundStyle("background-image: linear-gradient(orange, red);");
 					model.setLinkStyle("all: unset; color:black; cursor:pointer; text-decoration:underline;");
 					model.setTitleStyle("font-size: 2.20em; font-weight: bolder; color:black;");
+				}
+				else if (user.getPostTheme().equals("gold")) {
+					model.setTextStyle("all: unset; color: #000080; white-space: pre-wrap;");
+					//#FFD700
+					// url('${pageContext.request.contextPath}/_view/images/default.jpg');
+					model.setBackgroundStyle("background-image: url('https://media.discordapp.net/attachments/805890300677062666/841213062875054080/283561966e2b7c98f4534e14d847f473.png?width=1202&height=676');");
+					model.setLinkStyle("all: unset; color:#000080; cursor:pointer; text-decoration:underline;");
+					model.setTitleStyle("font-size: 2.20em; font-weight: bolder; color:#000080;");
 				}
 				
 				model.setUserID(realUserID);
