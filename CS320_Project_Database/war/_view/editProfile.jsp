@@ -45,7 +45,7 @@
 					<tr>
 						<td><input autocomplete="off" type="password" name="code1" id="code1" placeholder="Enter New Password" size="40" value="" maxlength="20" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" 
 								title="Must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and be at least 5 characters long"/>
-						<span id="eye" onClick="toggleEye()" style="color:black" >
+						<span id="eye" onClick="toggleEye()" style="color:black" name="click">
 							<i class="fas fa-eye"></i>
 							</span>
 						</td>
@@ -55,14 +55,21 @@
 function toggleEye() {
 	  	var pass = document.getElementById("code1");
 		var pass2 = document.getElementById("password2");
+		var eyeVar = document.getElementById("eye");
 	  	if (pass.type == "password") {
 	  	  pass.type = "text";
 		  pass2.type = "text";
-		  document.getElementById("eye").style.color = "blue";
+
+		eyeVar.name = "clicked";
+		
+
+		  
 	  	}else{
 	  	  pass.type = "password";
 		  pass2.type = "password";
-		  document.getElementById("eye").style.color = "black";
+		
+		eyeVar.name = "click";
+		  
 	  	}
 }
 </script>
