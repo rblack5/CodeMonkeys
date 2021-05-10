@@ -37,8 +37,11 @@ public class UploadImageServlet extends HttpServlet {
 		
 		String userIDString = (String) session.getAttribute("userID");
 		int userID = Integer.parseInt(userIDString);
+		String fileExtension = userImage.substring(userImage.lastIndexOf(".") + 1);
 		
-		if(userImage != null) {
+		System.out.println(fileExtension);
+		
+		if(userImage != null && (fileExtension.equals("jpg") || fileExtension.equals("png") || fileExtension.equals("jpeg") || fileExtension.equals("gif"))) {
 			db.updateImage(userID, userImage);
 		}
 		
