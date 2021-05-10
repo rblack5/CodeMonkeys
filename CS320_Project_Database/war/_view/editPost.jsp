@@ -33,7 +33,7 @@
 				<div class="label mb-2 mt-3">Body: </div>
 				<table>
 					<tr>
-						<td><textarea name="body" placeholder="Write your post here..." rows="4" cols="53" value="${body}"></textarea></td>
+						<td><textarea name="body" placeholder="Write your post here..." rows="4" cols="53">${body}</textarea></td>
 					</tr>
 				</table>
 				

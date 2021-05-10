@@ -112,8 +112,8 @@ public class EditPostServlet extends HttpServlet {
 				invalidInfo = true;
 				
 			}
-			else if (postTitle.length() > 70 || postBody.length() > 1000) {
-				errorMessage = "Title cannot be longer than 70 characters, and the body cannot be longer than 1000 characters";
+			else if (postTitle.length() > 70 || postBody.length() > 3000) {
+				errorMessage = "Title cannot be longer than 70 characters, and the body cannot be longer than 3000 characters";
 				invalidInfo = true;
 			}
 			else if (postTitle.length() < 1 || postBody.length() < 1) {

@@ -74,8 +74,8 @@ public class CreateServlet extends HttpServlet {
 				
 			}
 			
-			if (title.length() > 70 || body.length() > 1000) {
-				errorMessage = "Title cannot be longer than 70 characters, and the body cannot be longer than 1000 characters";
+			if (title.length() > 70 || body.length() > 3000) {
+				errorMessage = "Title cannot be longer than 70 characters, and the body cannot be longer than 3000 characters";
 				invalidInfo = true;
 			}
 			
@@ -149,14 +149,21 @@ public class CreateServlet extends HttpServlet {
 			req.setAttribute("postTitle", title);
 			req.setAttribute("postBody", body);
 			
+			session.setAttribute("createTitle", title);
+			session.setAttribute("createBody", body);
+			
 			// Forward to view to render the result HTML document
 			req.getRequestDispatcher("/_view/create.jsp").forward(req, resp);
 		}
-		else {
+		else if (!invalidInfo){
 			req.setAttribute("post", post);
 			req.setAttribute("errorMessage", errorMessage);
 			req.removeAttribute("postTitle");
 			req.removeAttribute("postBody");
+			
+			session.removeAttribute("createTitle");
+			session.removeAttribute("createBody");
+			
 			session.setAttribute("currentPost", post);
 			req.getRequestDispatcher("/_view/post.jsp").forward(req, resp);
 		}

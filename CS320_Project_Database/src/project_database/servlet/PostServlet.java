@@ -39,6 +39,7 @@ public class PostServlet extends HttpServlet {
 		// This is the easy way out
 		HttpSession session = req.getSession();
 		session.setAttribute("currentPost", post);
+
 		
 		req.getRequestDispatcher("/_view/post.jsp").forward(req, resp);
 		

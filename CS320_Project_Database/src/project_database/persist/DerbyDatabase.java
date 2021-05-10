@@ -813,7 +813,7 @@ public class DerbyDatabase {
 							"	userID integer, " +
 							"	username varchar(20)," +
 							"	postTitle varchar(100)," +
-							"	postBody varchar(1000)," +
+							"	postBody varchar(3000)," +
 							"	textStyle varchar(100)," +
 							"	backgroundStyle varchar(100)," +
 							"	linkStyle varchar(100)," +

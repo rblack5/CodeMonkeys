@@ -26,14 +26,14 @@
 				<div class="label mb-2 mt-1">Title: </div>
 				<table>
 					<tr>
-						<td><input type="text" name="title" placeholder="Title your Post" size="50" value="${postTitle}" /></td>
+						<td><input type="text" name="title" placeholder="Title your Post" size="50" value="${createTitle}"/></td>
 					</tr>
 				</table>
 				
 				<div class="label mb-2 mt-3">Body: </div>
 				<table>
 					<tr>
-						<td><textarea name="body" placeholder="Write your post here..." rows="4" cols="53" value="${postBody}"></textarea></td>
+						<td><textarea name="body" placeholder="Write your post here..." rows="4" cols="53">${createBody}</textarea></td>
 					</tr>
 				</table>
 				
