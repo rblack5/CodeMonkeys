@@ -24,7 +24,7 @@
 			</c:if>
 
 
-				<div class="label mb-2 mt-1">Username: </div>
+				<div class="label mb-2 mt-1">Change Username: </div>
 				<table>
 					<tr>
 						<td><input type="text" name="username" placeholder="Enter New Username" size="50" value="${username}" maxlength="20" pattern=".{3,}" 
@@ -32,14 +32,14 @@
 					</tr>
 				</table>
 				
-				<div class="label mb-2 mt-3">Bio: </div>
+				<div class="label mb-2 mt-3">Create Your Bio: </div>
 				<table>
 					<tr>
 						<td><textarea name="bio" placeholder="Write your bio here..." rows="4" cols="53" value="${UserModel.bio}"></textarea></td>
 					</tr>
 				</table>
 				
-				<div class="label mb-2 mt-3">Password: </div>
+				<div class="label mb-2 mt-3">Enter a New Password: </div>
 				
 				<table>
 					<tr>
@@ -53,7 +53,7 @@
 				</table>
 	
 
-				<div class="label mb-2 mt-3">Confirm Password: </div>
+				<div class="label mb-2 mt-3">Confirm New Password: </div>
 				<table>
 					<tr>
 						<td><input autocomplete="off" type="password" name="password2" id="password2" size="40" value="${registerPassword2}" placeholder="Confirm Password" maxlength="20" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" 

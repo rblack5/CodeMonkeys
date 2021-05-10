@@ -40,6 +40,8 @@ public class UpdateUser {
 	public void updateUser(int userID, String username, String password, String password2, String bio, String postTheme, String accountTheme) {
 		DerbyDatabase db = new DerbyDatabase();
 		UserModel original = db.findMatchingUserByUserID(userID);
+		String originalPassword = original.getPassword();
+		System.out.println("Original Password: " + originalPassword);
 		
 		if (username == null || username.trim().isEmpty() || username.equals("")) {
 			username = original.getUsername();
@@ -49,9 +51,9 @@ public class UpdateUser {
 			bio = original.getBio();
 		}
 		
-		if (password == null || password.trim().isEmpty() || password.equals("")) {
-			password = original.getPassword();
-		}
+//		if (password == null || password.trim().isEmpty() || password.equals("")) {
+//			String originalPassword = original.getPassword();
+//		}
 		
 		if (postTheme == null) {
 			postTheme = original.getPostTheme();
@@ -61,9 +63,9 @@ public class UpdateUser {
 			accountTheme = original.getAccountTheme();
 		}
 		
-		if (!(password == null || password.trim().isEmpty() || password.equals(""))) {
+		if ((password == null || password.trim().isEmpty() || password.equals(""))) {
 			System.out.println("Password is NOT being rehashed!");
-			db.updateUser(userID, username, password, bio, postTheme, accountTheme);
+			db.updateUser(userID, username, originalPassword, bio, postTheme, accountTheme);
 		}
 		else {
 			System.out.println("Password is being rehashed!");
