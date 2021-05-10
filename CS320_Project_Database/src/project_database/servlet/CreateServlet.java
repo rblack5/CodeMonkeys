@@ -122,10 +122,12 @@ public class CreateServlet extends HttpServlet {
 					model.setTitleStyle("font-size: 2.20em; font-weight: bolder; color:black;");
 				}
 				else if (user.getPostTheme().equals("gold")) {
-					model.setTextStyle("all: unset; color: #50C878; white-space: pre-wrap;");
-					model.setBackgroundStyle("background-color: #FFD700;");
-					model.setLinkStyle("all: unset; color:#50C878; cursor:pointer; text-decoration:underline;");
-					model.setTitleStyle("font-size: 2.20em; font-weight: bolder; color:#50C878;");
+					model.setTextStyle("all: unset; color: #000080; white-space: pre-wrap;");
+					//#FFD700
+					// url('${pageContext.request.contextPath}/_view/images/default.jpg');
+					model.setBackgroundStyle("background-image: url('https://media.discordapp.net/attachments/805890300677062666/841213062875054080/283561966e2b7c98f4534e14d847f473.png?width=1202&height=676');");
+					model.setLinkStyle("all: unset; color:#000080; cursor:pointer; text-decoration:underline;");
+					model.setTitleStyle("font-size: 2.20em; font-weight: bolder; color:#000080;");
 				}
 				
 				model.setUserID(realUserID);
