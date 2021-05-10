@@ -1,10 +1,10 @@
 package project_database.model;
 
-public class EditProfileModel {
-	private String name, bio, password, password2;
+public class LoginModel {
+	private String name, password;
 	int userID;
 	
-	public EditProfileModel() {
+	public LoginModel() {
 	}
 	
 	public void setName(String name) {
@@ -15,28 +15,12 @@ public class EditProfileModel {
 		return this.name;
 	}
 	
-	public void setBio(String bio) {
-		this.bio = bio;
-	}
-	
-	public String getBio() {
-		return this.bio;
-	}
-	
 	public void setPassword(String password) {
 		this.password = password;
 	}
 	
 	public String getPassword() {
 		return this.password;
-	}
-	
-	public void setPassword2(String password2) {
-		this.password2 = password2;
-	}
-	
-	public String getPassword2() {
-		return this.password2;
 	}
 	
 	public void setUserID(int userID) {
