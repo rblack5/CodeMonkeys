@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import project_database.controller.PostController;
 import project_database.model.PostModel;
 import project_database.model.UserModel;
+import project_database.persist.DerbyDatabase;
 
 public class CreateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -37,6 +38,8 @@ public class CreateServlet extends HttpServlet {
 		System.out.println("Create Servlet: doPost");
 		
 		HttpSession session = req.getSession();
+		DerbyDatabase db = new DerbyDatabase();
+		
 		// holds the error message text, if there is any
 		String errorMessage = null;
 		Boolean invalidInfo = false;
@@ -139,6 +142,11 @@ public class CreateServlet extends HttpServlet {
 				
 				PostController controller = new PostController();
 				post = controller.createPost(model);
+				
+				UserModel updatedUser = db.findMatchingUserByUserID(realUserID);
+				
+				db.updateImage(realUserID, updatedUser.getUserImage());
+				
 			}
 			
 		// This part is probably unnecessary but I am keeping it to help us write catch methods

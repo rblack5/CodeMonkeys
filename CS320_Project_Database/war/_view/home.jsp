@@ -51,7 +51,7 @@
 	
 	<c:forEach items="${posts}" var="post">
 		<article class="media content-section" style = "${post.backgroundStyle}">
-	    	<img class ="rounded-circle article-img" src= "${pageContext.request.contextPath}/_view/images/default.jpg">
+	    	<img class ="rounded-circle article-img" src= ${post.userImage}>
 	    	<div class="media-body" style = "word-break: break-word;">
 				<form action = "/project_database/profile">
 				    	<div class="article-metadata">

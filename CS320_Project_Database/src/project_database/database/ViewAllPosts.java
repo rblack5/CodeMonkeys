@@ -25,7 +25,7 @@ public class ViewAllPosts {
 			for (PostModel post : postList) {
 				System.out.println("PostID: " + post.getPostID() + " | PostAuthorID: " + post.getUserID() +  " | Title: " + post.getTitle() + " | Body: " + post.getBody()
 				+ " | TextStyle: " + post.getTextStyle() + " | BackgroundStyle: " + post.getBackgroundStyle() 
-				+ " | LinkStyle: " + post.getLinkStyle() + " | TitleStyle: " + post.getTitleStyle() + " | DateCreated: " + post.getDateCreated());
+				+ " | LinkStyle: " + post.getLinkStyle() + " | TitleStyle: " + post.getTitleStyle() + " | DateCreated: " + post.getDateCreated() + " | UserImage: " + post.getUserImage());
 			}
 		}
 	}

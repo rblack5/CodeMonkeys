@@ -236,7 +236,7 @@
 		<form action = "${pageContext.servletContext.contextPath}/uploadImage" method="post" enctype="multipart/form-data">
 			<div class="label mb-2 mt-3"> Profile Image: </div>
 				<tr>
-					<td><input type="file" name="userImage" size="50"/></td>
+					<td><textarea name="userImage" placeholder="Place your image URL here..."></textarea></td>
 				</tr>
 				<button class="btn btn-outline-info" type="Submit" value="Save Image">Save Image</button>
 		</form>

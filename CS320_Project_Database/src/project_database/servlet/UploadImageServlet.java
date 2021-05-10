@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import project_database.model.UserModel;
 import project_database.persist.DerbyDatabase;
 
 @MultipartConfig(maxFileSize = 16177215) // Max file size of ~16MB
@@ -31,19 +32,19 @@ public class UploadImageServlet extends HttpServlet {
 		
 		HttpSession session = req.getSession();
 		DerbyDatabase db = new DerbyDatabase();
-		InputStream inputStream = null;
 		
-		Part filePart = req.getPart("userImage");
+		String userImage = req.getParameter("userImage");
 		
 		String userIDString = (String) session.getAttribute("userID");
 		int userID = Integer.parseInt(userIDString);
 		
-		if(filePart != null) {
-			inputStream = filePart.getInputStream();
-			
-			db.updateImage(userID, inputStream);
+		if(userImage != null) {
+			db.updateImage(userID, userImage);
 		}
 		
+		UserModel user = db.findMatchingUserByUserID(userID);
+		
+		session.setAttribute("user", user);
 		
 		req.getRequestDispatcher("/_view/profile.jsp").forward(req, resp);
 	}

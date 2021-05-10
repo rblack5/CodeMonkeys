@@ -1,7 +1,7 @@
 package project_database.model;
 
 public class PostModel {
-	private String title, body, username, dateCreated, textStyle, backgroundStyle, linkStyle, titleStyle;
+	private String title, body, username, dateCreated, textStyle, backgroundStyle, linkStyle, titleStyle, userImage;
 	private int postID, userID;
 	
 	public PostModel() {
@@ -87,6 +87,14 @@ public class PostModel {
 	
 	public String getDateCreated() {
 		return this.dateCreated;
+	}
+	
+	public void setUserImage(String userImage) {
+		this.userImage = userImage;
+	}
+	
+	public String getUserImage() {
+		return this.userImage;
 	}
 	
 }

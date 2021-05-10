@@ -4,6 +4,7 @@ package project_database.database;
 import java.util.Scanner;
 
 import project_database.model.PostModel;
+import project_database.model.UserModel;
 import project_database.persist.DerbyDatabase;
 
 public class InsertNewPost {
@@ -30,7 +31,7 @@ public class InsertNewPost {
 		String titleStyle = "color: #444444;";
 		// get the DB instance and execute transaction
 		PostModel post;
-		post = db.insertNewPost(userID, username, postTitle, postBody, textStyle, backgroundStyle, linkStyle, titleStyle, date);
+		post = db.insertNewPost(userID, username, postTitle, postBody, textStyle, backgroundStyle, linkStyle, titleStyle, date, null);
 		
 		System.out.println("Success");
 		System.out.println("Post ID is: " + post.getPostID());
@@ -42,8 +43,11 @@ public class InsertNewPost {
 		DerbyDatabase db = new DerbyDatabase();
 		System.out.println("User id is ==> " + userID);
 		PostModel post;
+		UserModel user;
 		
-		post = db.insertNewPost(userID, username, postTitle, postBody, textStyle, backgroundStyle, linkStyle, titleStyle, dateCreated);
+		user = db.findMatchingUserByUserID(userID);
+		
+		post = db.insertNewPost(userID, username, postTitle, postBody, textStyle, backgroundStyle, linkStyle, titleStyle, dateCreated, user.getUserImage());
 		System.out.println("Success");
 		System.out.println("Post ID is: " + post.getPostID());
 		return post;

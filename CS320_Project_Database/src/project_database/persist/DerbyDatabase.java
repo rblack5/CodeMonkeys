@@ -372,7 +372,7 @@ public class DerbyDatabase {
 	}
 	
 	
-	public List<Pair<UserModel, PostModel>> insertNewUser(String username, String password, String bio, String dateJoined, String postTheme, Boolean adminStatus, String accountTheme) {
+	public List<Pair<UserModel, PostModel>> insertNewUser(String username, String password, String bio, String dateJoined, String postTheme, Boolean adminStatus, String accountTheme, String userImage) {
 		return executeTransaction(new Transaction<List<Pair<UserModel, PostModel>>>() {
 			
 			@SuppressWarnings("resource")
@@ -386,8 +386,8 @@ public class DerbyDatabase {
 					// Prepare the statement to insert the new PostModel into the PostModels table.
 				try {
 					stmt = conn.prepareStatement(
-							" INSERT INTO Users (username, password, bio, dateJoined, postTheme, adminStatus, accountTheme) "
-							+ "VALUES (?, ?, ?, ?, ?, ?, ?) "		
+							" INSERT INTO Users (username, password, bio, dateJoined, postTheme, adminStatus, accountTheme, userImage) "
+							+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?) "		
 							);
 					
 					stmt.setString(1, username);
@@ -397,6 +397,7 @@ public class DerbyDatabase {
 					stmt.setString(5, postTheme);
 					stmt.setBoolean(6, adminStatus);
 					stmt.setString(7, accountTheme);
+					stmt.setString(8, userImage);
 					
 					
 					// Execute the query and insert the new PostModel into the PostModels table.
@@ -518,7 +519,7 @@ public class DerbyDatabase {
 	}
 	
 	public PostModel insertNewPost(int userID, String username, String postTitle, String postBody, String textStyle, String backgroundStyle, String linkStyle, 
-			String titleStyle, String dateCreated) {
+			String titleStyle, String dateCreated, String userImage) {
 		return executeTransaction(new Transaction<PostModel>() {
 			
 			@Override
@@ -533,8 +534,8 @@ public class DerbyDatabase {
 					// Prepare the statement to insert the new PostModel into the PostModels table.
 				try {
 					stmt = conn.prepareStatement(
-							" INSERT INTO Posts (userID, username, postTitle, postBody, textStyle, backgroundStyle, linkStyle, titleStyle, dateCreated) "
-							+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) "		
+							" INSERT INTO Posts (userID, username, postTitle, postBody, textStyle, backgroundStyle, linkStyle, titleStyle, dateCreated, userImage) "
+							+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) "		
 							);
 					
 					stmt.setInt(1, userID);
@@ -546,6 +547,7 @@ public class DerbyDatabase {
 					stmt.setString(7, linkStyle);
 					stmt.setString(8, titleStyle);
 					stmt.setString(9, dateCreated);
+					stmt.setString(10, userImage);
 
 					// Execute the query and insert the new PostModel into the PostModels table.
 					stmt.executeUpdate();
@@ -675,7 +677,7 @@ public class DerbyDatabase {
 		});
 	}
 	
-	public List<Pair<UserModel, PostModel>> updateImage(int userID, InputStream userImage) {
+	public List<Pair<UserModel, PostModel>> updateImage(int userID, String userImage) {
 		return executeTransaction(new Transaction<List<Pair<UserModel, PostModel>>>() {
 			
 			@SuppressWarnings("resource")
@@ -694,7 +696,7 @@ public class DerbyDatabase {
 							+ "WHERE userID =? "
 							);
 					
-					stmt.setBlob(1, userImage);
+					stmt.setString(1, userImage);
 					stmt.setInt(2, userID);
 					
 					// Execute the query and insert the new PostModel into the PostModels table.
@@ -706,7 +708,7 @@ public class DerbyDatabase {
 							+ "WHERE userID =? "
 							);
 					
-					stmt2.setBlob(1, userImage);
+					stmt2.setString(1, userImage);
 					stmt2.setInt(2, userID);
 					
 					// Execute the query and insert the new PostModel into the PostModels table.
@@ -786,7 +788,7 @@ public class DerbyDatabase {
 		UserModel.setPostTheme(resultSet.getString(index++));
 		UserModel.setAccountTheme(resultSet.getString(index++));
 		UserModel.setAdminStatus(resultSet.getBoolean(index++));
-		UserModel.setUserImage(resultSet.getBlob(index++));
+		UserModel.setUserImage(resultSet.getString(index++));
 	}
 	
 	private void loadPostModel(PostModel PostModel, ResultSet resultSet, int index) throws SQLException {
@@ -800,6 +802,7 @@ public class DerbyDatabase {
 		PostModel.setLinkStyle(resultSet.getString(index++));
 		PostModel.setTitleStyle(resultSet.getString(index++));
 		PostModel.setDateCreated(resultSet.getString(index++));
+		PostModel.setUserImage(resultSet.getString(index++));
 	}
 	
 	public void dropAllTables() {
@@ -845,7 +848,7 @@ public class DerbyDatabase {
 							"   postTheme varchar(100), " +
 							"   accountTheme varchar(100), " +
 							"	adminStatus boolean, " +
-							"	userImage blob," +
+							"	userImage varchar(200)," +
 							"   CONSTRAINT UC_USER UNIQUE (username) " +
 							")"
 					);
@@ -866,7 +869,7 @@ public class DerbyDatabase {
 							"	linkStyle varchar(100)," +
 							"	titleStyle varchar(100)," +
 							"   dateCreated varchar(20), " +
-							"	userImage blob" +
+							"	userImage varchar(200)" +
 							")"
 					);
 					stmt2.executeUpdate();

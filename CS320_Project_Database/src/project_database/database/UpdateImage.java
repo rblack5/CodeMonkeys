@@ -10,7 +10,7 @@ public class UpdateImage {
 	public static void main(String[] args) throws Exception {
 		
 	}
-	public void updatePost(int userID, InputStream userImage) {
+	public void updatePost(int userID, String userImage) {
 		DerbyDatabase db = new DerbyDatabase();
 		
 		db.updateImage(userID, userImage);

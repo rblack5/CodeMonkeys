@@ -41,7 +41,7 @@ public class InsertNewUser {
 		
 		String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt(12));
 		// get the DB instance and execute transaction
-		db.insertNewUser(username, hashedPassword, bio, dateJoined, postTheme, adminStatus, accountTheme);
+		db.insertNewUser(username, hashedPassword, bio, dateJoined, postTheme, adminStatus, accountTheme, "https://i.pinimg.com/originals/2b/05/ef/2b05ef3609b862dfb7dfcbe95b7de949.jpg");
 		
 		System.out.println("Success");
 		
@@ -53,7 +53,8 @@ public class InsertNewUser {
 		bio = "This user does not have a bio yet!";
 		String postTheme = "light";
 		String accountTheme = "light";
-		db.insertNewUser(username, password, bio, dateJoined, postTheme, adminStatus, accountTheme);
+		db.insertNewUser(username, password, bio, dateJoined, postTheme, adminStatus, accountTheme, "https://i.pinimg.com/originals/2b/05/ef/2b05ef3609b862dfb7dfcbe95b7de949.jpg");
+		
 		System.out.println("Success");
 	}
 

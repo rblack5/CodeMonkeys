@@ -4,10 +4,9 @@ import java.io.InputStream;
 import java.sql.Blob;
 
 public class UserModel {
-	private String username, password, bio, dateJoined, postTheme, accountTheme;
+	private String username, password, bio, dateJoined, postTheme, accountTheme, userImage;
 	private int userID;
 	private boolean adminStatus;
-	private Blob userImage;
 	
 	public UserModel() {
 	}
@@ -76,11 +75,11 @@ public class UserModel {
 		return this.adminStatus;
 	}
 	
-	public void setUserImage(Blob blob) {
-		this.userImage = blob;
+	public void setUserImage(String userImage) {
+		this.userImage = userImage;
 	}
 	
-	public Blob getUserImage() {
+	public String getUserImage() {
 		return this.userImage;
 	}
 }
